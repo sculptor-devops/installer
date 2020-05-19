@@ -1,0 +1,1275 @@
+[2020-05-18 07:35:12] development.DEBUG: COMMAND php /tmp/composer-setup.php --install-dir=bin --filename=composer  
+[2020-05-18 07:41:32] development.ERROR: Call to undefined method Eppak\Stages::version() {"exception":"[object] (Error(code: 0): Call to undefined method Eppak\\Stages::version() at /root/installer/app/Commands/StageCommand.php:35)
+[stacktrace]
+#0 [internal function]: App\\Commands\\StageCommand->handle()
+#1 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#2 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#3 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#4 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#5 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#6 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#7 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#8 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#9 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#10 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#11 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#12 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#13 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#14 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#15 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#16 {main}
+"} 
+[2020-05-18 07:44:38] development.ERROR: Class 'Eppak\Str' not found {"exception":"[object] (Error(code: 0): Class 'Eppak\\Str' not found at /root/installer/src/Stages.php:131)
+[stacktrace]
+#0 /root/installer/app/Commands/StageCommand.php(35): Eppak\\Stages->version()
+#1 [internal function]: App\\Commands\\StageCommand->handle()
+#2 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#3 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#4 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#5 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#6 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#7 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#8 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#9 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#10 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#11 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#12 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#13 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#14 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#15 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#16 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#17 {main}
+"} 
+[2020-05-18 07:45:22] development.ERROR: Class 'Illuminate\Support\Facades\Str' not found {"exception":"[object] (Error(code: 0): Class 'Illuminate\\Support\\Facades\\Str' not found at /root/installer/src/Stages.php:132)
+[stacktrace]
+#0 /root/installer/app/Commands/StageCommand.php(35): Eppak\\Stages->version()
+#1 [internal function]: App\\Commands\\StageCommand->handle()
+#2 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#3 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#4 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#5 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#6 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#7 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#8 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#9 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#10 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#11 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#12 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#13 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#14 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#15 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#16 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#17 {main}
+"} 
+[2020-05-18 08:01:50] development.ERROR: Target class [Eppak\Stages\{V1804}\{SuUser}] does not exist. {"exception":"[object] (Illuminate\\Contracts\\Container\\BindingResolutionException(code: 0): Target class [Eppak\\Stages\\{V1804}\\{SuUser}] does not exist. at /root/installer/vendor/illuminate/container/Container.php:807)
+[stacktrace]
+#0 /root/installer/vendor/illuminate/container/Container.php(687): Illuminate\\Container\\Container->build()
+#1 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Application.php(795): Illuminate\\Container\\Container->resolve()
+#2 /root/installer/vendor/illuminate/container/Container.php(633): Illuminate\\Foundation\\Application->resolve()
+#3 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Application.php(780): Illuminate\\Container\\Container->make()
+#4 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/helpers.php(119): Illuminate\\Foundation\\Application->make()
+#5 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/helpers.php(719): app()
+#6 /root/installer/src/Stages.php(107): resolve()
+#7 /root/installer/app/Commands/StageCommand.php(38): Eppak\\Stages->stage()
+#8 /root/installer/vendor/nunomaduro/laravel-console-task/src/LaravelConsoleTaskServiceProvider.php(49): App\\Commands\\StageCommand->App\\Commands\\{closure}()
+#9 [internal function]: App\\Commands\\StageCommand->NunoMaduro\\LaravelConsoleTask\\{closure}()
+#10 /root/installer/vendor/illuminate/support/Traits/Macroable.php(111): call_user_func_array()
+#11 /root/installer/vendor/laravel-zero/framework/src/Commands/Command.php(56): Illuminate\\Console\\Command->__call()
+#12 /root/installer/app/Commands/StageCommand.php(45): LaravelZero\\Framework\\Commands\\Command->task()
+#13 [internal function]: App\\Commands\\StageCommand->handle()
+#14 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#15 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#16 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#17 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#18 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#19 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#20 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#21 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#22 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#23 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#24 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#25 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#26 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#27 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#28 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#29 {main}
+
+[previous exception] [object] (ReflectionException(code: -1): Class Eppak\\Stages\\{V1804}\\{SuUser} does not exist at /root/installer/vendor/illuminate/container/Container.php:805)
+[stacktrace]
+#0 /root/installer/vendor/illuminate/container/Container.php(805): ReflectionClass->__construct()
+#1 /root/installer/vendor/illuminate/container/Container.php(687): Illuminate\\Container\\Container->build()
+#2 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Application.php(795): Illuminate\\Container\\Container->resolve()
+#3 /root/installer/vendor/illuminate/container/Container.php(633): Illuminate\\Foundation\\Application->resolve()
+#4 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Application.php(780): Illuminate\\Container\\Container->make()
+#5 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/helpers.php(119): Illuminate\\Foundation\\Application->make()
+#6 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/helpers.php(719): app()
+#7 /root/installer/src/Stages.php(107): resolve()
+#8 /root/installer/app/Commands/StageCommand.php(38): Eppak\\Stages->stage()
+#9 /root/installer/vendor/nunomaduro/laravel-console-task/src/LaravelConsoleTaskServiceProvider.php(49): App\\Commands\\StageCommand->App\\Commands\\{closure}()
+#10 [internal function]: App\\Commands\\StageCommand->NunoMaduro\\LaravelConsoleTask\\{closure}()
+#11 /root/installer/vendor/illuminate/support/Traits/Macroable.php(111): call_user_func_array()
+#12 /root/installer/vendor/laravel-zero/framework/src/Commands/Command.php(56): Illuminate\\Console\\Command->__call()
+#13 /root/installer/app/Commands/StageCommand.php(45): LaravelZero\\Framework\\Commands\\Command->task()
+#14 [internal function]: App\\Commands\\StageCommand->handle()
+#15 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#16 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#17 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#18 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#19 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#20 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#21 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#22 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#23 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#24 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#25 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#26 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#27 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#28 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#29 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#30 {main}
+"} 
+[2020-05-18 08:02:43] development.INFO: RUNNING STAGE Superuser  
+[2020-05-18 08:07:27] development.INFO: RUNNING STAGE Nginx  
+[2020-05-18 08:07:27] development.ERROR: Call to a member function error() on null {"exception":"[object] (Error(code: 0): Call to a member function error() on null at /root/installer/src/Stages/V1804/Nginx.php:86)
+[stacktrace]
+#0 /root/installer/src/Stages.php(122): Eppak\\Stages\\V1804\\Nginx->error()
+#1 /root/installer/src/Stages.php(112): Eppak\\Stages->instance()
+#2 /root/installer/app/Commands/StageCommand.php(38): Eppak\\Stages->stage()
+#3 /root/installer/vendor/nunomaduro/laravel-console-task/src/LaravelConsoleTaskServiceProvider.php(49): App\\Commands\\StageCommand->App\\Commands\\{closure}()
+#4 [internal function]: App\\Commands\\StageCommand->NunoMaduro\\LaravelConsoleTask\\{closure}()
+#5 /root/installer/vendor/illuminate/support/Traits/Macroable.php(111): call_user_func_array()
+#6 /root/installer/vendor/laravel-zero/framework/src/Commands/Command.php(56): Illuminate\\Console\\Command->__call()
+#7 /root/installer/app/Commands/StageCommand.php(45): LaravelZero\\Framework\\Commands\\Command->task()
+#8 [internal function]: App\\Commands\\StageCommand->handle()
+#9 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#10 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#11 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#12 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#13 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#14 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#15 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#16 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#17 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#18 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#19 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#20 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#21 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#22 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#23 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#24 {main}
+"} 
+[2020-05-18 08:07:42] development.INFO: RUNNING STAGE Nginx  
+[2020-05-18 08:07:42] development.ERROR: nginx.conf {"exception":"[object] (Illuminate\\Contracts\\Filesystem\\FileNotFoundException(code: 0): nginx.conf at /root/installer/vendor/illuminate/filesystem/FilesystemAdapter.php:135)
+[stacktrace]
+#0 /root/installer/vendor/illuminate/filesystem/FilesystemManager.php(368): Illuminate\\Filesystem\\FilesystemAdapter->get()
+#1 /root/installer/vendor/illuminate/support/Facades/Facade.php(261): Illuminate\\Filesystem\\FilesystemManager->__call()
+#2 /root/installer/src/Stages/V1804/Nginx.php(57): Illuminate\\Support\\Facades\\Facade::__callStatic()
+#3 /root/installer/src/Stages.php(121): Eppak\\Stages\\V1804\\Nginx->run()
+#4 /root/installer/src/Stages.php(112): Eppak\\Stages->instance()
+#5 /root/installer/app/Commands/StageCommand.php(38): Eppak\\Stages->stage()
+#6 /root/installer/vendor/nunomaduro/laravel-console-task/src/LaravelConsoleTaskServiceProvider.php(49): App\\Commands\\StageCommand->App\\Commands\\{closure}()
+#7 [internal function]: App\\Commands\\StageCommand->NunoMaduro\\LaravelConsoleTask\\{closure}()
+#8 /root/installer/vendor/illuminate/support/Traits/Macroable.php(111): call_user_func_array()
+#9 /root/installer/vendor/laravel-zero/framework/src/Commands/Command.php(56): Illuminate\\Console\\Command->__call()
+#10 /root/installer/app/Commands/StageCommand.php(45): LaravelZero\\Framework\\Commands\\Command->task()
+#11 [internal function]: App\\Commands\\StageCommand->handle()
+#12 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#13 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#14 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#15 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#16 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#17 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#18 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#19 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#20 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#21 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#22 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#23 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#24 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#25 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#26 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#27 {main}
+
+[previous exception] [object] (League\\Flysystem\\FileNotFoundException(code: 0): File not found at path: nginx.conf at /root/installer/vendor/league/flysystem/src/Filesystem.php:389)
+[stacktrace]
+#0 /root/installer/vendor/league/flysystem/src/Filesystem.php(179): League\\Flysystem\\Filesystem->assertPresent()
+#1 /root/installer/vendor/illuminate/filesystem/FilesystemAdapter.php(133): League\\Flysystem\\Filesystem->read()
+#2 /root/installer/vendor/illuminate/filesystem/FilesystemManager.php(368): Illuminate\\Filesystem\\FilesystemAdapter->get()
+#3 /root/installer/vendor/illuminate/support/Facades/Facade.php(261): Illuminate\\Filesystem\\FilesystemManager->__call()
+#4 /root/installer/src/Stages/V1804/Nginx.php(57): Illuminate\\Support\\Facades\\Facade::__callStatic()
+#5 /root/installer/src/Stages.php(121): Eppak\\Stages\\V1804\\Nginx->run()
+#6 /root/installer/src/Stages.php(112): Eppak\\Stages->instance()
+#7 /root/installer/app/Commands/StageCommand.php(38): Eppak\\Stages->stage()
+#8 /root/installer/vendor/nunomaduro/laravel-console-task/src/LaravelConsoleTaskServiceProvider.php(49): App\\Commands\\StageCommand->App\\Commands\\{closure}()
+#9 [internal function]: App\\Commands\\StageCommand->NunoMaduro\\LaravelConsoleTask\\{closure}()
+#10 /root/installer/vendor/illuminate/support/Traits/Macroable.php(111): call_user_func_array()
+#11 /root/installer/vendor/laravel-zero/framework/src/Commands/Command.php(56): Illuminate\\Console\\Command->__call()
+#12 /root/installer/app/Commands/StageCommand.php(45): LaravelZero\\Framework\\Commands\\Command->task()
+#13 [internal function]: App\\Commands\\StageCommand->handle()
+#14 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#15 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#16 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#17 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#18 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#19 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#20 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#21 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#22 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#23 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#24 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#25 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#26 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#27 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#28 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#29 {main}
+"} 
+[2020-05-18 08:12:48] development.INFO: RUNNING STAGE Nginx  
+[2020-05-18 08:12:48] development.ERROR: File not found at path: nginx.conf {"exception":"[object] (League\\Flysystem\\FileNotFoundException(code: 0): File not found at path: nginx.conf at /root/installer/vendor/league/flysystem/src/Filesystem.php:389)
+[stacktrace]
+#0 /root/installer/vendor/league/flysystem/src/Filesystem.php(354): League\\Flysystem\\Filesystem->assertPresent()
+#1 /root/installer/vendor/league/flysystem/src/Filesystem.php(367): League\\Flysystem\\Filesystem->getMetadata()
+#2 /root/installer/src/Stages/V1804/Nginx.php(58): League\\Flysystem\\Filesystem->get()
+#3 /root/installer/src/Stages.php(121): Eppak\\Stages\\V1804\\Nginx->run()
+#4 /root/installer/src/Stages.php(112): Eppak\\Stages->instance()
+#5 /root/installer/app/Commands/StageCommand.php(38): Eppak\\Stages->stage()
+#6 /root/installer/vendor/nunomaduro/laravel-console-task/src/LaravelConsoleTaskServiceProvider.php(49): App\\Commands\\StageCommand->App\\Commands\\{closure}()
+#7 [internal function]: App\\Commands\\StageCommand->NunoMaduro\\LaravelConsoleTask\\{closure}()
+#8 /root/installer/vendor/illuminate/support/Traits/Macroable.php(111): call_user_func_array()
+#9 /root/installer/vendor/laravel-zero/framework/src/Commands/Command.php(56): Illuminate\\Console\\Command->__call()
+#10 /root/installer/app/Commands/StageCommand.php(45): LaravelZero\\Framework\\Commands\\Command->task()
+#11 [internal function]: App\\Commands\\StageCommand->handle()
+#12 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#13 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#14 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#15 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#16 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#17 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#18 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#19 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#20 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#21 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#22 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#23 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#24 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#25 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#26 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#27 {main}
+"} 
+[2020-05-18 08:13:59] development.INFO: RUNNING STAGE Nginx  
+[2020-05-18 08:15:46] development.INFO: RUNNING STAGE Nginx  
+[2020-05-18 08:15:46] development.DEBUG: RUNNING COMMAND: apt-get -y install nginx  
+[2020-05-18 08:15:47] development.DEBUG: RUNNING COMMAND: systemctl enable nginx.service  
+[2020-05-18 08:15:48] development.DEBUG: RUNNING COMMAND: systemctl restart nginx.service  
+[2020-05-18 08:15:48] development.ERROR: Call to a member function error() on null {"exception":"[object] (Error(code: 0): Call to a member function error() on null at /root/installer/src/Stages/V1804/Nginx.php:44)
+[stacktrace]
+#0 /root/installer/src/Stages.php(122): Eppak\\Stages\\V1804\\Nginx->error()
+#1 /root/installer/src/Stages.php(112): Eppak\\Stages->instance()
+#2 /root/installer/app/Commands/StageCommand.php(38): Eppak\\Stages->stage()
+#3 /root/installer/vendor/nunomaduro/laravel-console-task/src/LaravelConsoleTaskServiceProvider.php(49): App\\Commands\\StageCommand->App\\Commands\\{closure}()
+#4 [internal function]: App\\Commands\\StageCommand->NunoMaduro\\LaravelConsoleTask\\{closure}()
+#5 /root/installer/vendor/illuminate/support/Traits/Macroable.php(111): call_user_func_array()
+#6 /root/installer/vendor/laravel-zero/framework/src/Commands/Command.php(56): Illuminate\\Console\\Command->__call()
+#7 /root/installer/app/Commands/StageCommand.php(45): LaravelZero\\Framework\\Commands\\Command->task()
+#8 [internal function]: App\\Commands\\StageCommand->handle()
+#9 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#10 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#11 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#12 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#13 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#14 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#15 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#16 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#17 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#18 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#19 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#20 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#21 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#22 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#23 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#24 {main}
+"} 
+[2020-05-18 08:16:14] development.INFO: RUNNING STAGE Nginx  
+[2020-05-18 08:16:14] development.DEBUG: RUNNING COMMAND: apt-get -y install nginx  
+[2020-05-18 08:16:15] development.DEBUG: RUNNING COMMAND: systemctl enable nginx.service  
+[2020-05-18 08:16:16] development.DEBUG: RUNNING COMMAND: systemctl restart nginx.service  
+[2020-05-18 08:16:16] development.ERROR: Call to a member function error() on null {"exception":"[object] (Error(code: 0): Call to a member function error() on null at /root/installer/src/Stages/V1804/Nginx.php:44)
+[stacktrace]
+#0 /root/installer/src/Stages.php(122): Eppak\\Stages\\V1804\\Nginx->error()
+#1 /root/installer/src/Stages.php(112): Eppak\\Stages->instance()
+#2 /root/installer/app/Commands/StageCommand.php(38): Eppak\\Stages->stage()
+#3 /root/installer/vendor/nunomaduro/laravel-console-task/src/LaravelConsoleTaskServiceProvider.php(49): App\\Commands\\StageCommand->App\\Commands\\{closure}()
+#4 [internal function]: App\\Commands\\StageCommand->NunoMaduro\\LaravelConsoleTask\\{closure}()
+#5 /root/installer/vendor/illuminate/support/Traits/Macroable.php(111): call_user_func_array()
+#6 /root/installer/vendor/laravel-zero/framework/src/Commands/Command.php(56): Illuminate\\Console\\Command->__call()
+#7 /root/installer/app/Commands/StageCommand.php(45): LaravelZero\\Framework\\Commands\\Command->task()
+#8 [internal function]: App\\Commands\\StageCommand->handle()
+#9 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#10 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#11 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#12 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#13 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#14 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#15 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#16 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#17 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#18 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#19 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#20 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#21 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#22 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#23 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#24 {main}
+"} 
+[2020-05-18 08:19:12] development.INFO: RUNNING STAGE Nginx  
+[2020-05-18 08:19:12] development.DEBUG: RUNNING COMMAND: apt-get -y install nginx  
+[2020-05-18 08:19:13] development.DEBUG: RUNNING COMMAND: systemctl enable nginx.service  
+[2020-05-18 08:19:14] development.DEBUG: RUNNING COMMAND: systemctl restart nginx.service  
+[2020-05-18 08:19:14] development.ERROR: ERROR: Cannot restart service  
+[2020-05-18 08:21:49] development.INFO: RUNNING STAGE Nginx  
+[2020-05-18 08:21:49] development.DEBUG: RUNNING COMMAND: apt-get -y install nginx  
+[2020-05-18 08:21:51] development.DEBUG: RUNNING COMMAND: systemctl enable nginx.service  
+[2020-05-18 08:21:51] development.DEBUG: RUNNING COMMAND: systemctl restart nginx.service  
+[2020-05-18 08:21:51] development.ERROR: ERROR: Cannot restart service  
+[2020-05-18 08:22:29] development.INFO: RUNNING STAGE Nginx  
+[2020-05-18 08:22:29] development.DEBUG: RUNNING COMMAND: apt-get -y install nginx  
+[2020-05-18 08:22:30] development.DEBUG: RUNNING COMMAND: systemctl enable nginx.service  
+[2020-05-18 08:22:30] development.DEBUG: RUNNING COMMAND: systemctl restart nginx.service  
+[2020-05-18 08:22:30] development.ERROR: ERROR: Cannot write to configuration  
+[2020-05-18 08:23:00] development.INFO: RUNNING STAGE Nginx  
+[2020-05-18 08:23:00] development.DEBUG: RUNNING COMMAND: apt-get -y install nginx  
+[2020-05-18 08:23:01] development.DEBUG: RUNNING COMMAND: systemctl enable nginx.service  
+[2020-05-18 08:23:01] development.ERROR: ERROR:   
+[2020-05-18 08:23:18] development.INFO: RUNNING STAGE Nginx  
+[2020-05-18 08:23:18] development.DEBUG: RUNNING COMMAND: apt-get -y install nginx  
+[2020-05-18 08:23:19] development.DEBUG: RUNNING COMMAND: systemctl enable nginx.service  
+[2020-05-18 08:23:19] development.ERROR: ERROR:   
+[2020-05-18 08:23:55] development.INFO: RUNNING STAGE Nginx  
+[2020-05-18 08:23:55] development.DEBUG: RUNNING COMMAND: apt-get -y install nginx  
+[2020-05-18 08:23:56] development.DEBUG: RUNNING COMMAND: systemctl enable nginx.service  
+[2020-05-18 08:23:56] development.DEBUG: RUNNING COMMAND: systemctl restart nginx.service  
+[2020-05-18 08:23:56] development.ERROR: ERROR: Cannot write to configuration  
+[2020-05-18 08:24:02] development.INFO: RUNNING STAGE Nginx  
+[2020-05-18 08:24:02] development.DEBUG: RUNNING COMMAND: apt-get -y install nginx  
+[2020-05-18 08:24:03] development.DEBUG: RUNNING COMMAND: systemctl enable nginx.service  
+[2020-05-18 08:24:04] development.DEBUG: RUNNING COMMAND: systemctl restart nginx.service  
+[2020-05-18 08:24:04] development.ERROR: ERROR: Cannot write to configuration  
+[2020-05-18 08:24:42] development.ERROR: syntax error, unexpected 'try' (T_TRY) {"exception":"[object] (ParseError(code: 0): syntax error, unexpected 'try' (T_TRY) at /root/installer/src/Stages/V1804/Nginx.php:23)
+[stacktrace]
+#0 /root/installer/vendor/composer/ClassLoader.php(322): Composer\\Autoload\\includeFile()
+#1 [internal function]: Composer\\Autoload\\ClassLoader->loadClass()
+#2 [internal function]: spl_autoload_call()
+#3 /root/installer/vendor/illuminate/container/Container.php(805): ReflectionClass->__construct()
+#4 /root/installer/vendor/illuminate/container/Container.php(687): Illuminate\\Container\\Container->build()
+#5 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Application.php(795): Illuminate\\Container\\Container->resolve()
+#6 /root/installer/vendor/illuminate/container/Container.php(633): Illuminate\\Foundation\\Application->resolve()
+#7 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Application.php(780): Illuminate\\Container\\Container->make()
+#8 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/helpers.php(119): Illuminate\\Foundation\\Application->make()
+#9 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/helpers.php(719): app()
+#10 /root/installer/src/Stages.php(107): resolve()
+#11 /root/installer/app/Commands/StageCommand.php(38): Eppak\\Stages->stage()
+#12 /root/installer/vendor/nunomaduro/laravel-console-task/src/LaravelConsoleTaskServiceProvider.php(49): App\\Commands\\StageCommand->App\\Commands\\{closure}()
+#13 [internal function]: App\\Commands\\StageCommand->NunoMaduro\\LaravelConsoleTask\\{closure}()
+#14 /root/installer/vendor/illuminate/support/Traits/Macroable.php(111): call_user_func_array()
+#15 /root/installer/vendor/laravel-zero/framework/src/Commands/Command.php(56): Illuminate\\Console\\Command->__call()
+#16 /root/installer/app/Commands/StageCommand.php(45): LaravelZero\\Framework\\Commands\\Command->task()
+#17 [internal function]: App\\Commands\\StageCommand->handle()
+#18 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#19 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#20 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#21 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#22 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#23 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#24 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#25 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#26 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#27 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#28 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#29 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#30 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#31 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#32 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#33 {main}
+"} 
+[2020-05-18 08:24:49] development.INFO: RUNNING STAGE Nginx  
+[2020-05-18 08:25:07] development.INFO: RUNNING STAGE Nginx  
+[2020-05-18 08:25:18] development.INFO: RUNNING STAGE Nginx  
+[2020-05-18 08:25:18] development.DEBUG: RUNNING COMMAND: apt-get -y install nginx  
+[2020-05-18 08:25:19] development.DEBUG: RUNNING COMMAND: systemctl enable nginx.service  
+[2020-05-18 08:25:20] development.DEBUG: RUNNING COMMAND: systemctl restart nginx.service  
+[2020-05-18 08:35:22] development.INFO: RUNNING STAGE Composer  
+[2020-05-18 08:35:23] development.DEBUG: RUNNING COMMAND: php /tmp/composer-setup.php --install-dir=bin --filename=composer  
+[2020-05-18 08:35:50] development.INFO: RUNNING STAGE Composer  
+[2020-05-18 08:35:50] development.DEBUG: RUNNING COMMAND: php /tmp/composer-setup.php --install-dir=/bin --filename=composer  
+[2020-05-18 09:04:33] development.INFO: RUNNING STAGE MySql Server  
+[2020-05-18 09:04:33] development.DEBUG: RUNNING COMMAND: debconf-set-selections  
+[2020-05-18 09:04:33] development.DEBUG: RUNNING COMMAND: debconf-set-selections  
+[2020-05-18 09:04:34] development.DEBUG: RUNNING COMMAND: apt-get -y install mysql-server mysql-client  
+[2020-05-18 09:06:29] development.INFO: RUNNING STAGE MySql Server  
+[2020-05-18 09:06:29] development.DEBUG: RUNNING COMMAND: debconf-set-selections  
+[2020-05-18 09:06:29] development.DEBUG: RUNNING COMMAND: debconf-set-selections  
+[2020-05-18 09:06:29] development.DEBUG: RUNNING COMMAND: apt-get -y install mysql-server mysql-client  
+[2020-05-18 09:12:34] development.INFO: RUNNING STAGE Nginx  
+[2020-05-18 09:12:34] development.DEBUG: RUNNING COMMAND: apt-get -y install nginx  
+[2020-05-18 09:12:39] development.DEBUG: RUNNING COMMAND: systemctl enable nginx.service  
+[2020-05-18 09:12:40] development.DEBUG: RUNNING COMMAND: systemctl restart nginx.service  
+[2020-05-18 09:17:51] development.INFO: RUNNING STAGE Motd  
+[2020-05-18 09:26:49] development.INFO: RUNNING STAGE MySql Server  
+[2020-05-18 09:26:49] development.DEBUG: RUNNING COMMAND: echo -n "mysql-server mysql-server/root_password password kepsodorr9" > debconf-set-selections  
+[2020-05-18 09:26:49] development.DEBUG: RUNNING COMMAND: echo -n "mysql-server mysql-server/root_password_again password kepsodorr9" > debconf-set-selections  
+[2020-05-18 09:26:49] development.DEBUG: RUNNING COMMAND: apt-get -y install mysql-server mysql-client  
+[2020-05-18 09:28:14] development.INFO: RUNNING STAGE MySql Server  
+[2020-05-18 09:28:14] development.DEBUG: RUNNING COMMAND: echo -n "mysql-server mysql-server/root_password password kepsodorr9" > debconf-set-selections  
+[2020-05-18 09:28:14] development.DEBUG: RUNNING COMMAND: echo -n "mysql-server mysql-server/root_password_again password kepsodorr9" > debconf-set-selections  
+[2020-05-18 09:28:14] development.DEBUG: RUNNING COMMAND: apt-get -y install mysql-server mysql-client  
+[2020-05-18 09:29:24] development.INFO: RUNNING STAGE MySql Server  
+[2020-05-18 09:29:24] development.DEBUG: RUNNING COMMAND: echo -n "mysql-server mysql-server/root_password password kepsodorr9" > debconf-set-selections  
+[2020-05-18 09:29:24] development.DEBUG: RUNNING COMMAND: echo -n "mysql-server mysql-server/root_password_again password kepsodorr9" > debconf-set-selections  
+[2020-05-18 09:29:24] development.DEBUG: RUNNING COMMAND: apt-get -y install mysql-server mysql-client  
+[2020-05-18 09:29:33] development.DEBUG: Error stdout: Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  mysql-server-5.7
+Suggested packages:
+  mailx tinyca
+The following NEW packages will be installed:
+  mysql-client mysql-server mysql-server-5.7
+0 upgraded, 3 newly installed, 0 to remove and 1 not upgraded.
+Need to get 0 B/2,949 kB of archives.
+After this operation, 47.7 MB of additional disk space will be used.
+Selecting previously unselected package mysql-server-5.7.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 48110 files and directories currently installed.)
+Preparing to unpack .../mysql-server-5.7_5.7.30-0ubuntu0.18.04.1_amd64.deb ...
+grep: /etc/mysql/: No such file or directory
+Unpacking mysql-server-5.7 (5.7.30-0ubuntu0.18.04.1) ...
+Selecting previously unselected package mysql-client.
+Preparing to unpack .../mysql-client_5.7.30-0ubuntu0.18.04.1_all.deb ...
+Unpacking mysql-client (5.7.30-0ubuntu0.18.04.1) ...
+Selecting previously unselected package mysql-server.
+Preparing to unpack .../mysql-server_5.7.30-0ubuntu0.18.04.1_all.deb ...
+Unpacking mysql-server (5.7.30-0ubuntu0.18.04.1) ...
+Setting up mysql-client (5.7.30-0ubuntu0.18.04.1) ...
+Setting up mysql-server-5.7 (5.7.30-0ubuntu0.18.04.1) ...
+update-alternatives: warning: alternative /etc/mysql/my.cnf.fallback (part of link group my.cnf) doesn't exist; removing from list of alternatives
+update-alternatives: warning: /etc/alternatives/my.cnf is dangling; it will be updated with best choice
+update-alternatives: using /etc/mysql/mysql.cnf to provide /etc/mysql/my.cnf (my.cnf) in auto mode
+Renaming removed key_buffer and myisam-recover options (if present)
+ERROR: Unable to start MySQL server:
+mysqld: Can't read dir of '/etc/mysql/conf.d/' (Errcode: 2 - No such file or directory)
+mysqld: [ERROR] Fatal error in defaults handling. Program aborted!
+Please take a look at https://wiki.debian.org/Teams/MySQL/FAQ for tips on fixing common upgrade issues.
+Once the problem is resolved, run apt-get --fix-broken install to retry.
+dpkg: error processing package mysql-server-5.7 (--configure):
+ installed mysql-server-5.7 package post-installation script subprocess returned error exit status 1
+dpkg: dependency problems prevent configuration of mysql-server:
+ mysql-server depends on mysql-server-5.7; however:
+  Package mysql-server-5.7 is not configured yet.
+
+dpkg: error processing package mysql-server (--configure):
+ dependency problems - leaving unconfigured
+Processing triggers for systemd (237-3ubuntu10.40) ...
+Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
+Processing triggers for ureadahead (0.100.0-21) ...
+Errors were encountered while processing:
+ mysql-server-5.7
+ mysql-server
+  
+[2020-05-18 09:29:33] development.DEBUG: Error code: 100  
+[2020-05-18 09:29:33] development.DEBUG: Error: debconf: delaying package configuration, since apt-utils is not installed
+No apport report written because the error message indicates its a followup error from a previous failure.
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+  
+[2020-05-18 09:29:33] development.ERROR: debconf: delaying package configuration, since apt-utils is not installed
+No apport report written because the error message indicates its a followup error from a previous failure.
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+ {"exception":"[object] (Exception(code: 0): debconf: delaying package configuration, since apt-utils is not installed
+No apport report written because the error message indicates its a followup error from a previous failure.
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+ at /root/installer/src/Stages/StageBase.php:53)
+[stacktrace]
+#0 /root/installer/src/Stages/V1804/MySql.php(54): Eppak\\Stages\\StageBase->command()
+#1 /root/installer/src/Stages.php(126): Eppak\\Stages\\V1804\\MySql->run()
+#2 /root/installer/src/Stages.php(115): Eppak\\Stages->instance()
+#3 /root/installer/app/Commands/StageCommand.php(39): Eppak\\Stages->stage()
+#4 /root/installer/vendor/nunomaduro/laravel-console-task/src/LaravelConsoleTaskServiceProvider.php(49): App\\Commands\\StageCommand->App\\Commands\\{closure}()
+#5 [internal function]: App\\Commands\\StageCommand->NunoMaduro\\LaravelConsoleTask\\{closure}()
+#6 /root/installer/vendor/illuminate/support/Traits/Macroable.php(111): call_user_func_array()
+#7 /root/installer/vendor/laravel-zero/framework/src/Commands/Command.php(56): Illuminate\\Console\\Command->__call()
+#8 /root/installer/app/Commands/StageCommand.php(40): LaravelZero\\Framework\\Commands\\Command->task()
+#9 [internal function]: App\\Commands\\StageCommand->handle()
+#10 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#11 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#12 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#13 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#14 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#15 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#16 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#17 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#18 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#19 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#20 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#21 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#22 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#23 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#24 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#25 {main}
+"} 
+[2020-05-18 09:30:33] development.INFO: RUNNING STAGE MySql Server  
+[2020-05-18 09:30:33] development.DEBUG: RUNNING COMMAND: echo -n "mysql-server mysql-server/root_password password kepsodorr9" > debconf-set-selections  
+[2020-05-18 09:30:33] development.DEBUG: RUNNING COMMAND: echo -n "mysql-server mysql-server/root_password_again password kepsodorr9" > debconf-set-selections  
+[2020-05-18 09:30:33] development.DEBUG: RUNNING COMMAND: apt-get -y install mysql-server mysql-client  
+[2020-05-18 09:30:43] development.DEBUG: Error stdout: Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  mysql-server-5.7
+Suggested packages:
+  mailx tinyca
+The following NEW packages will be installed:
+  mysql-client mysql-server mysql-server-5.7
+Preconfiguring packages ...
+0 upgraded, 3 newly installed, 0 to remove and 1 not upgraded.
+Need to get 0 B/2,949 kB of archives.
+After this operation, 47.7 MB of additional disk space will be used.
+Selecting previously unselected package mysql-server-5.7.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 48147 files and directories currently installed.)
+Preparing to unpack .../mysql-server-5.7_5.7.30-0ubuntu0.18.04.1_amd64.deb ...
+grep: /etc/mysql/: No such file or directory
+Unpacking mysql-server-5.7 (5.7.30-0ubuntu0.18.04.1) ...
+Selecting previously unselected package mysql-client.
+Preparing to unpack .../mysql-client_5.7.30-0ubuntu0.18.04.1_all.deb ...
+Unpacking mysql-client (5.7.30-0ubuntu0.18.04.1) ...
+Selecting previously unselected package mysql-server.
+Preparing to unpack .../mysql-server_5.7.30-0ubuntu0.18.04.1_all.deb ...
+Unpacking mysql-server (5.7.30-0ubuntu0.18.04.1) ...
+Setting up mysql-client (5.7.30-0ubuntu0.18.04.1) ...
+Setting up mysql-server-5.7 (5.7.30-0ubuntu0.18.04.1) ...
+update-alternatives: using /etc/mysql/mysql.cnf to provide /etc/mysql/my.cnf (my.cnf) in auto mode
+Renaming removed key_buffer and myisam-recover options (if present)
+ERROR: Unable to start MySQL server:
+mysqld: Can't read dir of '/etc/mysql/conf.d/' (Errcode: 2 - No such file or directory)
+mysqld: [ERROR] Fatal error in defaults handling. Program aborted!
+Please take a look at https://wiki.debian.org/Teams/MySQL/FAQ for tips on fixing common upgrade issues.
+Once the problem is resolved, run apt-get --fix-broken install to retry.
+dpkg: error processing package mysql-server-5.7 (--configure):
+ installed mysql-server-5.7 package post-installation script subprocess returned error exit status 1
+dpkg: dependency problems prevent configuration of mysql-server:
+ mysql-server depends on mysql-server-5.7; however:
+  Package mysql-server-5.7 is not configured yet.
+
+dpkg: error processing package mysql-server (--configure):
+ dependency problems - leaving unconfigured
+Processing triggers for systemd (237-3ubuntu10.40) ...
+Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
+Processing triggers for ureadahead (0.100.0-21) ...
+Errors were encountered while processing:
+ mysql-server-5.7
+ mysql-server
+  
+[2020-05-18 09:30:43] development.DEBUG: Error code: 100  
+[2020-05-18 09:30:43] development.DEBUG: Error: No apport report written because the error message indicates its a followup error from a previous failure.
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+  
+[2020-05-18 09:30:43] development.ERROR: No apport report written because the error message indicates its a followup error from a previous failure.
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+ {"exception":"[object] (Exception(code: 0): No apport report written because the error message indicates its a followup error from a previous failure.
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+ at /root/installer/src/Stages/StageBase.php:53)
+[stacktrace]
+#0 /root/installer/src/Stages/V1804/MySql.php(54): Eppak\\Stages\\StageBase->command()
+#1 /root/installer/src/Stages.php(126): Eppak\\Stages\\V1804\\MySql->run()
+#2 /root/installer/src/Stages.php(115): Eppak\\Stages->instance()
+#3 /root/installer/app/Commands/StageCommand.php(39): Eppak\\Stages->stage()
+#4 /root/installer/vendor/nunomaduro/laravel-console-task/src/LaravelConsoleTaskServiceProvider.php(49): App\\Commands\\StageCommand->App\\Commands\\{closure}()
+#5 [internal function]: App\\Commands\\StageCommand->NunoMaduro\\LaravelConsoleTask\\{closure}()
+#6 /root/installer/vendor/illuminate/support/Traits/Macroable.php(111): call_user_func_array()
+#7 /root/installer/vendor/laravel-zero/framework/src/Commands/Command.php(56): Illuminate\\Console\\Command->__call()
+#8 /root/installer/app/Commands/StageCommand.php(40): LaravelZero\\Framework\\Commands\\Command->task()
+#9 [internal function]: App\\Commands\\StageCommand->handle()
+#10 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#11 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#12 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#13 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#14 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#15 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#16 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#17 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#18 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#19 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#20 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#21 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#22 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#23 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#24 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#25 {main}
+"} 
+[2020-05-18 09:32:57] development.INFO: RUNNING STAGE MySql Server  
+[2020-05-18 09:32:57] development.DEBUG: RUNNING COMMAND: echo -n "test" > /tmp/test  
+[2020-05-18 09:33:52] development.INFO: RUNNING STAGE MySql Server  
+[2020-05-18 09:33:52] development.DEBUG: RUNNING COMMAND: echo -n "test" > /tmp/test  
+[2020-05-18 09:34:59] development.INFO: RUNNING STAGE MySql Server  
+[2020-05-18 09:34:59] development.DEBUG: RUNNING COMMAND: echo -n "test" > /tmp/test  
+[2020-05-18 09:38:47] development.INFO: RUNNING STAGE MySql Server  
+[2020-05-18 09:38:47] development.DEBUG: RUNNING COMMAND: sh /tmp/_mysql_passw_conf  
+[2020-05-18 09:38:47] development.DEBUG: Error stdout:   
+[2020-05-18 09:38:47] development.DEBUG: Error code: 2  
+[2020-05-18 09:38:47] development.DEBUG: Error: /tmp/_mysql_passw_conf: 1: /tmp/_mysql_passw_conf: Syntax error: redirection unexpected
+  
+[2020-05-18 09:38:47] development.ERROR: /tmp/_mysql_passw_conf: 1: /tmp/_mysql_passw_conf: Syntax error: redirection unexpected
+ {"exception":"[object] (Exception(code: 0): /tmp/_mysql_passw_conf: 1: /tmp/_mysql_passw_conf: Syntax error: redirection unexpected
+ at /root/installer/src/Stages/StageBase.php:53)
+[stacktrace]
+#0 /root/installer/src/Stages/V1804/MySql.php(24): Eppak\\Stages\\StageBase->command()
+#1 /root/installer/src/Stages.php(126): Eppak\\Stages\\V1804\\MySql->run()
+#2 /root/installer/src/Stages.php(115): Eppak\\Stages->instance()
+#3 /root/installer/app/Commands/StageCommand.php(39): Eppak\\Stages->stage()
+#4 /root/installer/vendor/nunomaduro/laravel-console-task/src/LaravelConsoleTaskServiceProvider.php(49): App\\Commands\\StageCommand->App\\Commands\\{closure}()
+#5 [internal function]: App\\Commands\\StageCommand->NunoMaduro\\LaravelConsoleTask\\{closure}()
+#6 /root/installer/vendor/illuminate/support/Traits/Macroable.php(111): call_user_func_array()
+#7 /root/installer/vendor/laravel-zero/framework/src/Commands/Command.php(56): Illuminate\\Console\\Command->__call()
+#8 /root/installer/app/Commands/StageCommand.php(40): LaravelZero\\Framework\\Commands\\Command->task()
+#9 [internal function]: App\\Commands\\StageCommand->handle()
+#10 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#11 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#12 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#13 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#14 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#15 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#16 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#17 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#18 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#19 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#20 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#21 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#22 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#23 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#24 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#25 {main}
+"} 
+[2020-05-18 09:42:43] development.INFO: RUNNING STAGE MySql Server  
+[2020-05-18 09:42:43] development.DEBUG: RUNNING COMMAND: debconf-set-selections  
+[2020-05-18 09:42:43] development.DEBUG: RUNNING COMMAND: debconf-set-selections  
+[2020-05-18 09:42:43] development.DEBUG: RUNNING COMMAND: apt-get -y install mysql-server mysql-client  
+[2020-05-18 09:42:52] development.DEBUG: Error stdout: Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  mysql-server-5.7
+Suggested packages:
+  mailx tinyca
+The following NEW packages will be installed:
+  mysql-client mysql-server mysql-server-5.7
+Preconfiguring packages ...
+0 upgraded, 3 newly installed, 0 to remove and 1 not upgraded.
+Need to get 0 B/2,949 kB of archives.
+After this operation, 47.7 MB of additional disk space will be used.
+Selecting previously unselected package mysql-server-5.7.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 48179 files and directories currently installed.)
+Preparing to unpack .../mysql-server-5.7_5.7.30-0ubuntu0.18.04.1_amd64.deb ...
+grep: /etc/mysql/: No such file or directory
+Unpacking mysql-server-5.7 (5.7.30-0ubuntu0.18.04.1) ...
+Selecting previously unselected package mysql-client.
+Preparing to unpack .../mysql-client_5.7.30-0ubuntu0.18.04.1_all.deb ...
+Unpacking mysql-client (5.7.30-0ubuntu0.18.04.1) ...
+Selecting previously unselected package mysql-server.
+Preparing to unpack .../mysql-server_5.7.30-0ubuntu0.18.04.1_all.deb ...
+Unpacking mysql-server (5.7.30-0ubuntu0.18.04.1) ...
+Setting up mysql-client (5.7.30-0ubuntu0.18.04.1) ...
+Setting up mysql-server-5.7 (5.7.30-0ubuntu0.18.04.1) ...
+update-alternatives: using /etc/mysql/mysql.cnf to provide /etc/mysql/my.cnf (my.cnf) in auto mode
+Renaming removed key_buffer and myisam-recover options (if present)
+ERROR: Unable to start MySQL server:
+mysqld: Can't read dir of '/etc/mysql/conf.d/' (Errcode: 2 - No such file or directory)
+mysqld: [ERROR] Fatal error in defaults handling. Program aborted!
+Please take a look at https://wiki.debian.org/Teams/MySQL/FAQ for tips on fixing common upgrade issues.
+Once the problem is resolved, run apt-get --fix-broken install to retry.
+dpkg: error processing package mysql-server-5.7 (--configure):
+ installed mysql-server-5.7 package post-installation script subprocess returned error exit status 1
+dpkg: dependency problems prevent configuration of mysql-server:
+ mysql-server depends on mysql-server-5.7; however:
+  Package mysql-server-5.7 is not configured yet.
+
+dpkg: error processing package mysql-server (--configure):
+ dependency problems - leaving unconfigured
+Processing triggers for systemd (237-3ubuntu10.40) ...
+Processing triggers for man-db (2.8.3-2ubuntu0.1) ...
+Processing triggers for ureadahead (0.100.0-21) ...
+Errors were encountered while processing:
+ mysql-server-5.7
+ mysql-server
+  
+[2020-05-18 09:42:52] development.DEBUG: Error code: 100  
+[2020-05-18 09:42:52] development.DEBUG: Error: No apport report written because the error message indicates its a followup error from a previous failure.
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+  
+[2020-05-18 09:42:52] development.ERROR: No apport report written because the error message indicates its a followup error from a previous failure.
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+ {"exception":"[object] (Exception(code: 0): No apport report written because the error message indicates its a followup error from a previous failure.
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+ at /root/installer/src/Stages/StageBase.php:53)
+[stacktrace]
+#0 /root/installer/src/Stages/V1804/MySql.php(56): Eppak\\Stages\\StageBase->command()
+#1 /root/installer/src/Stages.php(126): Eppak\\Stages\\V1804\\MySql->run()
+#2 /root/installer/src/Stages.php(115): Eppak\\Stages->instance()
+#3 /root/installer/app/Commands/StageCommand.php(39): Eppak\\Stages->stage()
+#4 /root/installer/vendor/nunomaduro/laravel-console-task/src/LaravelConsoleTaskServiceProvider.php(49): App\\Commands\\StageCommand->App\\Commands\\{closure}()
+#5 [internal function]: App\\Commands\\StageCommand->NunoMaduro\\LaravelConsoleTask\\{closure}()
+#6 /root/installer/vendor/illuminate/support/Traits/Macroable.php(111): call_user_func_array()
+#7 /root/installer/vendor/laravel-zero/framework/src/Commands/Command.php(56): Illuminate\\Console\\Command->__call()
+#8 /root/installer/app/Commands/StageCommand.php(40): LaravelZero\\Framework\\Commands\\Command->task()
+#9 [internal function]: App\\Commands\\StageCommand->handle()
+#10 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#11 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#12 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#13 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#14 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#15 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#16 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#17 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#18 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#19 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#20 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#21 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#22 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#23 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#24 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#25 {main}
+"} 
+[2020-05-18 09:46:40] development.INFO: RUNNING STAGE MySql Server  
+[2020-05-18 09:46:40] development.DEBUG: RUNNING COMMAND: debconf-set-selections  
+[2020-05-18 09:46:40] development.DEBUG: RUNNING COMMAND: debconf-set-selections  
+[2020-05-18 09:46:40] development.DEBUG: RUNNING COMMAND: apt-get -y install mysql-server mysql-client  
+[2020-05-18 09:50:14] development.INFO: RUNNING STAGE MySql Server  
+[2020-05-18 09:50:14] development.DEBUG: RUNNING COMMAND: debconf-set-selections  
+[2020-05-18 09:50:14] development.DEBUG: RUNNING COMMAND: debconf-set-selections  
+[2020-05-18 09:50:14] development.DEBUG: RUNNING COMMAND: apt-get -y install mysql-server mysql-client  
+[2020-05-18 09:51:37] development.INFO: RUNNING STAGE MySql Server  
+[2020-05-18 09:51:37] development.DEBUG: RUNNING COMMAND: echo -n "mysql-server mysql-server/root_password password kepsodorr9" > debconf-set-selections  
+[2020-05-18 09:51:37] development.DEBUG: RUNNING COMMAND: echo -n "mysql-server mysql-server/root_password_again password kepsodorr9" > debconf-set-selections  
+[2020-05-18 09:51:37] development.DEBUG: RUNNING COMMAND: apt-get -y install mysql-server mysql-client  
+[2020-05-18 09:54:10] development.INFO: RUNNING STAGE MySql Server  
+[2020-05-18 09:54:10] development.DEBUG: RUNNING COMMAND: debconf-set-selections <<< "mysql-server mysql-server/root_password password kepsodorr9"  
+[2020-05-18 09:54:10] development.DEBUG: RUNNING COMMAND: debconf-set-selections <<< "mysql-server mysql-server/root_password_again password kepsodorr9"  
+[2020-05-18 09:54:10] development.DEBUG: RUNNING COMMAND: apt-get -y install mysql-server mysql-client  
+[2020-05-18 09:56:37] development.INFO: RUNNING STAGE MySql Server  
+[2020-05-18 09:56:37] development.DEBUG: RUNNING COMMAND: echo "mysql-server mysql-server/root_password password kepsodorr9" | debconf-set-selections  
+[2020-05-18 09:56:37] development.DEBUG: RUNNING COMMAND: echo "mysql-server mysql-server/root_password_again password kepsodorr9" | debconf-set-selections  
+[2020-05-18 09:56:37] development.DEBUG: RUNNING COMMAND: apt-get -y install mysql-server mysql-client  
+[2020-05-18 09:59:38] development.INFO: RUNNING STAGE Base Packages  
+[2020-05-18 09:59:38] development.DEBUG: RUNNING COMMAND: apt-get -y install zip unzip openssl curl dirmngr apt-transport-https lsb-release ca-certificates dnsutils htop apt-utils debconf-utils  
+[2020-05-18 09:59:40] development.DEBUG: RUNNING COMMAND: apt-get -y autoremove  
+[2020-05-18 09:59:41] development.DEBUG: RUNNING COMMAND: apt-get upgrade -y  
+[2020-05-18 09:59:42] development.DEBUG: RUNNING COMMAND: apt-get update  
+[2020-05-18 10:01:57] development.INFO: RUNNING STAGE Base Packages  
+[2020-05-18 10:01:57] development.DEBUG: RUNNING COMMAND: apt-get -y install zip unzip openssl curl dirmngr apt-transport-https lsb-release ca-certificates dnsutils htop apt-utils debconf-utils  
+[2020-05-18 10:01:58] development.DEBUG: RUNNING COMMAND: apt-get -y autoremove  
+[2020-05-18 10:01:59] development.DEBUG: RUNNING COMMAND: apt-get upgrade -y  
+[2020-05-18 10:02:01] development.DEBUG: RUNNING COMMAND: apt-get update  
+[2020-05-18 10:02:06] development.DEBUG: RUNNING COMMAND: apt-get -y install zip unzip openssl curl dirmngr apt-transport-https lsb-release ca-certificates dnsutils htop apt-utils debconf-utils  
+[2020-05-18 10:02:07] development.DEBUG: RUNNING COMMAND: apt-get -y autoremove  
+[2020-05-18 10:02:09] development.DEBUG: RUNNING COMMAND: apt-get upgrade -y  
+[2020-05-18 10:02:10] development.DEBUG: RUNNING COMMAND: apt-get update  
+[2020-05-18 10:02:14] development.ERROR: Class 'Illuminate\Support\Facades\Str' not found {"exception":"[object] (Error(code: 0): Class 'Illuminate\\Support\\Facades\\Str' not found at /root/installer/src/Stages/V1804/Sshd.php:28)
+[stacktrace]
+#0 /root/installer/src/Stages.php(130): Eppak\\Stages\\V1804\\Sshd->run()
+#1 /root/installer/src/Stages.php(84): Eppak\\Stages->instance()
+#2 /root/installer/vendor/nunomaduro/laravel-console-task/src/LaravelConsoleTaskServiceProvider.php(49): Eppak\\Stages->Eppak\\{closure}()
+#3 [internal function]: App\\Commands\\RunCommand->NunoMaduro\\LaravelConsoleTask\\{closure}()
+#4 /root/installer/vendor/illuminate/support/Traits/Macroable.php(111): call_user_func_array()
+#5 /root/installer/vendor/laravel-zero/framework/src/Commands/Command.php(56): Illuminate\\Console\\Command->__call()
+#6 /root/installer/src/Stages.php(85): LaravelZero\\Framework\\Commands\\Command->task()
+#7 /root/installer/app/Commands/RunCommand.php(35): Eppak\\Stages->run()
+#8 [internal function]: App\\Commands\\RunCommand->handle()
+#9 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#10 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#11 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#12 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#13 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#14 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#15 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#16 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#17 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#18 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#19 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#20 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#21 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#22 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#23 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#24 {main}
+"} 
+[2020-05-18 10:02:40] development.DEBUG: RUNNING COMMAND: apt-get -y install zip unzip openssl curl dirmngr apt-transport-https lsb-release ca-certificates dnsutils htop apt-utils debconf-utils  
+[2020-05-18 10:02:41] development.DEBUG: RUNNING COMMAND: apt-get -y autoremove  
+[2020-05-18 10:02:42] development.DEBUG: RUNNING COMMAND: apt-get upgrade -y  
+[2020-05-18 10:02:43] development.DEBUG: RUNNING COMMAND: apt-get update  
+[2020-05-18 10:02:47] development.DEBUG: RUNNING COMMAND: systemctl restart sshd  
+[2020-05-18 10:02:47] development.DEBUG: Error stdout:   
+[2020-05-18 10:02:47] development.DEBUG: Error code: 1  
+[2020-05-18 10:02:47] development.DEBUG: Error: Job for ssh.service failed because the control process exited with error code.
+See "systemctl status ssh.service" and "journalctl -xe" for details.
+  
+[2020-05-18 10:02:47] development.ERROR: Code: 1  
+[2020-05-18 10:02:47] development.ERROR: Output:   
+[2020-05-18 10:02:47] development.ERROR: Error: Job for ssh.service failed because the control process exited with error code.
+See "systemctl status ssh.service" and "journalctl -xe" for details.
+  
+[2020-05-18 10:02:47] development.ERROR: ERROR: Cannont restart service  
+[2020-05-18 10:03:23] development.DEBUG: RUNNING COMMAND: apt-get -y install zip unzip openssl curl dirmngr apt-transport-https lsb-release ca-certificates dnsutils htop apt-utils debconf-utils  
+[2020-05-18 10:03:24] development.DEBUG: RUNNING COMMAND: apt-get -y autoremove  
+[2020-05-18 10:03:26] development.DEBUG: RUNNING COMMAND: apt-get upgrade -y  
+[2020-05-18 10:03:27] development.DEBUG: RUNNING COMMAND: apt-get update  
+[2020-05-18 10:03:31] development.DEBUG: RUNNING COMMAND: systemctl restart sshd  
+[2020-05-18 10:03:31] development.DEBUG: Error stdout:   
+[2020-05-18 10:03:31] development.DEBUG: Error code: 1  
+[2020-05-18 10:03:31] development.DEBUG: Error: Job for ssh.service failed because the control process exited with error code.
+See "systemctl status ssh.service" and "journalctl -xe" for details.
+  
+[2020-05-18 10:03:31] development.ERROR: Code: 1  
+[2020-05-18 10:03:31] development.ERROR: Output:   
+[2020-05-18 10:03:31] development.ERROR: Error: Job for ssh.service failed because the control process exited with error code.
+See "systemctl status ssh.service" and "journalctl -xe" for details.
+  
+[2020-05-18 10:03:31] development.ERROR: ERROR: Cannont restart service  
+[2020-05-18 10:05:28] development.DEBUG: RUNNING COMMAND: apt-get -y install zip unzip openssl curl dirmngr apt-transport-https lsb-release ca-certificates dnsutils htop apt-utils debconf-utils  
+[2020-05-18 10:05:29] development.DEBUG: RUNNING COMMAND: apt-get -y autoremove  
+[2020-05-18 10:05:30] development.DEBUG: RUNNING COMMAND: apt-get upgrade -y  
+[2020-05-18 10:05:31] development.DEBUG: RUNNING COMMAND: apt-get update  
+[2020-05-18 10:05:35] development.DEBUG: RUNNING COMMAND: systemctl restart sshd  
+[2020-05-18 10:05:35] development.DEBUG: Error stdout:   
+[2020-05-18 10:05:35] development.DEBUG: Error code: 1  
+[2020-05-18 10:05:35] development.DEBUG: Error: Job for ssh.service failed because the control process exited with error code.
+See "systemctl status ssh.service" and "journalctl -xe" for details.
+  
+[2020-05-18 10:05:35] development.ERROR: Code: 1  
+[2020-05-18 10:05:35] development.ERROR: Output:   
+[2020-05-18 10:05:35] development.ERROR: Error: Job for ssh.service failed because the control process exited with error code.
+See "systemctl status ssh.service" and "journalctl -xe" for details.
+  
+[2020-05-18 10:05:35] development.ERROR: ERROR: Cannont restart service  
+[2020-05-18 10:23:19] development.INFO: RUNNING STAGE SSH Daemon  
+[2020-05-18 10:24:12] development.ERROR: Too many arguments, expected arguments "command". {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): Too many arguments, expected arguments \"command\". at /root/installer/vendor/symfony/console/Input/ArgvInput.php:171)
+[stacktrace]
+#0 /root/installer/vendor/symfony/console/Input/ArgvInput.php(82): Symfony\\Component\\Console\\Input\\ArgvInput->parseArgument()
+#1 /root/installer/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#2 /root/installer/vendor/symfony/console/Command/Command.php(214): Symfony\\Component\\Console\\Input\\Input->bind()
+#3 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#4 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#5 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#6 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#7 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#8 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#9 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#10 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#11 {main}
+"} 
+[2020-05-18 10:24:16] development.DEBUG: RUNNING COMMAND: apt-get -y install zip unzip openssl curl dirmngr apt-transport-https lsb-release ca-certificates dnsutils htop apt-utils debconf-utils  
+[2020-05-18 10:24:18] development.DEBUG: RUNNING COMMAND: apt-get -y autoremove  
+[2020-05-18 10:24:19] development.DEBUG: RUNNING COMMAND: apt-get upgrade -y  
+[2020-05-18 10:24:20] development.DEBUG: RUNNING COMMAND: apt-get update  
+[2020-05-18 10:24:25] development.DEBUG: RUNNING COMMAND: systemctl restart sshd  
+[2020-05-18 10:24:25] development.DEBUG: RUNNING COMMAND: dig +short myip.opendns.com @resolver1.opendns.com  
+[2020-05-18 10:24:25] development.DEBUG: RUNNING COMMAND: openssl rand -base64 20  
+[2020-05-18 10:24:25] development.DEBUG: RUNNING COMMAND: openssl rand -base64 16  
+[2020-05-18 10:24:25] development.INFO: ENV updated  
+[2020-05-18 10:24:25] development.DEBUG: RUNNING COMMAND: apt-get -y install fail2ban  
+[2020-05-18 10:24:26] development.DEBUG: RUNNING COMMAND: systemctl restart fail2ban  
+[2020-05-18 10:24:26] development.DEBUG: RUNNING COMMAND: ufw --force enable  
+[2020-05-18 10:24:27] development.DEBUG: RUNNING COMMAND: ufw allow ssh  
+[2020-05-18 10:24:27] development.DEBUG: RUNNING COMMAND: ufw allow http  
+[2020-05-18 10:24:27] development.DEBUG: RUNNING COMMAND: ufw allow https  
+[2020-05-18 10:24:27] development.DEBUG: RUNNING COMMAND: ufw allow "Nginx Full"  
+[2020-05-18 10:24:27] development.DEBUG: Error stdout:   
+[2020-05-18 10:24:27] development.DEBUG: Error code: 1  
+[2020-05-18 10:24:27] development.DEBUG: Error: ERROR: Bad port
+  
+[2020-05-18 10:24:27] development.ERROR: ERROR: ERROR: Bad port
+  
+[2020-05-18 10:25:38] development.ERROR: Too many arguments, expected arguments "command". {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): Too many arguments, expected arguments \"command\". at /root/installer/vendor/symfony/console/Input/ArgvInput.php:171)
+[stacktrace]
+#0 /root/installer/vendor/symfony/console/Input/ArgvInput.php(82): Symfony\\Component\\Console\\Input\\ArgvInput->parseArgument()
+#1 /root/installer/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#2 /root/installer/vendor/symfony/console/Command/Command.php(214): Symfony\\Component\\Console\\Input\\Input->bind()
+#3 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#4 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#5 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#6 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#7 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#8 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#9 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#10 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#11 {main}
+"} 
+[2020-05-18 10:25:43] development.INFO: RUNNING STAGE Firewall  
+[2020-05-18 10:25:43] development.DEBUG: RUNNING COMMAND: apt-get -y install fail2ban  
+[2020-05-18 10:25:45] development.DEBUG: RUNNING COMMAND: systemctl restart fail2ban  
+[2020-05-18 10:25:45] development.DEBUG: RUNNING COMMAND: ufw --force enable  
+[2020-05-18 10:25:45] development.DEBUG: RUNNING COMMAND: ufw allow ssh  
+[2020-05-18 10:25:45] development.DEBUG: RUNNING COMMAND: ufw allow http  
+[2020-05-18 10:25:45] development.DEBUG: RUNNING COMMAND: ufw allow https  
+[2020-05-18 10:25:45] development.DEBUG: RUNNING COMMAND: ufw allow "Nginx Full"  
+[2020-05-18 10:25:46] development.DEBUG: Error stdout:   
+[2020-05-18 10:25:46] development.DEBUG: Error code: 1  
+[2020-05-18 10:25:46] development.DEBUG: Error: ERROR: Bad port
+  
+[2020-05-18 10:25:46] development.ERROR: ERROR: ERROR: Bad port
+  
+[2020-05-18 10:25:52] development.INFO: RUNNING STAGE Firewall  
+[2020-05-18 10:25:52] development.DEBUG: RUNNING COMMAND: apt-get -y install fail2ban  
+[2020-05-18 10:25:53] development.DEBUG: RUNNING COMMAND: systemctl restart fail2ban  
+[2020-05-18 10:25:53] development.DEBUG: RUNNING COMMAND: ufw --force enable  
+[2020-05-18 10:25:54] development.DEBUG: RUNNING COMMAND: ufw allow ssh  
+[2020-05-18 10:25:54] development.DEBUG: RUNNING COMMAND: ufw allow http  
+[2020-05-18 10:25:54] development.DEBUG: RUNNING COMMAND: ufw allow https  
+[2020-05-18 10:26:01] development.INFO: RUNNING STAGE Firewall  
+[2020-05-18 10:26:01] development.DEBUG: RUNNING COMMAND: apt-get -y install fail2ban  
+[2020-05-18 10:26:02] development.DEBUG: RUNNING COMMAND: systemctl restart fail2ban  
+[2020-05-18 10:26:02] development.DEBUG: RUNNING COMMAND: ufw --force enable  
+[2020-05-18 10:26:03] development.DEBUG: RUNNING COMMAND: ufw allow ssh  
+[2020-05-18 10:26:03] development.DEBUG: RUNNING COMMAND: ufw allow http  
+[2020-05-18 10:26:03] development.DEBUG: RUNNING COMMAND: ufw allow https  
+[2020-05-18 10:26:03] development.DEBUG: RUNNING COMMAND: ufw allow Nginx Full  
+[2020-05-18 10:27:33] development.INFO: RUNNING STAGE Firewall  
+[2020-05-18 10:27:33] development.DEBUG: RUNNING COMMAND: apt-get -y install fail2ban  
+[2020-05-18 10:27:34] development.DEBUG: RUNNING COMMAND: systemctl restart fail2ban  
+[2020-05-18 10:27:34] development.DEBUG: RUNNING COMMAND: ufw --force enable  
+[2020-05-18 10:27:34] development.DEBUG: RUNNING COMMAND: ufw allow ssh  
+[2020-05-18 10:27:34] development.DEBUG: RUNNING COMMAND: ufw allow http  
+[2020-05-18 10:27:34] development.DEBUG: RUNNING COMMAND: ufw allow https  
+[2020-05-18 10:27:35] development.DEBUG: RUNNING COMMAND: ufw allow Nginx Full  
+[2020-05-18 10:27:45] development.DEBUG: RUNNING COMMAND: apt-get -y install zip unzip openssl curl dirmngr apt-transport-https lsb-release ca-certificates dnsutils htop apt-utils debconf-utils  
+[2020-05-18 10:27:46] development.DEBUG: RUNNING COMMAND: apt-get -y autoremove  
+[2020-05-18 10:27:47] development.DEBUG: RUNNING COMMAND: apt-get upgrade -y  
+[2020-05-18 10:27:48] development.DEBUG: RUNNING COMMAND: apt-get update  
+[2020-05-18 10:27:52] development.DEBUG: RUNNING COMMAND: systemctl restart sshd  
+[2020-05-18 10:27:52] development.DEBUG: RUNNING COMMAND: dig +short myip.opendns.com @resolver1.opendns.com  
+[2020-05-18 10:27:52] development.DEBUG: RUNNING COMMAND: openssl rand -base64 20  
+[2020-05-18 10:27:52] development.DEBUG: RUNNING COMMAND: openssl rand -base64 16  
+[2020-05-18 10:27:52] development.INFO: ENV updated  
+[2020-05-18 10:27:52] development.DEBUG: RUNNING COMMAND: apt-get -y install fail2ban  
+[2020-05-18 10:27:53] development.DEBUG: RUNNING COMMAND: systemctl restart fail2ban  
+[2020-05-18 10:27:53] development.DEBUG: RUNNING COMMAND: ufw --force enable  
+[2020-05-18 10:27:53] development.DEBUG: RUNNING COMMAND: ufw allow ssh  
+[2020-05-18 10:27:54] development.DEBUG: RUNNING COMMAND: ufw allow http  
+[2020-05-18 10:27:54] development.DEBUG: RUNNING COMMAND: ufw allow https  
+[2020-05-18 10:27:54] development.DEBUG: RUNNING COMMAND: ufw allow Nginx Full  
+[2020-05-18 10:27:54] development.DEBUG: RUNNING COMMAND: apt-get -y install nginx  
+[2020-05-18 10:27:55] development.DEBUG: RUNNING COMMAND: systemctl enable nginx.service  
+[2020-05-18 10:27:56] development.DEBUG: RUNNING COMMAND: systemctl restart nginx.service  
+[2020-05-18 10:27:56] development.DEBUG: RUNNING COMMAND: echo "mysql-server mysql-server/root_password password kepsodorr9" | debconf-set-selections  
+[2020-05-18 10:27:56] development.DEBUG: RUNNING COMMAND: echo "mysql-server mysql-server/root_password_again password kepsodorr9" | debconf-set-selections  
+[2020-05-18 10:27:56] development.DEBUG: RUNNING COMMAND: apt-get -y install mysql-server mysql-client  
+[2020-05-18 10:27:57] development.DEBUG: RUNNING COMMAND: add-apt-repository -y ppa:certbot/certbot  
+[2020-05-18 10:28:06] development.DEBUG: RUNNING COMMAND: apt-get -y install python-certbot-nginx  
+[2020-05-18 10:28:08] development.DEBUG: RUNNING COMMAND: php /tmp/composer-setup.php --install-dir=/bin --filename=composer  
+[2020-05-18 11:39:18] development.INFO: RUNNING STAGE SSH Daemon  
+[2020-05-18 11:39:18] development.DEBUG: RUNNING COMMAND: systemctl restart sshd  
+[2020-05-18 11:44:24] development.DEBUG: RUNNING COMMAND: apt-get -y install zip unzip openssl curl dirmngr apt-transport-https lsb-release ca-certificates dnsutils htop apt-utils debconf-utils  
+[2020-05-18 11:44:25] development.DEBUG: RUNNING COMMAND: apt-get -y autoremove  
+[2020-05-18 11:44:26] development.DEBUG: RUNNING COMMAND: apt-get upgrade -y  
+[2020-05-18 11:44:27] development.DEBUG: RUNNING COMMAND: apt-get update  
+[2020-05-18 11:44:35] development.DEBUG: RUNNING COMMAND: systemctl restart sshd  
+[2020-05-18 11:44:35] development.DEBUG: RUNNING COMMAND: dig +short ANY myip.opendns.com @resolver1.opendns.com  
+[2020-05-18 11:44:35] development.DEBUG: RUNNING COMMAND: openssl rand -base64 20  
+[2020-05-18 11:44:35] development.DEBUG: RUNNING COMMAND: openssl rand -base64 16  
+[2020-05-18 11:44:35] development.INFO: ENV updated  
+[2020-05-18 11:44:35] development.DEBUG: RUNNING COMMAND: apt-get -y install fail2ban  
+[2020-05-18 11:44:37] development.DEBUG: RUNNING COMMAND: systemctl restart fail2ban  
+[2020-05-18 11:44:37] development.DEBUG: RUNNING COMMAND: ufw --force enable  
+[2020-05-18 11:44:37] development.DEBUG: RUNNING COMMAND: ufw allow ssh  
+[2020-05-18 11:44:37] development.DEBUG: RUNNING COMMAND: ufw allow http  
+[2020-05-18 11:44:37] development.DEBUG: RUNNING COMMAND: ufw allow https  
+[2020-05-18 11:44:38] development.DEBUG: RUNNING COMMAND: ufw allow Nginx Full  
+[2020-05-18 11:44:38] development.DEBUG: RUNNING COMMAND: apt-get -y install nginx  
+[2020-05-18 11:44:39] development.DEBUG: RUNNING COMMAND: systemctl enable nginx.service  
+[2020-05-18 11:44:40] development.DEBUG: RUNNING COMMAND: systemctl restart nginx.service  
+[2020-05-18 11:44:40] development.DEBUG: RUNNING COMMAND: echo "mysql-server mysql-server/root_password password kepsodorr9" | debconf-set-selections  
+[2020-05-18 11:44:40] development.DEBUG: RUNNING COMMAND: echo "mysql-server mysql-server/root_password_again password kepsodorr9" | debconf-set-selections  
+[2020-05-18 11:44:40] development.DEBUG: RUNNING COMMAND: apt-get -y install mysql-server mysql-client  
+[2020-05-18 11:44:41] development.DEBUG: RUNNING COMMAND: add-apt-repository -y ppa:certbot/certbot  
+[2020-05-18 11:44:50] development.DEBUG: RUNNING COMMAND: apt-get -y install python-certbot-nginx  
+[2020-05-18 11:44:52] development.DEBUG: RUNNING COMMAND: php /tmp/composer-setup.php --install-dir=/bin --filename=composer  
+[2020-05-18 11:44:53] development.ERROR: Method App\Commands\RunCommand::show does not exist. {"exception":"[object] (BadMethodCallException(code: 0): Method App\\Commands\\RunCommand::show does not exist. at /root/installer/vendor/illuminate/support/Traits/Macroable.php:103)
+[stacktrace]
+#0 /root/installer/app/Commands/RunCommand.php(44): Illuminate\\Console\\Command->__call()
+#1 [internal function]: App\\Commands\\RunCommand->handle()
+#2 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#3 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#4 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#5 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#6 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#7 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#8 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#9 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#10 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#11 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#12 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#13 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#14 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#15 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#16 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#17 {main}
+"} 
+[2020-05-18 11:45:08] development.DEBUG: RUNNING COMMAND: apt-get -y install zip unzip openssl curl dirmngr apt-transport-https lsb-release ca-certificates dnsutils htop apt-utils debconf-utils  
+[2020-05-18 11:45:10] development.DEBUG: RUNNING COMMAND: apt-get -y autoremove  
+[2020-05-18 11:45:11] development.DEBUG: RUNNING COMMAND: apt-get upgrade -y  
+[2020-05-18 11:45:12] development.DEBUG: RUNNING COMMAND: apt-get update  
+[2020-05-18 11:45:15] development.DEBUG: RUNNING COMMAND: systemctl restart sshd  
+[2020-05-18 11:45:15] development.DEBUG: RUNNING COMMAND: dig +short ANY myip.opendns.com @resolver1.opendns.com  
+[2020-05-18 11:45:15] development.DEBUG: RUNNING COMMAND: openssl rand -base64 20  
+[2020-05-18 11:45:15] development.DEBUG: RUNNING COMMAND: openssl rand -base64 16  
+[2020-05-18 11:45:15] development.INFO: ENV updated  
+[2020-05-18 11:45:15] development.DEBUG: RUNNING COMMAND: apt-get -y install fail2ban  
+[2020-05-18 11:45:17] development.DEBUG: RUNNING COMMAND: systemctl restart fail2ban  
+[2020-05-18 11:45:17] development.DEBUG: RUNNING COMMAND: ufw --force enable  
+[2020-05-18 11:45:17] development.DEBUG: RUNNING COMMAND: ufw allow ssh  
+[2020-05-18 11:45:17] development.DEBUG: RUNNING COMMAND: ufw allow http  
+[2020-05-18 11:45:17] development.DEBUG: RUNNING COMMAND: ufw allow https  
+[2020-05-18 11:45:17] development.DEBUG: RUNNING COMMAND: ufw allow Nginx Full  
+[2020-05-18 11:45:18] development.DEBUG: RUNNING COMMAND: apt-get -y install nginx  
+[2020-05-18 11:45:19] development.DEBUG: RUNNING COMMAND: systemctl enable nginx.service  
+[2020-05-18 11:45:19] development.DEBUG: RUNNING COMMAND: systemctl restart nginx.service  
+[2020-05-18 11:45:20] development.DEBUG: RUNNING COMMAND: echo "mysql-server mysql-server/root_password password kepsodorr9" | debconf-set-selections  
+[2020-05-18 11:45:20] development.DEBUG: RUNNING COMMAND: echo "mysql-server mysql-server/root_password_again password kepsodorr9" | debconf-set-selections  
+[2020-05-18 11:45:20] development.DEBUG: RUNNING COMMAND: apt-get -y install mysql-server mysql-client  
+[2020-05-18 11:45:21] development.DEBUG: RUNNING COMMAND: add-apt-repository -y ppa:certbot/certbot  
+[2020-05-18 11:45:30] development.DEBUG: RUNNING COMMAND: apt-get -y install python-certbot-nginx  
+[2020-05-18 11:45:32] development.DEBUG: RUNNING COMMAND: php /tmp/composer-setup.php --install-dir=/bin --filename=composer  
+[2020-05-18 12:50:46] development.ERROR: Undefined variable: stages {"exception":"[object] (ErrorException(code: 0): Undefined variable: stages at /root/installer/src/Stages.php:67)
+[stacktrace]
+#0 /root/installer/src/Stages.php(67): Illuminate\\Foundation\\Bootstrap\\HandleExceptions->handleError()
+#1 [internal function]: Eppak\\Stages->__construct()
+#2 /root/installer/vendor/illuminate/container/Container.php(845): ReflectionClass->newInstanceArgs()
+#3 /root/installer/vendor/illuminate/container/Container.php(687): Illuminate\\Container\\Container->build()
+#4 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Application.php(795): Illuminate\\Container\\Container->resolve()
+#5 /root/installer/vendor/illuminate/container/Container.php(633): Illuminate\\Foundation\\Application->resolve()
+#6 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Application.php(780): Illuminate\\Container\\Container->make()
+#7 /root/installer/vendor/illuminate/container/BoundMethod.php(170): Illuminate\\Foundation\\Application->make()
+#8 /root/installer/vendor/illuminate/container/BoundMethod.php(122): Illuminate\\Container\\BoundMethod::addDependencyForCallParameter()
+#9 /root/installer/vendor/illuminate/container/BoundMethod.php(33): Illuminate\\Container\\BoundMethod::getMethodDependencies()
+#10 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#11 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#12 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#13 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#14 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#15 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#16 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#17 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#18 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#19 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#20 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#21 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#22 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#23 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#24 {main}
+"} 
+[2020-05-18 13:15:00] development.ERROR: The "--tep" option does not exist. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): The \"--tep\" option does not exist. at /root/installer/vendor/symfony/console/Input/ArgvInput.php:200)
+[stacktrace]
+#0 /root/installer/vendor/symfony/console/Input/ArgvInput.php(142): Symfony\\Component\\Console\\Input\\ArgvInput->addLongOption()
+#1 /root/installer/vendor/symfony/console/Input/ArgvInput.php(78): Symfony\\Component\\Console\\Input\\ArgvInput->parseLongOption()
+#2 /root/installer/vendor/symfony/console/Input/Input.php(55): Symfony\\Component\\Console\\Input\\ArgvInput->parse()
+#3 /root/installer/vendor/symfony/console/Command/Command.php(214): Symfony\\Component\\Console\\Input\\Input->bind()
+#4 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#5 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#6 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#7 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#8 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#9 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#10 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#11 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#12 {main}
+"} 
+[2020-05-18 13:15:03] development.INFO: RUNNING STAGE Redis Server  
+[2020-05-18 13:15:03] development.INFO: RUNNING COMMAND: apt install redis-server  
+[2020-05-18 13:15:04] development.ERROR: Error stdout: Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libjemalloc1 redis-tools
+Suggested packages:
+  ruby-redis
+The following NEW packages will be installed:
+  libjemalloc1 redis-server redis-tools
+0 upgraded, 3 newly installed, 0 to remove and 2 not upgraded.
+Need to get 634 kB of archives.
+After this operation, 3,012 kB of additional disk space will be used.
+Do you want to continue? [Y/n] Abort.
+  
+[2020-05-18 13:15:04] development.ERROR: Error code: 1  
+[2020-05-18 13:15:04] development.ERROR: Error: 
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+  
+[2020-05-18 13:15:04] development.ERROR: ERROR:   
+[2020-05-18 13:15:25] development.INFO: RUNNING STAGE Redis Server  
+[2020-05-18 13:15:25] development.INFO: RUNNING COMMAND: apt install redis-server  
+[2020-05-18 13:15:26] development.ERROR: Error stdout: Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libjemalloc1 redis-tools
+Suggested packages:
+  ruby-redis
+The following NEW packages will be installed:
+  libjemalloc1 redis-server redis-tools
+0 upgraded, 3 newly installed, 0 to remove and 2 not upgraded.
+Need to get 634 kB of archives.
+After this operation, 3,012 kB of additional disk space will be used.
+Do you want to continue? [Y/n] Abort.
+  
+[2020-05-18 13:15:26] development.ERROR: Error code: 1  
+[2020-05-18 13:15:26] development.ERROR: Error: 
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+  
+[2020-05-18 13:15:26] development.ERROR: 
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+ {"exception":"[object] (Exception(code: 0): 
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+ at /root/installer/src/Stages/StageBase.php:57)
+[stacktrace]
+#0 /root/installer/src/Stages/V1804/Redis.php(13): Eppak\\Stages\\StageBase->command()
+#1 /root/installer/src/Stages.php(136): Eppak\\Stages\\V1804\\Redis->run()
+#2 /root/installer/src/Stages.php(125): Eppak\\Stages->instance()
+#3 /root/installer/app/Commands/StageCommand.php(39): Eppak\\Stages->stage()
+#4 /root/installer/vendor/nunomaduro/laravel-console-task/src/LaravelConsoleTaskServiceProvider.php(49): App\\Commands\\StageCommand->App\\Commands\\{closure}()
+#5 [internal function]: App\\Commands\\StageCommand->NunoMaduro\\LaravelConsoleTask\\{closure}()
+#6 /root/installer/vendor/illuminate/support/Traits/Macroable.php(111): call_user_func_array()
+#7 /root/installer/vendor/laravel-zero/framework/src/Commands/Command.php(56): Illuminate\\Console\\Command->__call()
+#8 /root/installer/app/Commands/StageCommand.php(40): LaravelZero\\Framework\\Commands\\Command->task()
+#9 [internal function]: App\\Commands\\StageCommand->handle()
+#10 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#11 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#12 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#13 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#14 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#15 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#16 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#17 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#18 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#19 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#20 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#21 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#22 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#23 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#24 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#25 {main}
+"} 
+[2020-05-18 13:15:39] development.INFO: RUNNING STAGE Redis Server  
+[2020-05-18 13:15:39] development.INFO: RUNNING COMMAND: apt -y install redis-server  
+[2020-05-18 13:15:49] development.INFO: RUNNING COMMAND: systemctl enable redis.service  
+[2020-05-18 13:15:49] development.ERROR: Error stdout:   
+[2020-05-18 13:15:49] development.ERROR: Error code: 1  
+[2020-05-18 13:15:49] development.ERROR: Error: Failed to enable unit: Refusing to operate on linked unit file redis.service
+  
+[2020-05-18 13:15:49] development.ERROR: Code: 1  
+[2020-05-18 13:15:49] development.ERROR: Output:   
+[2020-05-18 13:15:49] development.ERROR: Error: Failed to enable unit: Refusing to operate on linked unit file redis.service
+  
+[2020-05-18 13:15:49] development.ERROR: Call to a member function error() on null {"exception":"[object] (Error(code: 0): Call to a member function error() on null at /root/installer/src/Stages/V1804/Redis.php:48)
+[stacktrace]
+#0 /root/installer/src/Stages.php(137): Eppak\\Stages\\V1804\\Redis->error()
+#1 /root/installer/src/Stages.php(125): Eppak\\Stages->instance()
+#2 /root/installer/app/Commands/StageCommand.php(39): Eppak\\Stages->stage()
+#3 /root/installer/vendor/nunomaduro/laravel-console-task/src/LaravelConsoleTaskServiceProvider.php(49): App\\Commands\\StageCommand->App\\Commands\\{closure}()
+#4 [internal function]: App\\Commands\\StageCommand->NunoMaduro\\LaravelConsoleTask\\{closure}()
+#5 /root/installer/vendor/illuminate/support/Traits/Macroable.php(111): call_user_func_array()
+#6 /root/installer/vendor/laravel-zero/framework/src/Commands/Command.php(56): Illuminate\\Console\\Command->__call()
+#7 /root/installer/app/Commands/StageCommand.php(40): LaravelZero\\Framework\\Commands\\Command->task()
+#8 [internal function]: App\\Commands\\StageCommand->handle()
+#9 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#10 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#11 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#12 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#13 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#14 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#15 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#16 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#17 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#18 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#19 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#20 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#21 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#22 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#23 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#24 {main}
+"} 
+[2020-05-18 13:16:05] development.INFO: RUNNING STAGE Redis Server  
+[2020-05-18 13:16:05] development.INFO: RUNNING COMMAND: apt -y install redis-server  
+[2020-05-18 13:16:06] development.INFO: RUNNING COMMAND: systemctl enable redis.service  
+[2020-05-18 13:16:06] development.ERROR: Error stdout:   
+[2020-05-18 13:16:06] development.ERROR: Error code: 1  
+[2020-05-18 13:16:06] development.ERROR: Error: Failed to enable unit: Refusing to operate on linked unit file redis.service
+  
+[2020-05-18 13:16:06] development.ERROR: Code: 1  
+[2020-05-18 13:16:06] development.ERROR: Output:   
+[2020-05-18 13:16:06] development.ERROR: Error: Failed to enable unit: Refusing to operate on linked unit file redis.service
+  
+[2020-05-18 13:16:06] development.ERROR: Call to a member function error() on null {"exception":"[object] (Error(code: 0): Call to a member function error() on null at /root/installer/src/Stages/V1804/Redis.php:48)
+[stacktrace]
+#0 /root/installer/src/Stages.php(137): Eppak\\Stages\\V1804\\Redis->error()
+#1 /root/installer/src/Stages.php(125): Eppak\\Stages->instance()
+#2 /root/installer/app/Commands/StageCommand.php(39): Eppak\\Stages->stage()
+#3 /root/installer/vendor/nunomaduro/laravel-console-task/src/LaravelConsoleTaskServiceProvider.php(49): App\\Commands\\StageCommand->App\\Commands\\{closure}()
+#4 [internal function]: App\\Commands\\StageCommand->NunoMaduro\\LaravelConsoleTask\\{closure}()
+#5 /root/installer/vendor/illuminate/support/Traits/Macroable.php(111): call_user_func_array()
+#6 /root/installer/vendor/laravel-zero/framework/src/Commands/Command.php(56): Illuminate\\Console\\Command->__call()
+#7 /root/installer/app/Commands/StageCommand.php(40): LaravelZero\\Framework\\Commands\\Command->task()
+#8 [internal function]: App\\Commands\\StageCommand->handle()
+#9 /root/installer/vendor/illuminate/container/BoundMethod.php(33): call_user_func_array()
+#10 /root/installer/vendor/illuminate/container/Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#11 /root/installer/vendor/illuminate/container/BoundMethod.php(91): Illuminate\\Container\\Util::unwrapIfClosure()
+#12 /root/installer/vendor/illuminate/container/BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#13 /root/installer/vendor/illuminate/container/Container.php(592): Illuminate\\Container\\BoundMethod::call()
+#14 /root/installer/vendor/illuminate/console/Command.php(134): Illuminate\\Container\\Container->call()
+#15 /root/installer/vendor/symfony/console/Command/Command.php(255): Illuminate\\Console\\Command->execute()
+#16 /root/installer/vendor/illuminate/console/Command.php(121): Symfony\\Component\\Console\\Command\\Command->run()
+#17 /root/installer/vendor/symfony/console/Application.php(912): Illuminate\\Console\\Command->run()
+#18 /root/installer/vendor/symfony/console/Application.php(264): Symfony\\Component\\Console\\Application->doRunCommand()
+#19 /root/installer/vendor/symfony/console/Application.php(140): Symfony\\Component\\Console\\Application->doRun()
+#20 /root/installer/vendor/illuminate/console/Application.php(93): Symfony\\Component\\Console\\Application->run()
+#21 /root/installer/vendor/laravel-zero/foundation/src/Illuminate/Foundation/Console/Kernel.php(129): Illuminate\\Console\\Application->run()
+#22 /root/installer/vendor/laravel-zero/framework/src/Kernel.php(91): Illuminate\\Foundation\\Console\\Kernel->handle()
+#23 /root/installer/installer(37): LaravelZero\\Framework\\Kernel->handle()
+#24 {main}
+"} 
+[2020-05-18 13:16:16] development.INFO: RUNNING STAGE Redis Server  
+[2020-05-18 13:16:16] development.INFO: RUNNING COMMAND: apt -y install redis-server  
+[2020-05-18 13:16:17] development.INFO: RUNNING COMMAND: systemctl enable redis.service  
+[2020-05-18 13:16:17] development.ERROR: Error stdout:   
+[2020-05-18 13:16:17] development.ERROR: Error code: 1  
+[2020-05-18 13:16:17] development.ERROR: Error: Failed to enable unit: Refusing to operate on linked unit file redis.service
+  
+[2020-05-18 13:16:17] development.ERROR: Code: 1  
+[2020-05-18 13:16:17] development.ERROR: Output:   
+[2020-05-18 13:16:17] development.ERROR: Error: Failed to enable unit: Refusing to operate on linked unit file redis.service
+  
+[2020-05-18 13:16:17] development.ERROR: ERROR: Cannot enable service  
+[2020-05-18 13:17:01] development.INFO: RUNNING STAGE Redis Server  
+[2020-05-18 13:17:01] development.INFO: RUNNING COMMAND: apt -y install redis-server  
+[2020-05-18 13:17:02] development.INFO: RUNNING COMMAND: systemctl enable redis-server@.service  
+[2020-05-18 13:17:02] development.INFO: RUNNING COMMAND: systemctl restart redis-server@.service  
+[2020-05-18 13:17:02] development.ERROR: Error stdout:   
+[2020-05-18 13:17:02] development.ERROR: Error code: 1  
+[2020-05-18 13:17:02] development.ERROR: Error: Failed to restart redis-server@.service: Unit name redis-server@.service is missing the instance name.
+See system logs and 'systemctl status redis-server@.service' for details.
+  
+[2020-05-18 13:17:02] development.ERROR: Code: 1  
+[2020-05-18 13:17:02] development.ERROR: Output:   
+[2020-05-18 13:17:02] development.ERROR: Error: Failed to restart redis-server@.service: Unit name redis-server@.service is missing the instance name.
+See system logs and 'systemctl status redis-server@.service' for details.
+  
+[2020-05-18 13:17:02] development.ERROR: ERROR: Cannot restart service  
+[2020-05-18 13:18:19] development.INFO: RUNNING STAGE Redis Server  
+[2020-05-18 13:18:19] development.INFO: RUNNING COMMAND: apt -y install redis-server  
+[2020-05-18 13:18:20] development.INFO: RUNNING COMMAND: systemctl enable redis-server.service  
+[2020-05-18 13:18:21] development.INFO: RUNNING COMMAND: systemctl restart redis-server.service  
+[2020-05-18 13:19:06] development.INFO: RUNNING STAGE Redis Server  
+[2020-05-18 13:19:06] development.INFO: RUNNING COMMAND: apt -y install redis-server  
+[2020-05-18 13:19:16] development.INFO: RUNNING COMMAND: systemctl enable redis-server.service  
+[2020-05-18 13:19:16] development.INFO: RUNNING COMMAND: systemctl restart redis-server.service  
+[2020-05-18 13:19:50] development.INFO: RUNNING STAGE Base Packages  
+[2020-05-18 13:19:50] development.INFO: RUNNING COMMAND: apt-get -y install zip unzip openssl curl dirmngr apt-transport-https lsb-release ca-certificates dnsutils htop apt-utils debconf-utils supervisor  
+[2020-05-18 13:19:57] development.INFO: RUNNING COMMAND: apt-get -y autoremove  
+[2020-05-18 13:19:58] development.INFO: RUNNING COMMAND: apt-get upgrade -y  
+[2020-05-18 13:19:59] development.INFO: RUNNING COMMAND: apt-get update  
