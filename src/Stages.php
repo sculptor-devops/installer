@@ -79,9 +79,8 @@ class Stages
     {
         $index = 1;
         $result = [];
-        $stages = $this->stages->list();
 
-        foreach ($stages as $stage) {
+        foreach (StageFactory::all() as $stage) {
             $instance = $this->stages->make($stage);
 
             $result[] = ['stage' => $index, 'name' => $instance->name()];

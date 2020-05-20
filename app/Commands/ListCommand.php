@@ -8,6 +8,8 @@ use LaravelZero\Framework\Commands\Command;
 
 class ListCommand extends Command
 {
+    use CommonCommand;
+
     /**
      * The signature of the command.
      *
@@ -30,11 +32,12 @@ class ListCommand extends Command
      */
     public function handle(Stages $stages)
     {
-        $this->info("OS Version {$stages->version()}");
+
+        $this->preamble();
 
         $stages = $stages->list();
 
-        $this->table(['step', 'name'], $stages);
+        $this->table(['Step', 'Name'], $stages);
 
         return 0;
     }
