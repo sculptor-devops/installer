@@ -9,6 +9,11 @@ class StageFactory
      */
     private $version;
 
+    public function __construct()
+    {
+        //
+    }
+
     public function version(string $version)
     {
         $this->version = 'V' . str_replace('.', '', $version);

@@ -3,6 +3,7 @@
 use Eppak\Contracts\Runner;
 use Eppak\Contracts\RunnerResult;
 use Eppak\Services\Daemons;
+use Eppak\Services\Templates;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Adapter\Local as LocalFilesystem;
 use Exception;
@@ -34,11 +35,18 @@ class StageBase
      * @var array
      */
     protected $env;
+    /**
+     * @var Templates
+     */
+    private $templates;
 
-    public function __construct(Runner $runner, Daemons $daemons)
+    public function __construct(Runner $runner, Daemons $daemons, Templates $templates)
     {
         $this->runner = $runner;
+
         $this->daemons = $daemons;
+
+        $this->templates = $templates;
     }
 
     /**
@@ -69,9 +77,7 @@ class StageBase
 
     protected function template(string $name)
     {
-        $adapter = new LocalFilesystem(base_path('templates'));
-
-        return (new Filesystem($adapter))->read($name);
+        return $this->templates->read($name);
     }
 
     public function error(): ?string

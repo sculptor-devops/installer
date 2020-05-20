@@ -1,0 +1,17 @@
+stages:
+  credentials: true
+  suuser: true
+  motd: true
+  ntp: true
+  php: true
+  packages: true
+  sshd: true
+  nodeJs: true
+  nginx: true
+  mysql: true
+  redis: true
+  letssencrypt: true
+  composer: true
+  firewall: true
+  crontab: true
+  checkServices: true
