@@ -1,5 +1,6 @@
 <?php namespace Eppak\Stages;
 
+use Eppak\Services\Configuration;
 use Illuminate\Support\Str;
 
 class StageFactory
@@ -8,10 +9,14 @@ class StageFactory
      * @var string
      */
     private $version;
+    /**
+     * @var Configuration
+     */
+    private $configuration;
 
-    public function __construct()
+    public function __construct(Configuration $configuration)
     {
-        //
+        $this->configuration = $configuration;
     }
 
     public function version(string $version)
@@ -23,16 +28,16 @@ class StageFactory
     {
         $resolved = [];
 
-        foreach (static::all() as $stage) {
+        foreach ($this->all() as $stage) {
             $resolved[] = $this->resolve($stage);
         }
 
         return $resolved;
     }
 
-    public static function all()
+    public function all()
     {
-        return APP_STAGES;
+        return $this->configuration->stages();
     }
 
     private function resolve(string $stage): string
@@ -42,12 +47,14 @@ class StageFactory
 
     public function make(string $class)
     {
-        return resolve($this->resolve($class));
+        $resolved = $this->resolve($class);
+
+        return resolve($resolved);
     }
 
     public function find(string $name)
     {
-        foreach (APP_STAGES as $stage) {
+        foreach ($this->configuration->stages() as $stage) {
             $instance = static::make($stage);
 
             if (Str::lower($instance->name()) == Str::lower($name)) {

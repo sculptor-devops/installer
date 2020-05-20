@@ -19,13 +19,19 @@ class Credentials extends StageBase implements Stage
             $env = [];
         }
 
-        // $env['ip'] = clearNl($this->runner->run(['dig', '+short', 'ANY', 'myip.opendns.com', '@resolver1.opendns.com'])->output());
+        if (!array_key_exists('ip', $env)) {
+            // Alternative ['dig', '+short', 'ANY', 'myip.opendns.com', '@resolver1.opendns.com']
 
-        $env['ip'] = quoted(clearNl($this->runner->run(['dig', '-4', 'TXT', '+short', 'o-o.myaddr.l.google.com', '@ns1.google.com'])->output()));
+            $env['ip'] = quoted(clearNl($this->runner->run(['dig', '-4', 'TXT', '+short', 'o-o.myaddr.l.google.com', '@ns1.google.com'])->output()));
+        }
 
-        $env['password'] = clearNl($this->runner->run(['openssl', 'rand', '-base64', '20'])->output());
+        if (!array_key_exists('password', $env)) {
+            $env['db_password'] = clearNl($this->runner->run(['openssl', 'rand', '-base64', '20'])->output());
+        }
 
-        $env['db_password'] = clearNl($this->runner->run(['openssl', 'rand', '-base64', '16'])->output());
+        if (!array_key_exists('ip', $env)) {
+            $env['db_password'] = clearNl($this->runner->run(['openssl', 'rand', '-base64', '16'])->output());
+        }
 
         $this->env = $env;
 

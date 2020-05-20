@@ -52,7 +52,7 @@ class Stages
             return false;
         }
 
-        foreach (StageFactory::all() as $stage) {
+        foreach ($this->stages->all() as $stage) {
             $instance = $this->stages->make($stage);
 
             if (!$instance) {
@@ -80,7 +80,7 @@ class Stages
         $index = 1;
         $result = [];
 
-        foreach (StageFactory::all() as $stage) {
+        foreach ($this->stages->all() as $stage) {
             $instance = $this->stages->make($stage);
 
             $result[] = ['stage' => $index, 'name' => $instance->name()];

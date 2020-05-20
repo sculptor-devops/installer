@@ -1,6 +1,7 @@
 <?php namespace Eppak\Contracts;
 
 use Eppak\Services\Daemons;
+use Eppak\Services\Templates;
 
 /**
  * (c) Alessandro Cappellozza <alessandro.cappellozza@gmail.com>
@@ -10,7 +11,7 @@ use Eppak\Services\Daemons;
 
 interface Stage
 {
-    public function __construct(Runner $runner, Daemons $daemons);
+    public function __construct(Runner $runner, Daemons $daemons, Templates $templates);
     public function run(array $env = null): bool;
     public function remove(array $env = null): bool;
     public function name(): string;
