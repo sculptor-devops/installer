@@ -13,7 +13,7 @@ Command | Parameter | Description
 ------------ | ------------- | -------------
 list-stages | None |List all stages 
 run | None | Start a new installation
- run-stage | --step="<<STEP NAME>> | Run a single step, see list for names
+ run-stage | --step="STEP NAME" | Run a single step, see list for names
  
  
 #### Installation
