@@ -2,21 +2,34 @@
 
 use Eppak\Contracts\Stage;
 use Eppak\Stages\StageBase;
+use Illuminate\Support\Facades\File;
 
 class Ntp extends StageBase implements Stage
 {
 
     public function run(array $env = null): bool
     {
+        try {
+            $conf = $this->template('ntp.conf');
 
-        /*
- *
- *         $content = "[Time]\nNTP={$ntp}\nFallbackNTP=0.debian.pool.ntp.org 1.debian.pool.ntp.org 2.debian.pool.ntp.org 3.debian.pool.ntp.org\n";
-file_put_contents("/etc/systemd/timesyncd.conf", $content);
-$this->runner->run(['timedatectl', 'set-ntp', 'true']);
- *
- */
+            $written = File::put('/etc/systemd/timesyncd.conf', $conf);
 
+            if (!$written) {
+                $this->internal = 'Unable to write configuration';
+
+                return false;
+            }
+
+            $this->command(['timedatectl', 'set-ntp', 'true']);
+
+            $this->command(['timedatectl', 'set-timezone', 'UTC']);
+
+            return true;
+
+        } catch (\Exception $e) {
+
+            return false;
+        }
     }
 
     public function name(): string

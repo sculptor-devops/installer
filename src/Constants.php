@@ -7,6 +7,7 @@ define('APP_STAGES', [
     'Credentials',
     'SuUser',
     'Motd',
+    'Ntp',
     'Php',
     'Packages',
     'Sshd',
