@@ -2,6 +2,8 @@ export DEBIAN_FRONTEND=noninteractive
 add-apt-repository -y ppa:ondrej/php
 apt-get update
 
+apt-get dist-upgrade
+
 apt-get -y install php7.4-fpm
 apt-get -y install php7.4-common
 apt-get -y install php7.4-mbstring
