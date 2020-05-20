@@ -9,14 +9,14 @@ class Env
 
     private $content = [];
 
-    public function __construct($filename)
+    public function __construct(string $filename)
     {
         $this->filename = $filename;
 
         $this->parse();
     }
 
-    private function parse()
+    private function parse(): void
     {
         $content = File::get($this->filename);
 

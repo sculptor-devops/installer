@@ -23,9 +23,21 @@ class Composer extends StageBase implements Stage
 
         $copy = copy('https://getcomposer.org/installer', $setup);
 
+        if (!$copy) {
+            $this->internal = "Unable to download setup";
+
+            return false;
+        }
+
         $this->result = $this->runner->run(['php', $setup, '--install-dir=/bin', '--filename=composer']);
 
         $delete = unlink($setup);
+
+        if (!$delete) {
+            $this->internal = "Unable to delete setup";
+
+            return false;
+        }
 
         return $this->result->success() && $copy && $delete;
     }

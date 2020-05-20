@@ -2,18 +2,21 @@
 
 namespace App\Commands;
 
+use Eppak\Services\Logs;
 use Eppak\Stages;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 
 class StageCommand extends Command
 {
+    use CommonCommand;
+
     /**
      * The signature of the command.
      *
      * @var string
      */
-    protected $signature = 'stage {--step=}';
+    protected $signature = 'run-stage {--step=}';
 
     /**
      * The description of the command.
@@ -30,16 +33,16 @@ class StageCommand extends Command
      */
     public function handle(Stages $stages)
     {
+        $this->preamble();
+
         $step = $this->option('step');
-
-        $this->info("OS Version {$stages->version()}");
-
-        $this->info("[Warning every step can take several minutes]");
 
         $done = $this->task("Running {$step}", function() use($stages, $step) {
 
             return $stages->stage($step);
         });
+
+        $this->info("Run time taken {$this->elapsed()}");
 
         if (!$done) {
             $this->error("Error: {$stages->error()}");

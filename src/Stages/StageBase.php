@@ -16,7 +16,7 @@ class StageBase
 {
     protected $internal = 'Unexpected error see logs for details';
 
-    protected $timeout = 600;
+    protected $timeout = 3600;
 
     /**
      * @var RunnerResult
@@ -82,5 +82,10 @@ class StageBase
         }
 
         return $this->error->error();
+    }
+
+    public function remove(array $env = null): bool
+    {
+        throw new Exception("Unimplemented");
     }
 }

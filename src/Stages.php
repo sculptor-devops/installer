@@ -1,12 +1,11 @@
 <?php namespace Eppak;
 
 use Eppak\Contracts\Stage;
-use Eppak\Services\Daemons;
-use Eppak\Services\Env;
-use Eppak\Stages\Resolver;
+use Eppak\Stages\StageFactory;
 
+use Eppak\Stages\Version;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
+use LaravelZero\Framework\Commands\Command;
 
 /**
  * (c) Alessandro Cappellozza <alessandro.cappellozza@gmail.com>
@@ -20,63 +19,52 @@ class Stages
      */
     private $env = [];
 
+    /**
+     * @var string
+     */
     private $version;
 
+    /**
+     * @var string
+     */
     private $error;
-
     /**
-     * @var array
+     * @var StageFactory
      */
-    private $stages = [
-        'SuUser',
-        'Motd',
-        'Php',
-        'Packages',
-        'Sshd',
-        'Credentials',
-        'Nginx',
-        'MySql',
-        'Redis',
-        'LetsSEncrypt',
-        'Composer',
-        'Firewall',
-        'Crontab'
-    ];
+    private $stages;
 
-    /**
-     * @var Daemons
-     */
-    private $daemons;
-
-    public function __construct(Daemons $daemons)
+    public function __construct(StageFactory $stages)
     {
-        $this->daemons = $daemons;
+        $this->version = Version::get();
 
-        $this->version = $this->version();
+        $this->stages = $stages;
 
-        $this->stages = Resolver::prepare($this->stages, $this->version);
+        $this->stages->version($this->version);
     }
 
-    private function compatible(): bool
-    {
-        return in_array($this->version, APP_COMPATIBLE);
-    }
-
-    public function run($context): bool
+    public function run(Command $context, bool $remove = false): bool
     {
         Log::info("Running on Os version {$this->version}");
 
-        if (!$this->compatible()) {
+        if (!Version::compatible()) {
             $this->error = 'This version of the operating system is not compatible';
 
             return false;
         }
 
-        foreach ($this->stages as $stage) {
-            $instance = Resolver::make($stage);
+        foreach (StageFactory::all() as $stage) {
+            $instance = $this->stages->make($stage);
 
-            $result = $context->task($instance->name(), function () use($instance) {
-               return $this->instance($instance);
+            if (!$instance) {
+                $this->error = "Unknown stage {$stage}";
+
+                return false;
+            }
+
+            Log::info("RUNNING STAGE {$instance->name()}");
+
+            $result = $context->task($instance->name(), function () use($instance, $remove) {
+               return $this->instance($instance, $remove);
             });
 
             if (!$result) {
@@ -91,9 +79,10 @@ class Stages
     {
         $index = 1;
         $result = [];
+        $stages = $this->stages->list();
 
-        foreach ($this->stages as $stage) {
-            $instance = resolve($stage);
+        foreach ($stages as $stage) {
+            $instance = $this->stages->make($stage);
 
             $result[] = ['stage' => $index, 'name' => $instance->name()];
 
@@ -103,26 +92,44 @@ class Stages
         return $result;
     }
 
-    public function stage(string $name): ?bool
+    public function stage(string $name, bool $remove = false): ?bool
     {
-        foreach ($this->stages as $stage) {
-            $instance = resolve($stage);
+        $credentials = $this->stages->find('Credentials');
 
-            if ( Str::lower($instance->name()) == Str::lower($name)) {
-                Log::info("RUNNING STAGE {$name}");
+        Log::info("RUNNING STAGE {$credentials->name()}");
 
-                return $this->instance($instance);
-            }
+        if (!$this->instance($credentials, $remove)) {
+            $this->error = $credentials->error();
+
+            return false;
         }
 
-        $this->error = 'Unknown stage';
+        $instance = $this->stages->find($name);
 
-        return false;
+        if (!$instance) {
+            $this->error = 'Unknown stage';
+
+            return false;
+        }
+
+        Log::info("RUNNING STAGE {$name}");
+
+        return $this->instance($instance);
     }
 
-    private function instance(Stage $instance): bool
+    private function instance(Stage $instance, bool $remove = false): bool
     {
-        if (!$instance->run($this->env)) {
+        $run = false;
+
+        if (!$remove) {
+            $run = $instance->run($this->env);
+        }
+
+        if ($remove) {
+            $run = $instance->remove($this->env);
+        }
+
+        if (!$run) {
             $this->error = $instance->error();
 
             Log::error("ERROR: {$this->error}");
@@ -130,7 +137,7 @@ class Stages
             return false;
         }
 
-        if ($instance->env() != null) {
+        if ($instance->env()) {
             Log::info("ENV updated");
 
             $this->env = $instance->env();
@@ -153,17 +160,10 @@ class Stages
         ];
     }
 
-    public function version(): ?string
-    {
-        $env = new Env('/etc/os-release');
-
-        return $env->get('VERSION_ID');
-    }
-
     public function error(): string
     {
         if (!$this->error) {
-            return 'Unknown error';
+            return 'Unknown stage error';
         }
 
         return $this->error;

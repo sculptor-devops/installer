@@ -45,7 +45,12 @@ class Nginx extends StageBase implements Stage
                 return false;
             }
 
-            $root = File::makeDirectory('/var/www/html/public', 0755, true);
+            $root = true;
+
+            if (!File::exists('/var/www/html/public')) {
+                $root = File::makeDirectory('/var/www/html/public', 0755, true);
+
+            }
 
             if (!$root) {
                 $this->internal = 'Cannot create www root';

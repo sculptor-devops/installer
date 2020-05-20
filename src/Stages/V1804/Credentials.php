@@ -13,19 +13,21 @@ class Credentials extends StageBase implements Stage
 {
     public function run(array $env = null): bool
     {
+        $this->internal = 'Generic Error';
+
         if ($env == null) {
             $env = [];
         }
 
-        $env['ip'] = clearNl($this->runner->run(['dig', '+short', 'ANY', 'myip.opendns.com', '@resolver1.opendns.com'])->output());
+        // $env['ip'] = clearNl($this->runner->run(['dig', '+short', 'ANY', 'myip.opendns.com', '@resolver1.opendns.com'])->output());
+
+        $env['ip'] = quoted(clearNl($this->runner->run(['dig', '-4', 'TXT', '+short', 'o-o.myaddr.l.google.com', '@ns1.google.com'])->output()));
 
         $env['password'] = clearNl($this->runner->run(['openssl', 'rand', '-base64', '20'])->output());
 
         $env['db_password'] = clearNl($this->runner->run(['openssl', 'rand', '-base64', '16'])->output());
 
         $this->env = $env;
-
-        $this->internal = 'Generic Error';
 
         return true;
     }

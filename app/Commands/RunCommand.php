@@ -2,12 +2,15 @@
 
 namespace App\Commands;
 
+use Eppak\Services\Logs;
 use Eppak\Stages;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 
 class RunCommand extends Command
 {
+    use CommonCommand;
+
     /**
      * The signature of the command.
      *
@@ -30,11 +33,7 @@ class RunCommand extends Command
      */
     public function handle(Stages $stages)
     {
-        $this->info("OS Version {$stages->version()}");
-
-        $this->info("You can see detailed log in {$this->logs()}");
-
-        $this->info("Warning every step can take several minutes");
+        $this->preamble();
 
         if (!$stages->run($this)) {
 
@@ -43,18 +42,13 @@ class RunCommand extends Command
             return 1;
         }
 
+        $this->info("Run time taken {$this->elapsed()}");
+
         $this->info('Here your master credentials, save in a safe location!');
 
         $this->table(['name', 'value'], $stages->show());
 
         return 0;
-    }
-
-    private function logs(): string
-    {
-        $log = app('log');
-
-        return $log->driver()->getHandlers()[0]->getUrl();
     }
 
     /**

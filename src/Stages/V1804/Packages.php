@@ -28,7 +28,8 @@ class Packages extends StageBase implements Stage
         'htop',
         'apt-utils',
         'debconf-utils',
-        'supervisor'
+        'supervisor',
+        'sudo'
     ];
 
     public function run(array $env = null): bool

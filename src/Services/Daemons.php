@@ -21,11 +21,11 @@ class Daemons
         $this->runner = $runner;
     }
 
-    public function active(string $name)
+    public function active(string $name): bool
     {
         $result = $this->systemctl("is-active", $name);
 
-        return $result->output() == 'active';
+        return 'active' == clearNl($result->output());
     }
 
     public function reload(string $name): bool

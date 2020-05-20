@@ -12,6 +12,7 @@ interface Stage
 {
     public function __construct(Runner $runner, Daemons $daemons);
     public function run(array $env = null): bool;
+    public function remove(array $env = null): bool;
     public function name(): string;
     public function error(): ?string;
     public function env(): ?array;
