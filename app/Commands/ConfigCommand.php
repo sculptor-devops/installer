@@ -15,7 +15,7 @@ class ConfigCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'config';
+    protected $signature = 'config {?--templates}';
 
     /**
      * The description of the command.
@@ -35,7 +35,9 @@ class ConfigCommand extends Command
     {
         $this->configuration($configuration);
 
-        $this->templates($templates);
+        if ($this->option('templates')) {
+            $this->templates($templates);
+        }
 
         return 0;
     }
