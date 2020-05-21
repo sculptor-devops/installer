@@ -17,8 +17,8 @@ config | None | Create a customizable installation.yml configuration file
   
 #### Installation
 ``` bash
-sudo sh bin/setup.sh
-sudo ./installer run
+sudo sh ./bin/setup.sh
+sudo ./builds/installer run
 ```
 
 #### Notes
