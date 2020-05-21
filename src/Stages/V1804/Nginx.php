@@ -29,6 +29,8 @@ class Nginx extends StageBase implements Stage
                 return false;
             }
 
+            $this->ssl();
+
             $config = File::put('/etc/nginx/sites-available/default', $conf);
 
             if (!$config) {
@@ -49,7 +51,6 @@ class Nginx extends StageBase implements Stage
 
             if (!File::exists('/var/www/html/public')) {
                 $root = File::makeDirectory('/var/www/html/public', 0755, true);
-
             }
 
             if (!$root) {
@@ -76,6 +77,31 @@ class Nginx extends StageBase implements Stage
 
             return false;
         }
+    }
+
+    private function ssl()
+    {
+        $path = '/etc/nginx/ssl';
+        if (!File::exists($path)) {
+            File::makeDirectory($path);
+        }
+
+        $this->command([
+            'openssl',
+            'req',
+            '-x509',
+            '-nodes',
+            '-days',
+            '365',
+            '-newkey',
+            'rsa:2048',
+            '-subj',
+            '/CN=localhost',
+            '-keyout',
+            "{$path}/self-signed.key",
+            '-out',
+            "{$path}/self-signed.crt"
+        ]);
     }
 
     public function name(): string

@@ -50,6 +50,8 @@ class StageCommand extends Command
             return 1;
         }
 
+        $this->table(['name', 'value'], $stages->show());
+
         return 0;
     }
 
