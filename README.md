@@ -3,6 +3,7 @@ Linux base installation utility.
 
 #### Build
 ``` bash
+composer install
 php installer app:build
 ```
 
@@ -17,7 +18,7 @@ config | None | Create a customizable installation.yml configuration file
 #### Installation
 ``` bash
 sudo sh bin/setup.sh
-./installer run
+sudo ./installer run
 ```
 
 #### Notes

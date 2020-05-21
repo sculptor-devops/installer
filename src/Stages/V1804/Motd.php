@@ -2,24 +2,36 @@
 
 use Eppak\Contracts\Stage;
 use Eppak\Stages\StageBase;
+use Exception;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 
 class Motd extends StageBase implements Stage
 {
     public function run(array $env = null): bool
     {
-        $motd = $this->template('motd');
+        try {
 
-        $written = File::put('/etc/motd', $motd);
 
-        if (!$written) {
+            $motd = $this->template('motd');
+
+            $written = File::put('/etc/motd', $motd);
+
+            if (!$written) {
+
+                return false;
+            }
+
+            $this->internal = 'Cannot write to motd file';
+
+            return true;
+
+        } catch (Exception $e) {
+
+            Log::error($e->getMessage());
 
             return false;
         }
-
-        $this->internal = 'Cannot write to motd file';
-
-        return true;
     }
 
     public function name(): string

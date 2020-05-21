@@ -3,31 +3,30 @@
 use Eppak\Contracts\Stage;
 use Eppak\Stages\StageBase;
 use Exception;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 
-class Crontab extends StageBase implements Stage
+class Deployer extends StageBase implements Stage
 {
 
     public function run(array $env = null): bool
     {
         try {
-            $filename = '/etc/cron.d/panel.crontab';
+            $setup = '/tmp/deployer.phar';
 
-            $conf = $this->template('panel.crontab');
+            $copy = copy('https://deployer.org/deployer.phar', $setup);
 
-            $written = File::put($filename, $conf);
-
-            if (!$written) {
+            if (!$copy) {
+                $this->internal = "Unable to download setup";
 
                 return false;
             }
 
-            $this->command(['crontab', $filename]);
+            $this->command(['mv', $setup, '/usr/local/bin/dep']);
 
-            $this->internal = 'Unable to write crontab';
+            $this->command(['chmod', '+x', '/usr/local/bin/dep']);
 
             return true;
+
         } catch (Exception $e) {
 
             Log::error($e->getMessage());
@@ -38,7 +37,7 @@ class Crontab extends StageBase implements Stage
 
     public function name(): string
     {
-        return 'Crontab';
+        return "Deployer";
     }
 
     public function env(): ?array

@@ -3,6 +3,7 @@
 use Eppak\Contracts\Stage;
 use Eppak\Stages\StageBase;
 use Exception;
+use Illuminate\Support\Facades\Log;
 
 class NodeJs extends StageBase implements Stage
 {
@@ -34,6 +35,8 @@ class NodeJs extends StageBase implements Stage
             return true;
 
         } catch (Exception $e) {
+
+            Log::error($e->getMessage());
 
             return false;
         }

@@ -4,8 +4,7 @@ use Eppak\Contracts\Stage;
 use Eppak\Stages\StageBase;
 use Exception;
 use Illuminate\Support\Facades\File;
-use phpDocumentor\Reflection\Types\String_;
-
+use Illuminate\Support\Facades\Log;
 /**
  * (c) Alessandro Cappellozza <alessandro.cappellozza@gmail.com>
  *  For the full copyright and license information, please view the LICENSE
@@ -45,6 +44,7 @@ class SuUser extends StageBase implements Stage
             return true;
 
         } catch (Exception $e) {
+            Log::error($e->getMessage());
 
             return false;
         }

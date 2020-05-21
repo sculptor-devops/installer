@@ -3,6 +3,7 @@
 use Eppak\Contracts\Stage;
 use Eppak\Stages\StageBase;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 
 class Ntp extends StageBase implements Stage
 {
@@ -27,6 +28,8 @@ class Ntp extends StageBase implements Stage
             return true;
 
         } catch (\Exception $e) {
+
+            Log::error($e->getMessage());
 
             return false;
         }

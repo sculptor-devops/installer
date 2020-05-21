@@ -13,6 +13,7 @@ stages:
   - Redis
   - LetsSEncrypt
   - Composer
+  - Deployer
   - Firewall
   - Crontab
   - CheckServices

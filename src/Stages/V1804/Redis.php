@@ -29,6 +29,7 @@ class Redis extends StageBase implements Stage
             }
 
             return true;
+
         } catch (Exception $e) {
 
             Log::error($e->getMessage());

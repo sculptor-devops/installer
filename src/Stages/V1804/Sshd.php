@@ -1,5 +1,7 @@
 <?php namespace Eppak\Stages\V1804;
 
+use Exception;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Eppak\Contracts\Stage;
@@ -15,25 +17,32 @@ class Sshd extends StageBase implements Stage
 {
     public function run(array $env = null): bool
     {
-        $config = $this->template('sshd.conf');
+        try {
+            $config = $this->template('sshd.conf');
 
-        $written = File::put('/etc/ssh/sshd_config', $config);
+            $written = File::put('/etc/ssh/sshd_config', $config);
 
-        if (!$written) {
-            $this->internal = 'Cannot read configuration';
+            if (!$written) {
+                $this->internal = 'Cannot read configuration';
+
+                return false;
+            }
+
+            $restart = $this->daemons->restart('sshd');
+
+            if (!$restart) {
+                $this->internal = 'Cannont restart service';
+
+                return false;
+            }
+
+            return true;
+
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
 
             return false;
         }
-
-        $restart = $this->daemons->restart('sshd');
-
-        if (!$restart) {
-            $this->internal = 'Cannont restart service';
-
-            return false;
-        }
-
-        return true;
     }
 
     public function name(): string

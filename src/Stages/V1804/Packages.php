@@ -42,8 +42,6 @@ class Packages extends StageBase implements Stage
 
             $this->command(['apt-get', '-y', 'autoremove'], false);
 
-            // $this->command(['apt-get', 'upgrade', '-y'], false);
-
             return true;
 
         } catch (Exception $e) {
