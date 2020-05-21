@@ -13,7 +13,7 @@ Command | Parameter | Description
 list-stages | None |List all stages 
 run | None | Start a new installation
 run-stage | --step="STEP NAME" | Run a single step, see list for names
-config | None | Create a customizable installation.yml configuration file
+config | --templates | Create a customizable installation.yml, with --templates will create a folder with all templates that can be customized.
   
 #### Installation
 ``` bash
