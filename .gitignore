@@ -2,5 +2,6 @@
 /.idea
 /.vscode
 /.vagrant
+/custom_templates
 .phpunit.result.cache
 installer.yml

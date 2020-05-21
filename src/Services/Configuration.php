@@ -59,6 +59,6 @@ class Configuration
 
     public function template(): string
     {
-        return $this->templates->read('config.yml');
+        return $this->templates->read(APP_CONFIG_FILENAME);
     }
 }

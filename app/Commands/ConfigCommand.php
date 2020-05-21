@@ -3,6 +3,7 @@
 namespace App\Commands;
 
 use Eppak\Services\Configuration;
+use Eppak\Services\Templates;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\File;
 use LaravelZero\Framework\Commands\Command;
@@ -27,21 +28,62 @@ class ConfigCommand extends Command
      * Execute the console command.
      *
      * @param Configuration $configuration
+     * @param Templates $templates
      * @return mixed
      */
-    public function handle(Configuration $configuration)
+    public function handle(Configuration $configuration, Templates $templates): int
     {
-        $config = $configuration->template();
+        $this->configuration($configuration);
 
-        File::put(APP_CONFIG_FILENAME, $config);
+        $this->templates($templates);
 
         return 0;
+    }
+
+    private function configuration(Configuration $configuration): void
+    {
+        $filename = getcwd() . '/' . APP_CONFIG_FILENAME;
+        if (File::exists($filename)) {
+            $this->warn("Customized configuration already exists {$filename}");
+
+            return;
+        }
+
+        $this->info("Writing customizable {$filename}");
+
+        $config = $configuration->template();
+
+        File::put($filename, $config);
+    }
+
+    private function templates(Templates $templates): void
+    {
+        $path = getcwd() . '/' . APP_CONFIG_CUSTOM_TEMPLATE;
+
+        if (!File::exists($path)) {
+            File::makeDirectory($path);
+        }
+
+        foreach ($templates->all() as $config) {
+
+            $filename = "{$path}/" . $config['name'];
+
+            if(!File::exists($filename)) {
+                $this->info("Writing template {$filename}");
+
+                File::put($filename, $config['content']);
+
+                continue;
+            }
+
+            $this->warn("Customized template already exists {$filename}");
+        }
     }
 
     /**
      * Define the command's schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule $schedule
+     * @param Schedule $schedule
      * @return void
      */
     public function schedule(Schedule $schedule): void
