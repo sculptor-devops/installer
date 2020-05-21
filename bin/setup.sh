@@ -1,8 +1,7 @@
 export DEBIAN_FRONTEND=noninteractive
 add-apt-repository -y ppa:ondrej/php
 apt-get update
-
-apt-get dist-upgrade
+apt-get -y dist-upgrade
 
 apt-get -y install php7.4-fpm
 apt-get -y install php7.4-common
@@ -18,5 +17,5 @@ update-alternatives --set php /usr/bin/php7.4
 # install compose
 apt-get -y install composer
 
-# install packakages
+# install packages (need only in dev)
 composer install
