@@ -19,19 +19,24 @@ class Php extends StageBase implements Stage
 {
     public function run(array $env = null): bool
     {
+        $php = '7.4';
 
         try {
             $conf = $this->template('php.ini');
 
-            $written = File::put('/etc/php/7.4/fpm/conf.d/cipi.ini', $conf);
-
-            if (!$written) {
-                $this->internal = 'Cannot write to configuration';
-
+            if (!$this->write("/etc/php/{$php}/fpm/conf.d/sculptor.ini", $conf, 'Cannot write ini configuration')) {
                 return false;
             }
 
-            $restart = $this->daemons->restart('php7.4-fpm');
+            $pool = $this->template('php-pool.conf');
+
+            $pool = str_replace("{USER}", APP_PANEL_USER, $pool);
+
+            if (!$this->write("/etc/php/{$php}/fpm/pool.d/sculptor.conf", $pool, 'Cannot write pool configuration')) {
+                return false;
+            }
+
+            $restart = $this->daemons->restart("php{$php}-fpm");
 
             if (!$restart) {
                 $this->internal = 'Cannot restart service';

@@ -4,6 +4,7 @@ use Eppak\Contracts\Runner;
 use Eppak\Contracts\RunnerResult;
 use Eppak\Services\Daemons;
 use Eppak\Services\Templates;
+use Illuminate\Support\Facades\File;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Adapter\Local as LocalFilesystem;
 use Exception;
@@ -93,5 +94,18 @@ class StageBase
     public function remove(array $env = null): bool
     {
         throw new Exception("Unimplemented");
+    }
+
+    protected function write(string $file, string $content, string $error): bool
+    {
+        $written = File::put($file, $content);
+
+        if (!$written) {
+            $this->internal = $error;
+
+            return false;
+        }
+
+        return true;
     }
 }
