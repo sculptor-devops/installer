@@ -4,7 +4,7 @@ namespace Deployer;
 require 'recipe/common.php';
 
 // Project name
-set('application', 'my_project');
+set('application', 'scupltor');
 
 // Project repository
 set('repository', 'https://github.com/laravel/laravel');
@@ -41,13 +41,10 @@ set('allow_anonymous_stats', false);
 // Hosts
 
 localhost()
-    ->set('deploy_path', '~/{{application}}')
+    ->set('deploy_path', '/var/www/html')
     ->set('http_user', 'www-data');
 
-
-// Tasks
-
-desc('Deploy your project');
+desc('Deploy sculptor agent');
 task('deploy', [
     'deploy:info',
     'deploy:prepare',
@@ -64,8 +61,8 @@ task('deploy', [
     'success'
 ]);
 
-task('test', function () {
-    run("chown -R www-data:www-data ~/{{application}}/shared/storage");
+task('deploy:owner', function () {
+    run("chown -R www-data:www-data /var/www/html");
 });
 
 // [Optional] If deploy fails automatically unlock.
