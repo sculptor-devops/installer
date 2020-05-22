@@ -12,12 +12,22 @@ class StagesTest extends TestCase
      *
      * @return void
      */
-    public function testList()
+    public function testListCount()
     {
         $stages = resolve(Stages::class);
 
         $list = $stages->list();
 
         $this->assertTrue(count($list) > 0);
+    }
+
+    public function testSingleStage()
+    {
+        $this->artisan('run-stage', [ '--step' => 'credentials'])->assertExitCode(0);
+    }
+
+    public function testAllStages()
+    {
+        $this->artisan('run')->assertExitCode(0);
     }
 }
