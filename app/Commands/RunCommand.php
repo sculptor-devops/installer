@@ -31,7 +31,7 @@ class RunCommand extends Command
      * @param Stages $stages
      * @return mixed
      */
-    public function handle(Stages $stages)
+    public function handle(Stages $stages): int
     {
         $this->preamble();
 
@@ -54,7 +54,7 @@ class RunCommand extends Command
     /**
      * Define the command's schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule $schedule
+     * @param Schedule $schedule
      * @return void
      */
     public function schedule(Schedule $schedule): void

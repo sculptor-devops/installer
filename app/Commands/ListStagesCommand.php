@@ -6,7 +6,7 @@ use Eppak\Stages;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 
-class ListCommand extends Command
+class ListStagesCommand extends Command
 {
     use CommonCommand;
 
@@ -30,7 +30,7 @@ class ListCommand extends Command
      * @param Stages $stages
      * @return mixed
      */
-    public function handle(Stages $stages)
+    public function handle(Stages $stages): int
     {
 
         $this->preamble();

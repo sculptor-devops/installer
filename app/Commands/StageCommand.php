@@ -31,7 +31,7 @@ class StageCommand extends Command
      * @param Stages $stages
      * @return mixed
      */
-    public function handle(Stages $stages)
+    public function handle(Stages $stages): int
     {
         $this->preamble();
 

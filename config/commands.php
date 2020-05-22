@@ -1,6 +1,6 @@
 <?php
 
-use App\Commands\ListCommand;
+use App\Commands\ListStagesCommand;
 use App\Commands\RunCommand;
 use App\Commands\StageCommand;
 
@@ -44,7 +44,7 @@ return [
     */
 
     'add' => [
-        ListCommand::class,
+        ListStagesCommand::class,
         RunCommand::class,
         StageCommand::class
     ],

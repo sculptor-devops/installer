@@ -8,7 +8,7 @@ trait CommonCommand
 {
     private $start;
 
-    private function preamble()
+    private function preamble(): void
     {
         $this->info("Running on OS Version " . Version::get());
 
@@ -19,12 +19,12 @@ trait CommonCommand
         $this->timer();
     }
 
-    private function timer()
+    private function timer(): void
     {
         $this->start = now();
     }
 
-    private function elapsed()
+    private function elapsed(): string
     {
         return now()->diff($this->start)->format('%H:%I:%S');
     }

@@ -57,7 +57,8 @@ class StageFactory
         foreach ($this->configuration->stages() as $stage) {
             $instance = static::make($stage);
 
-            if (Str::lower($instance->name()) == Str::lower($name)) {
+            if (Str::lower($instance->name()) == Str::lower($name) ||
+                Str::lower($instance->className()) == Str::lower($name)) {
                 return $instance;
             }
         }

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\File;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Adapter\Local as LocalFilesystem;
 use Exception;
+use ReflectionClass;
+use ReflectionException;
 
 /**
  * (c) Alessandro Cappellozza <alessandro.cappellozza@gmail.com>
@@ -16,8 +18,14 @@ use Exception;
  */
 class StageBase
 {
+    /**
+     * @var string
+     */
     protected $internal = 'Unexpected error see logs for details';
 
+    /**
+     * @var int
+     */
     protected $timeout = 3600;
 
     /**
@@ -41,6 +49,12 @@ class StageBase
      */
     private $templates;
 
+    /**
+     * StageBase constructor.
+     * @param Runner $runner
+     * @param Daemons $daemons
+     * @param Templates $templates
+     */
     public function __construct(Runner $runner, Daemons $daemons, Templates $templates)
     {
         $this->runner = $runner;
@@ -76,11 +90,19 @@ class StageBase
         return true;
     }
 
+    /**
+     * @param string $name
+     * @return string|null
+     * @throws \League\Flysystem\FileNotFoundException
+     */
     protected function template(string $name)
     {
         return $this->templates->read($name);
     }
 
+    /**
+     * @return string|null
+     */
     public function error(): ?string
     {
         if ($this->error == null) {
@@ -91,11 +113,22 @@ class StageBase
         return $this->error->error();
     }
 
+    /**
+     * @param array|null $env
+     * @return bool
+     * @throws Exception
+     */
     public function remove(array $env = null): bool
     {
         throw new Exception("Unimplemented");
     }
 
+    /**
+     * @param string $file
+     * @param string $content
+     * @param string $error
+     * @return bool
+     */
     protected function write(string $file, string $content, string $error): bool
     {
         $written = File::put($file, $content);
@@ -107,5 +140,19 @@ class StageBase
         }
 
         return true;
+    }
+
+    /**
+     * @param bool $short
+     * @return string
+     * @throws ReflectionException
+     */
+    public function className(bool $short = true): string
+    {
+        if ($short) {
+            return ((new ReflectionClass($this))->getShortName());
+        }
+
+        return ((new ReflectionClass($this))->getName());
     }
 }
