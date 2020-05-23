@@ -24,17 +24,33 @@ class Agent extends StageBase implements Stage
                 return false;
             }
 
+            File::delete("{$this->path}/current/public/index.html");
+
             $this->command([ 'dep', 'deploy'], false, $this->path);
 
-            $this->command([ 'php', "{$this->path}/artisan", 'key:generate'], false, $this->path);
+
+
+// ENV
+            // {PASSWORD}
+            // {DB_PASSWORD}
+
+
+
+
+
+            $this->command([ 'php', "{$this->path}/current/artisan", 'key:generate'], false, $this->path);
 
             // $this->command([ 'dep', 'deploy:migrate'], false, $this->path);
 
             $this->command([ 'dep', 'deploy:owner'], false, $this->path);
 
-            File::put('/bin/sculptor', "php {$this->path}/artisan");
+            File::put('/bin/sculptor', "php {$this->path}/current/artisan");
 
             File::chmod("php {$this->path}/artisan", 755);
+
+
+
+
 
             // /etc/supervisor/conf.d/system.sculptor.conf
             // $replaced = new Replacer();

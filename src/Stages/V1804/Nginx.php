@@ -14,6 +14,8 @@ use Eppak\Stages\StageBase;
  */
 class Nginx extends StageBase implements Stage
 {
+    private $path = '/var/www/html/current/public';
+
     public function run(array $env = null): bool
     {
         try {
@@ -49,8 +51,8 @@ class Nginx extends StageBase implements Stage
 
             $root = true;
 
-            if (!File::exists('/var/www/html/public')) {
-                $root = File::makeDirectory('/var/www/html/public', 0755, true);
+            if (!File::exists($this->path)) {
+                $root = File::makeDirectory($this->path, 0755, true);
             }
 
             if (!$root) {
@@ -61,7 +63,7 @@ class Nginx extends StageBase implements Stage
 
             $index = $this->template('index.html');
 
-            $written = File::put('/var/www/html/public/index.html', $index);
+            $written = File::put("{$this->path}/index.html", $index);
 
             if (!$written) {
                 $this->internal = 'Cannot create index file';
