@@ -40,7 +40,7 @@ class Agent extends StageBase implements Stage
 
             $this->command([ 'dep', 'deploy:owner'], false, $this->path);
 
-            File::put('/bin/sculptor', "php {$this->path}/current/artisan");
+            File::put('/bin/sculptor', "php {$this->path}/current/artisan $1");
 
             File::chmod('/bin/sculptor', 755);
 
