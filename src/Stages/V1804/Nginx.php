@@ -2,7 +2,6 @@
 
 use Exception;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Eppak\Contracts\Stage;
 use Eppak\Stages\StageBase;

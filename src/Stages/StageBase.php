@@ -5,8 +5,8 @@ use Eppak\Contracts\RunnerResult;
 use Eppak\Services\Daemons;
 use Eppak\Services\Templates;
 use Illuminate\Support\Facades\File;
-use League\Flysystem\Filesystem;
-use League\Flysystem\Adapter\Local as LocalFilesystem;
+use League\Flysystem\FileNotFoundException;
+use Eppak\Replacer;
 use Exception;
 use ReflectionClass;
 use ReflectionException;
@@ -77,7 +77,7 @@ class StageBase
             ->timeout($this->timeout);
 
         if (!$interactive) {
-            $process = $process->env([ 'DEBIAN_FRONTEND' => 'noninteractive' ]);
+            $process = $process->env(['DEBIAN_FRONTEND' => 'noninteractive']);
         }
 
         if ($path) {
@@ -98,11 +98,23 @@ class StageBase
     /**
      * @param string $name
      * @return string|null
-     * @throws \League\Flysystem\FileNotFoundException
+     * @throws FileNotFoundException
      */
     protected function template(string $name)
     {
         return $this->templates->read($name);
+    }
+
+    /**
+     * @param string $name
+     * @return Replacer
+     * @throws FileNotFoundException
+     */
+    protected function replaceTemplate(string $name): Replacer
+    {
+        $template = $this->template($name);
+
+        return new Replacer($template);
     }
 
     /**
