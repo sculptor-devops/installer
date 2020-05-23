@@ -30,13 +30,10 @@ class Agent extends StageBase implements Stage
 
 
 
-// ENV
+            // ENV
+            // /var/www/html/shared/.env
             // {PASSWORD}
             // {DB_PASSWORD}
-
-
-
-
 
             $this->command([ 'php', "{$this->path}/current/artisan", 'key:generate'], false, $this->path);
 
