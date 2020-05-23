@@ -16,7 +16,6 @@ class Credentials extends StageBase implements Stage
     {
         try {
 
-
             $this->internal = 'Generic Error';
 
             if ($env == null) {
@@ -66,6 +65,31 @@ class Credentials extends StageBase implements Stage
         }
 
         return $env;
+    }
+
+    private function ip(): string
+    {
+        $ip = quoted($this->get([
+            'dig',
+            '-4',
+            'TXT',
+            '+short',
+            'o-o.myaddr.l.google.com',
+            '@ns1.google.com'
+        ]));
+
+        if ($ip == null || $ip == '') {
+            $ip = quoted($this->get([
+                'dig',
+                '-6',
+                'TXT',
+                '+short',
+                'o-o.myaddr.l.google.com',
+                '@ns1.google.com'
+            ]));
+        }
+
+        return $ip;
     }
 
     public function name(): string

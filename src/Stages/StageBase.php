@@ -67,16 +67,21 @@ class StageBase
     /**
      * @param array $commands
      * @param bool $interactive
+     * @param string|null $path
      * @return bool
      * @throws Exception
      */
-    protected function command(array $commands, bool $interactive = true): bool
+    protected function command(array $commands, bool $interactive = true, string $path = null): bool
     {
         $process = $this->runner
             ->timeout($this->timeout);
 
         if (!$interactive) {
             $process = $process->env([ 'DEBIAN_FRONTEND' => 'noninteractive' ]);
+        }
+
+        if ($path) {
+            $process = $process->from($path);
         }
 
         $result = $process->run($commands);

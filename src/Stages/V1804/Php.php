@@ -19,7 +19,7 @@ class Php extends StageBase implements Stage
 {
     public function run(array $env = null): bool
     {
-        $php = '7.4';
+        $php = APP_PANEL_PHP_VERSION;
 
         try {
             $conf = $this->template('php.ini');

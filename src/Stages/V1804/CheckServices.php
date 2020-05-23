@@ -7,15 +7,17 @@ use Illuminate\Support\Facades\Log;
 
 class CheckServices extends StageBase implements Stage
 {
+    private $services = [
+        'mysql' => 'MySql is not running',
+        'nginx' => 'Nginx is not running',
+        'redis' => 'Redis is not running',
+        'supervisor' => 'Supervisror is not running'
+    ];
+
     public function run(array $env = null): bool
     {
         try {
-            foreach ([
-                         'mysql' => 'MySql is not running',
-                         'nginx' => 'Nginx is not running',
-                         'redis' => 'Redis is not running',
-                         'supervisor' => 'Supervisror is not running'
-                     ] as $service => $error) {
+            foreach ($this->services as $service => $error) {
                 if (!$this->active($service, $error)) {
 
                     return false;

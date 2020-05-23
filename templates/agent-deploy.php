@@ -7,7 +7,7 @@ require 'recipe/common.php';
 set('application', 'scupltor');
 
 // Project repository
-set('repository', 'https://github.com/laravel/laravel');
+set('repository', 'https://github.com/sculptor-devops/sculptor');
 
 // [Optional] Allocate tty for git clone. Default value is false.
 set('git_tty', true);
@@ -61,9 +61,12 @@ task('deploy', [
     'success'
 ]);
 
+task('deploy:migrate', function () {
+    run("php /var/www/html/artisan migrate");
+});
+
 task('deploy:owner', function () {
     run("chown -R www-data:www-data /var/www/html");
 });
 
-// [Optional] If deploy fails automatically unlock.
 after('deploy:failed', 'deploy:unlock');

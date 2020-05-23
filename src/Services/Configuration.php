@@ -54,7 +54,7 @@ class Configuration
      */
     public function user(): string
     {
-        return $this->configuration['user'];
+        return APP_PANEL_USER;
     }
 
     public function template(): string
