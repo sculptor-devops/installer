@@ -33,6 +33,7 @@ jobs:
         path: /home/runner
     
     - name: Display structure of downloaded files
+      if: always()      
       run: ls -R
 
 
