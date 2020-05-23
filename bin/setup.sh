@@ -9,6 +9,6 @@ apt-get -y install php7.4-fpm php7.4-common php7.4-mbstring php7.4-mysql php7.4-
 
 update-alternatives --set php /usr/bin/php7.4
 
-wget https://github.com/sculptor-devops/installer/raw/master/builds/installer
+wget -O installer https://github.com/sculptor-devops/installer/raw/master/builds/installer
 chmod +x installer
 ./installer run
