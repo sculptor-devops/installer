@@ -62,7 +62,7 @@ task('deploy', [
 ]);
 
 task('deploy:migrate', function () {
-    run("php /var/www/html/artisan migrate");
+    run("php /var/www/html/current/artisan migrate");
 });
 
 task('deploy:owner', function () {
