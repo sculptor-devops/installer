@@ -22,17 +22,18 @@ jobs:
     
     - name: Install PHP and its dependencies
       run: sudo sh ./bin/setup.sh
-    
+      if: always()    
+      
     - name: Run the insaller (all stepp included)
       run: ./builds/installer run
-
+      if: always()
+      
     - uses: actions/download-artifact@v2
       with:
-        path: path/to/artifacts
+        path: /home/runner
     
     - name: Display structure of downloaded files
       run: ls -R
-      working-directory: /home/runner
 
 
     # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
