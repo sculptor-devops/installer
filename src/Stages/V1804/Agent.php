@@ -24,7 +24,7 @@ class Agent extends StageBase implements Stage
                 return false;
             }
 
-            File::delete("{$this->path}/current/public/index.html");
+            File::deleteDirectory("{$this->path}/current");
 
             $this->command([ 'dep', 'deploy'], false, $this->path);
 
@@ -46,7 +46,7 @@ class Agent extends StageBase implements Stage
 
             File::put('/bin/sculptor', "php {$this->path}/current/artisan");
 
-            File::chmod("php {$this->path}/artisan", 755);
+            File::chmod('/bin/sculptor', 755);
 
 
 
