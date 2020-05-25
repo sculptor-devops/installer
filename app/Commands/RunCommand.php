@@ -14,7 +14,7 @@ class RunCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'run';
+    protected $signature = 'run {?--templates}';
 
     /**
      * The description of the command.
@@ -37,6 +37,8 @@ class RunCommand extends Command
 
             $this->error($stages->error());
 
+            $this->dump();
+
             return 1;
         }
 
@@ -45,6 +47,7 @@ class RunCommand extends Command
         $this->info('Here your master credentials, save in a safe location!');
 
         $this->table(['name', 'value'], $stages->show());
+
 
         return 0;
     }

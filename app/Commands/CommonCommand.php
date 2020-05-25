@@ -1,5 +1,6 @@
 <?php namespace App\Commands;
 
+use Illuminate\Support\Facades\File;
 use Sculptor\Services\Logs;
 use Sculptor\Stages\Version;
 
@@ -26,5 +27,14 @@ trait CommonCommand
     private function elapsed(): string
     {
         return now()->diff($this->start)->format('%H:%I:%S');
+    }
+
+    private function dump(): void
+    {
+        if ($this->option('dump')) {
+            $logs = File::get(Logs::filename());
+
+            $this->info($logs);
+        }
     }
 }
