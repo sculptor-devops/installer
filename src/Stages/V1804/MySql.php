@@ -65,13 +65,13 @@ class MySql extends StageBase implements Stage
             $this->daemons->restart('mysql');
 
         } catch (\Exception $e) {
-            Log::warning("Unable to secure MySql: {$e->getMessage()}");
+            Log::warning("Unable to secure MySqlManager: {$e->getMessage()}");
         }
     }
 
     public function name(): string
     {
-        return 'MySql Server';
+        return 'MySqlManager Server';
     }
 
     public function env(): ?array

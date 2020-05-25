@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Log;
 class CheckServices extends StageBase implements Stage
 {
     private $services = [
-        'mysql' => 'MySql is not running',
+        'mysql' => 'MySqlManager is not running',
         'nginx' => 'Nginx is not running',
         'redis' => 'Redis is not running',
         'supervisor' => 'Supervisror is not running',

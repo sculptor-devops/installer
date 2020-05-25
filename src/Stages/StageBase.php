@@ -1,5 +1,6 @@
 <?php namespace Sculptor\Stages;
 
+use Sculptor\Contracts\DatabaseManager;
 use Sculptor\Replacer;
 use Sculptor\Contracts\Runner;
 use Sculptor\Contracts\RunnerResult;
@@ -49,20 +50,27 @@ class StageBase
      * @var Templates
      */
     private $templates;
+    /**
+     * @var DatabaseManager
+     */
+    protected $db;
 
     /**
      * StageBase constructor.
      * @param Runner $runner
      * @param Daemons $daemons
      * @param Templates $templates
+     * @param DatabaseManager $db
      */
-    public function __construct(Runner $runner, Daemons $daemons, Templates $templates)
+    public function __construct(Runner $runner, Daemons $daemons, Templates $templates, DatabaseManager $db)
     {
         $this->runner = $runner;
 
         $this->daemons = $daemons;
 
         $this->templates = $templates;
+
+        $this->db = $db;
     }
 
     /**
@@ -172,5 +180,10 @@ class StageBase
         }
 
         return ((new ReflectionClass($this))->getName());
+    }
+
+    public function password(int $len = 16): string
+    {
+        return clearNl($this->runner->run(['openssl', 'rand', '-base64', $len])->output());
     }
 }

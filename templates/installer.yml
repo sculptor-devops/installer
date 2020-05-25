@@ -8,12 +8,12 @@ stages:
   - Sshd
   - NodeJs
   - Nginx
-  - MySql
+  - MySqlManager
   - Redis
   - LetsSEncrypt
   - Composer
   - Deployer
   - Firewall
   - Crontab
-  - CheckServices
   - Agent
+  - CheckServices

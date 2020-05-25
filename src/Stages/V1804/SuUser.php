@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Log;
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
-
 class SuUser extends StageBase implements Stage
 {
     public function run(array $env = null): bool
@@ -37,6 +36,8 @@ class SuUser extends StageBase implements Stage
 
                 return false;
             }
+
+            $this->command(['usermod', '-G', 'adm', APP_PANEL_HTTP_USER]);
 
             $conf = $this->template('sudoer.conf');
 

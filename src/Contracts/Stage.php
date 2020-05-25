@@ -11,7 +11,7 @@ use Sculptor\Services\Templates;
 
 interface Stage
 {
-    public function __construct(Runner $runner, Daemons $daemons, Templates $templates);
+    public function __construct(Runner $runner, Daemons $daemons, Templates $templates, DatabaseManager $db);
     public function run(array $env = null): bool;
     public function remove(array $env = null): bool;
     public function name(): string;

@@ -2,6 +2,8 @@
 
 use Sculptor\Contracts\Runner;
 use Sculptor\Runner\Runner as RunService;
+use Sculptor\Contracts\DatabaseManager;
+use Sculptor\Database\MySqlManager;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -26,6 +28,10 @@ class AppServiceProvider extends ServiceProvider
     {
         app()->bind(Runner::class, function() {
             return new RunService();
+        });
+
+        app()->bind(DatabaseManager::class, function() {
+            return new MySqlManager();
         });
     }
 }

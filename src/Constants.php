@@ -8,6 +8,8 @@
 define('APP_PATH', '.installer');
 define('APP_COMPATIBLE', ['18.04', '20.04']);
 define('APP_PANEL_USER', 'sculptor');
+define('APP_PANEL_DB', 'sculptor');
+define('APP_PANEL_DB_USER', 'sculptor');
 define('APP_PANEL_HTTP_PANEL', 'www-data');
 define('APP_PANEL_HTTP_USER', 'www');
 define('APP_PANEL_PHP_VERSION', '7.4');

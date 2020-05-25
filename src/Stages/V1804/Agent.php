@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Log;
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
-
 class Agent extends StageBase implements Stage
 {
     private $path = '/var/www/html';
@@ -20,6 +19,10 @@ class Agent extends StageBase implements Stage
     public function run(array $env = null): bool
     {
         try {
+            $password = $this->password(16);
+
+            $dbPassword = $this->env['db_password'];
+
             $deploy = $this->template('agent-deploy.php');
 
             $written = File::put("{$this->path}/deploy.php", $deploy);
@@ -32,31 +35,42 @@ class Agent extends StageBase implements Stage
 
             File::deleteDirectory("{$this->path}/current");
 
-            $this->command([ 'dep', 'deploy'], false, $this->path);
+            $this->command(['dep', 'deploy'], false, $this->path);
 
+            $env = $this->replaceTemplate('agent-env')
+                ->replace('{PASSWORD}', $password)
+                ->replace('{DB_PASSWORD}', $dbPassword)
+                ->value();
 
+            File::put('/var/www/html/shared/.env', $env);
 
-            // ENV
-            // /var/www/html/shared/.env
-            // {PASSWORD}
-            // {DB_PASSWORD}
+            $this->db->set($dbPassword)->db(APP_PANEL_DB);
 
-            $this->command([ 'php', "{$this->path}/current/artisan", 'key:generate'], false, $this->path);
+            $this->db->user(APP_PANEL_DB_USER, $password, APP_PANEL_DB);
 
-            // $this->command([ 'dep', 'deploy:migrate'], false, $this->path);
+            $this->command(['php', "{$this->path}/current/artisan", 'key:generate'], false, $this->path);
 
-            $this->command([ 'dep', 'deploy:owner'], false, $this->path);
+            $this->command(['dep', 'deploy:migrate'], false, $this->path);
 
-            File::put('/bin/sculptor', "php {$this->path}/current/artisan $1");
+            $this->command(['dep', 'deploy:owner'], false, $this->path);
+
+            File::put('/bin/sculptor', "php {$this->path}/current/artisan $@");
 
             File::chmod('/bin/sculptor', 755);
 
+            $supervisor = $this->replaceTemplate('system.sculptor.conf')
+                ->replace('{USER}', APP_PANEL_USER)
+                ->value();
 
+            File::put('/etc/supervisor/conf.d/system.sculptor.conf', $supervisor);
 
+            $supervisor = $this->replaceTemplate('www.sculptor.conf')
+                ->replace('{USER}', APP_PANEL_HTTP_PANEL)
+                ->value();
 
+            File::put('/etc/supervisor/conf.d/www.sculptor.conf', $supervisor);
 
-            // /etc/supervisor/conf.d/system.sculptor.conf
-            // $replaced = new Replacer();
+            $this->daemons->restart('supervisor');
 
             return true;
 

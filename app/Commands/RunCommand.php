@@ -14,7 +14,7 @@ class RunCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'run {?--templates}';
+    protected $signature = 'run {?--dump}';
 
     /**
      * The description of the command.
