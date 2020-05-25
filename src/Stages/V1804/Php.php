@@ -15,6 +15,7 @@ class Php extends StageBase implements Stage
 {
     public function run(array $env = null): bool
     {
+        $www = APP_PANEL_HTTP_USER;
         $php = APP_PANEL_PHP_VERSION;
 
         try {
@@ -24,11 +25,11 @@ class Php extends StageBase implements Stage
                 return false;
             }
 
-            $pool = $this->template('php-pool.conf');
+            $pool = $this->replaceTemplate('php-pool.conf')
+                ->replace("{USER}", $www)
+                ->value();
 
-            $pool = str_replace("{USER}", APP_PANEL_USER, $pool);
-
-            if (!$this->write("/etc/php/{$php}/fpm/pool.d/sculptor.conf", $pool, 'Cannot write pool configuration')) {
+            if (!$this->write("/etc/php/{$php}/fpm/pool.d/{$www}.conf", $pool, 'Cannot write pool configuration')) {
                 return false;
             }
 

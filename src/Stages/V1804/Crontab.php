@@ -9,24 +9,17 @@ use Illuminate\Support\Facades\Log;
 
 class Crontab extends StageBase implements Stage
 {
-
     public function run(array $env = null): bool
     {
         try {
-            $filename = '/etc/cron.d/panel.crontab';
 
-            $conf = $this->template('panel.crontab');
-
-            $written = File::put($filename, $conf);
-
-            if (!$written) {
-
+            if(!$this->add('panel.crontab', '/etc/cron.d/sculptor.admin', APP_PANEL_USER)) {
                 return false;
             }
 
-            $this->command(['crontab', $filename]);
-
-            $this->internal = 'Unable to write crontab';
+            if(!$this->add('www-data.crontab', '/etc/cron.d/sculptor.www', APP_PANEL_HTTP_PANEL)) {
+                return false;
+            }
 
             return true;
         } catch (Exception $e) {
@@ -35,6 +28,22 @@ class Crontab extends StageBase implements Stage
 
             return false;
         }
+    }
+
+    private function add(string $filename, string $destination, string $user): bool
+    {
+        $conf = $this->template($filename);
+
+        $written = File::put($destination, $conf);
+
+        if (!$written) {
+            $this->internal = "Cannot write to {$destination}";
+            return false;
+        }
+
+        $this->command(['crontab', '-u', $user, $destination]);
+
+        return true;
     }
 
     public function name(): string

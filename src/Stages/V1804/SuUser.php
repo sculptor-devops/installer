@@ -17,8 +17,6 @@ class SuUser extends StageBase implements Stage
     public function run(array $env = null): bool
     {
         try {
-            $user = APP_PANEL_USER;
-            $home = "/home/{$user}";
             $password = $env['password'];
 
             if (!sudo()) {
@@ -27,19 +25,17 @@ class SuUser extends StageBase implements Stage
                 return false;
             }
 
-            $exists = $this->runner->run(['id', '-u', $user])->success();
+            if (!$this->create(APP_PANEL_USER, $password, true)) {
+                $this->internal = "Cannot create user " . APP_PANEL_USER;
 
-            if ($exists) {
-                $this->command(['userdel', $user]);
+                return false;
             }
 
-            $this->command(['useradd', '-d', $home, $user, '-s', '/bin/bash', '-p', $this->encodePassword($password)]);
+            if (!$this->create(APP_PANEL_HTTP_USER, $password, false)) {
+                $this->internal = "Cannot create user " . APP_PANEL_HTTP_USER;
 
-            if (!File::exists($home)) {
-                File::makeDirectory($home);
+                return false;
             }
-
-            $this->command(['chown', "{$user}:{$user}", $home]);
 
             $conf = $this->template('sudoer.conf');
 
@@ -59,6 +55,27 @@ class SuUser extends StageBase implements Stage
 
             return false;
         }
+    }
+
+    private function create(string $user, string $password, bool $shell): bool
+    {
+        $home = "/home/{$user}";
+        $bash = $shell ? '/bin/bash' : '/bin/false';
+        $exists = $this->runner->run(['id', '-u', $user])->success();
+
+        if ($exists) {
+            $this->command(['userdel', $user]);
+        }
+
+        $this->command(['useradd', '-d', $home, $user, '-s', $bash, '-p', $this->encodePassword($password)]);
+
+        if (!File::exists($home)) {
+            File::makeDirectory($home);
+        }
+
+        $this->command(['chown', "{$user}:{$user}", $home]);
+
+        return true;
     }
 
     private function encodePassword($password): string

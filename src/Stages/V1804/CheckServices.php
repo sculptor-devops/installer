@@ -12,7 +12,8 @@ class CheckServices extends StageBase implements Stage
         'mysql' => 'MySql is not running',
         'nginx' => 'Nginx is not running',
         'redis' => 'Redis is not running',
-        'supervisor' => 'Supervisror is not running'
+        'supervisor' => 'Supervisror is not running',
+        'php7.4-fpm' => 'PHP FPM is not running'
     ];
 
     public function run(array $env = null): bool
