@@ -1,6 +1,6 @@
-<?php namespace Eppak\Stages\V2004;
+<?php namespace Sculptor\Stages\V2004;
 
-class CheckServices extends \Eppak\Stages\V1804\CheckServices
+class CheckServices extends \Sculptor\Stages\V1804\CheckServices
 {
     //
 }

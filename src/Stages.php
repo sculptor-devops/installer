@@ -1,9 +1,9 @@
-<?php namespace Eppak;
+<?php namespace Sculptor;
 
-use Eppak\Contracts\Stage;
-use Eppak\Stages\StageFactory;
+use Sculptor\Contracts\Stage;
+use Sculptor\Stages\StageFactory;
 
-use Eppak\Stages\Version;
+use Sculptor\Stages\Version;
 use Illuminate\Support\Facades\Log;
 use LaravelZero\Framework\Commands\Command;
 

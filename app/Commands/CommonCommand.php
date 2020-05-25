@@ -1,8 +1,7 @@
 <?php namespace App\Commands;
 
-use Carbon\Carbon;
-use Eppak\Services\Logs;
-use Eppak\Stages\Version;
+use Sculptor\Services\Logs;
+use Sculptor\Stages\Version;
 
 trait CommonCommand
 {

@@ -1,8 +1,7 @@
-<?php
+<?php namespace App\Commands;
 
-namespace App\Commands;
+use Sculptor\Stages;
 
-use Eppak\Stages;
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 

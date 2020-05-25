@@ -1,4 +1,4 @@
-<?php namespace Eppak\Services;
+<?php namespace Sculptor\Services;
 
 class Logs
 {

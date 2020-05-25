@@ -1,12 +1,13 @@
-<?php namespace Eppak\Stages;
+<?php namespace Sculptor\Stages;
 
-use Eppak\Contracts\Runner;
-use Eppak\Contracts\RunnerResult;
-use Eppak\Services\Daemons;
-use Eppak\Services\Templates;
+use Sculptor\Replacer;
+use Sculptor\Contracts\Runner;
+use Sculptor\Contracts\RunnerResult;
+use Sculptor\Services\Daemons;
+use Sculptor\Services\Templates;
+
 use Illuminate\Support\Facades\File;
 use League\Flysystem\FileNotFoundException;
-use Eppak\Replacer;
 use Exception;
 use ReflectionClass;
 use ReflectionException;

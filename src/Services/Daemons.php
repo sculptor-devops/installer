@@ -1,7 +1,7 @@
-<?php namespace Eppak\Services;
+<?php namespace Sculptor\Services;
 
-use Eppak\Contracts\Runner;
-use Eppak\Contracts\RunnerResult;
+use Sculptor\Contracts\Runner;
+use Sculptor\Contracts\RunnerResult;
 use Illuminate\Support\Facades\Log;
 
 /**

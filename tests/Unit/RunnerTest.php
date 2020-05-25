@@ -1,9 +1,7 @@
-<?php
+<?php namespace Tests\Unit;
 
-namespace Tests\Unit;
-
-use Eppak\Exceptions\PathNotFoundException;
-use Eppak\Runner\Runner;
+use Sculptor\Exceptions\PathNotFoundException;
+use Sculptor\Runner\Runner;
 use Tests\TestCase;
 
 class RunnerTest extends TestCase

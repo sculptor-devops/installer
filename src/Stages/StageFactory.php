@@ -1,6 +1,6 @@
-<?php namespace Eppak\Stages;
+<?php namespace Sculptor\Stages;
 
-use Eppak\Services\Configuration;
+use Sculptor\Services\Configuration;
 use Illuminate\Support\Str;
 
 class StageFactory
@@ -42,7 +42,7 @@ class StageFactory
 
     private function resolve(string $stage): string
     {
-        return "Eppak\Stages\\{$this->version}\\{$stage}";
+        return "Sculptor\Stages\\{$this->version}\\{$stage}";
     }
 
     public function make(string $class)

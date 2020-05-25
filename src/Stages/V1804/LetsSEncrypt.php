@@ -1,8 +1,8 @@
-<?php namespace Eppak\Stages\V1804;
+<?php namespace Sculptor\Stages\V1804;
 
+use Sculptor\Stages\StageBase;
+use Sculptor\Contracts\Stage;
 
-use Eppak\Stages\StageBase;
-use Eppak\Contracts\Stage;
 use Exception;
 use Illuminate\Support\Facades\Log;
 

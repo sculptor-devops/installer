@@ -1,7 +1,4 @@
-<?php
-
-
-namespace Eppak\Services;
+<?php namespace Sculptor\Services;
 
 use Illuminate\Support\Facades\File;
 use League\Flysystem\Adapter\Local as LocalFilesystem;

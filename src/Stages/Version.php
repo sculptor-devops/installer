@@ -1,7 +1,6 @@
-<?php namespace Eppak\Stages;
+<?php namespace Sculptor\Stages;
 
-
-use Eppak\Services\Env;
+use Sculptor\Services\Env;
 
 class Version
 {

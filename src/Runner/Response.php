@@ -1,6 +1,6 @@
-<?php namespace Eppak\Runner;
+<?php namespace Sculptor\Runner;
 
-use Eppak\Contracts\RunnerResult;
+use Sculptor\Contracts\RunnerResult;
 
 /**
  * (c) Alessandro Cappellozza <alessandro.cappellozza@gmail.com>

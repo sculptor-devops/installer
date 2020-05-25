@@ -1,9 +1,8 @@
-<?php
+<?php namespace App\Providers;
 
-namespace App\Providers;
+use Sculptor\Contracts\Runner;
+use Sculptor\Runner\Runner as RunService;
 
-use Eppak\Contracts\Runner;
-use Eppak\Runner\Runner as RunService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

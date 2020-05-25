@@ -1,4 +1,4 @@
-<?php namespace Eppak\Exceptions;
+<?php namespace Sculptor\Exceptions;
 
 use Exception;
 use Throwable;

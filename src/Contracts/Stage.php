@@ -1,7 +1,7 @@
-<?php namespace Eppak\Contracts;
+<?php namespace Sculptor\Contracts;
 
-use Eppak\Services\Daemons;
-use Eppak\Services\Templates;
+use Sculptor\Services\Daemons;
+use Sculptor\Services\Templates;
 
 /**
  * (c) Alessandro Cappellozza <alessandro.cappellozza@gmail.com>

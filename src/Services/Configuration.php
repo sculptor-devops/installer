@@ -1,4 +1,4 @@
-<?php namespace Eppak\Services;
+<?php namespace Sculptor\Services;
 
 use Illuminate\Support\Facades\File;
 use Symfony\Component\Yaml\Yaml;

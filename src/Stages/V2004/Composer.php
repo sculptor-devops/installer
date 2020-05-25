@@ -1,8 +1,4 @@
-<?php namespace Eppak\Stages\V2004;
-
-use Eppak\Contracts\RunnerResult;
-use Eppak\Contracts\Stage;
-use Eppak\Stages\StageBase;
+<?php namespace Sculptor\Stages\V2004;
 
 /**
  * (c) Alessandro Cappellozza <alessandro.cappellozza@gmail.com>
@@ -10,7 +6,7 @@ use Eppak\Stages\StageBase;
  *  file that was distributed with this source code.
  */
 
-class Composer extends \Eppak\Stages\V1804\Composer
+class Composer extends \Sculptor\Stages\V1804\Composer
 {
     //
 }

@@ -1,4 +1,4 @@
-<?php namespace Eppak\Services;
+<?php namespace Sculptor\Services;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;

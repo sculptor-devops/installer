@@ -1,9 +1,8 @@
-<?php
+<?php namespace App\Commands;
 
-namespace App\Commands;
+use Sculptor\Services\Configuration;
+use Sculptor\Services\Templates;
 
-use Eppak\Services\Configuration;
-use Eppak\Services\Templates;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\File;
 use LaravelZero\Framework\Commands\Command;

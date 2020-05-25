@@ -1,8 +1,6 @@
-<?php
+<?php namespace Tests\Feature;
 
-namespace Tests\Feature;
-
-use Eppak\Stages;
+use Sculptor\Stages;
 use Tests\TestCase;
 
 class StagesTest extends TestCase

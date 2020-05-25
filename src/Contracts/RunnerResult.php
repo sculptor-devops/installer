@@ -1,4 +1,4 @@
-<?php namespace Eppak\Contracts;
+<?php namespace Sculptor\Contracts;
 
 /**
  * (c) Alessandro Cappellozza <alessandro.cappellozza@gmail.com>

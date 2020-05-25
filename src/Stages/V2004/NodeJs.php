@@ -1,10 +1,6 @@
-<?php namespace Eppak\Stages\V2004;
+<?php namespace Sculptor\Stages\V2004;
 
-use Eppak\Contracts\Stage;
-use Eppak\Stages\StageBase;
-use Exception;
-
-class NodeJs extends \Eppak\Stages\V1804\NodeJs
+class NodeJs extends \Sculptor\Stages\V1804\NodeJs
 {
     //
 }

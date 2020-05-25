@@ -1,10 +1,11 @@
-<?php namespace Eppak\Stages\V1804;
+<?php namespace Sculptor\Stages\V1804;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
-use Eppak\Contracts\Stage;
-use Eppak\Stages\StageBase;
+
+use Sculptor\Contracts\Stage;
+use Sculptor\Stages\StageBase;
 
 /**
  * (c) Alessandro Cappellozza <alessandro.cappellozza@gmail.com>

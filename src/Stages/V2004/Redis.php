@@ -1,9 +1,6 @@
-<?php namespace Eppak\Stages\V2004;
+<?php namespace Sculptor\Stages\V2004;
 
-use Eppak\Contracts\Stage;
-use Eppak\Stages\StageBase;
-
-class Redis  extends \Eppak\Stages\V1804\Redis
+class Redis  extends \Sculptor\Stages\V1804\Redis
 {
 
 }

@@ -1,12 +1,12 @@
-<?php namespace Eppak\Runner;
+<?php namespace Sculptor\Runner;
 
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use Symfony\Component\Process\Process;
 
-use Eppak\Contracts\RunnerResult;
-use Eppak\Contracts\Runner as RunnerInterface;
-use Eppak\Exceptions\PathNotFoundException;
+use Sculptor\Contracts\RunnerResult;
+use Sculptor\Contracts\Runner as RunnerInterface;
+use Sculptor\Exceptions\PathNotFoundException;
 
 /**
  * (c) Alessandro Cappellozza <alessandro.cappellozza@gmail.com>
