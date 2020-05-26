@@ -54,6 +54,11 @@ class Daemons
         return $this->systemctl("enable", $name)->success();
     }
 
+    public function installed(string $name): bool
+    {
+        return $this->runner->run(['dpkg', '-s', $name])->success();
+    }
+
     private function systemctl(string $command, string $name): RunnerResult
     {
         $result = $this->runner->run(["systemctl", $command, $name]);

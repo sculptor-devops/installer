@@ -10,8 +10,6 @@ trait CommonCommand
 
     private function preamble(): void
     {
-        $this->info("Running on OS Version " . Version::get());
-
         $this->info("You can see detailed log in " . Logs::filename());
 
         $this->warn("Every step can take several minutes");

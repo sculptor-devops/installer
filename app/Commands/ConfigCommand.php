@@ -1,8 +1,6 @@
 <?php namespace App\Commands;
 
-use Illuminate\Support\Facades\DB;
 use Sculptor\Services\Configuration;
-use Sculptor\Services\MySqlManager;
 use Sculptor\Services\Templates;
 
 use Illuminate\Console\Scheduling\Schedule;
@@ -32,20 +30,10 @@ class ConfigCommand extends Command
      * @param Templates $templates
      * @return mixed
      */
-    public function handle(Configuration $configuration, Templates $templates, MySqlManager $mysql): int
+    public function handle(Configuration $configuration, Templates $templates): int
     {
 
-        $mysql->set('/s391gLaWoLeKBiy3ZuwrQ==');
 
-        $mysql->db('test_db');
-
-        $mysql->user('utente', 'pwd', 'test_db');
-
-
-
-        dd('sdsd');
-
-        // mysql://root:/s391gLaWoLeKBiy3ZuwrQ==@127.0.0.1/mysql?charset=UTF-8
 
 
         $this->configuration($configuration);

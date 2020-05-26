@@ -21,7 +21,7 @@ class Stages
     private $env = [];
 
     /**
-     * @var string
+     * @var Version
      */
     private $version;
 
@@ -34,20 +34,22 @@ class Stages
      */
     private $stages;
 
-    public function __construct(StageFactory $stages)
+    public function __construct(StageFactory $stages, Version $version)
     {
-        $this->version = Version::get();
+        $this->version = $version;
 
         $this->stages = $stages;
 
-        $this->stages->version($this->version);
+        $this->stages->version($this->version->get());
     }
 
     public function run(Command $context, bool $remove = false): bool
     {
-        Log::info("Running on Os version {$this->version}");
+        Log::info("Running on Os version {$this->version->name()}");
 
-        if (!Version::compatible()) {
+        Log::info("Detected version {$this->version->get()}, architecture {$this->version->arch()} (bits {$this->version->bits()})");
+
+        if (!$this->version->compatible()) {
             $this->error = 'This version of the operating system is not compatible';
 
             return false;
