@@ -3,6 +3,8 @@
 /.vscode
 /.vagrant
 /custom_templates
+/builds/*
+!/builds/installer
 .phpunit.result.cache
 /installer.yml
 /database/database.sqlite
