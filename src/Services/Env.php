@@ -11,10 +11,20 @@ use Illuminate\Support\Facades\File;
 
 class Env
 {
+    /**
+     * @var string
+     */
     private $filename;
 
+    /**
+     * @var array<int, string>|false
+     */
     private $content = [];
 
+    /**
+     * Env constructor.
+     * @param string $filename
+     */
     public function __construct(string $filename)
     {
         $this->filename = $filename;
@@ -22,15 +32,32 @@ class Env
         $this->parse();
     }
 
+    /**
+     *
+     */
     private function parse(): void
     {
         $content = File::get($this->filename);
 
-        $this->content = preg_split("/\r\n|\n|\r/", $content);
+        if ($content) {
+            $this->content = preg_split("/\r\n|\n|\r/", $content);
+
+            return;
+        }
     }
 
+    /**
+     * @param string $key
+     * @param bool $quoted
+     * @return string|null
+     */
     public function get(string $key, bool $quoted = true): ?string
     {
+        if (!$this->content) {
+
+            return null;
+        }
+
         foreach ($this->content as $line) {
             if (Str::startsWith($line, $key)) {
                 $value = Str::after($line, '=');

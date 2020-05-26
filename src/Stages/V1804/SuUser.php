@@ -1,6 +1,7 @@
 <?php namespace Sculptor\Stages\V1804;
 
 use Sculptor\Contracts\Stage;
+use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
 
 use Exception;
@@ -14,10 +15,14 @@ use Illuminate\Support\Facades\Log;
  */
 class SuUser extends StageBase implements Stage
 {
-    public function run(array $env = null): bool
+    /**
+     * @param Environment $env
+     * @return bool
+     */
+    public function run(Environment $env): bool
     {
         try {
-            $password = $env['password'];
+            $password = $env->get('password');
 
             if (!sudo()) {
                 $this->internal = 'This user is not an superuser';
@@ -59,6 +64,13 @@ class SuUser extends StageBase implements Stage
         }
     }
 
+    /**
+     * @param string $user
+     * @param string $password
+     * @param bool $shell
+     * @return bool
+     * @throws Exception
+     */
     private function create(string $user, string $password, bool $shell): bool
     {
         $home = "/home/{$user}";
@@ -80,7 +92,11 @@ class SuUser extends StageBase implements Stage
         return true;
     }
 
-    private function encodePassword($password): string
+    /**
+     * @param string $password
+     * @return string
+     */
+    private function encodePassword(string $password): string
     {
         return clearNl($this->runner->run([
                 'openssl',
@@ -91,12 +107,18 @@ class SuUser extends StageBase implements Stage
         )->output());
     }
 
+    /**
+     * @return string
+     */
     public function name(): string
     {
         return 'Superuser';
     }
 
-    public function env(): ?array
+    /**
+     * @return Environment|null
+     */
+    public function env(): ?Environment
     {
         return null;
     }

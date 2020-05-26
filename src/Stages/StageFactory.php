@@ -1,5 +1,7 @@
 <?php namespace Sculptor\Stages;
 
+use Illuminate\Contracts\Foundation\Application;
+use Sculptor\Contracts\Stage;
 use Sculptor\Services\Configuration;
 use Illuminate\Support\Str;
 
@@ -20,16 +22,33 @@ class StageFactory
      */
     private $configuration;
 
+    /**
+     * StageFactory constructor.
+     * @param Configuration $configuration
+     */
     public function __construct(Configuration $configuration)
     {
         $this->configuration = $configuration;
     }
 
-    public function version(string $version)
+    /**
+     * @param string|null $version
+     * @return void
+     */
+    public function version(?string $version): void
     {
-        $this->version = 'V' . str_replace('.', '', $version);
+        if($version) {
+            $this->version = 'V' . str_replace('.', '', $version);
+
+            return;
+        }
+
+        $this->version = 'UNKNOWN';
     }
 
+    /**
+     * @return array<string>
+     */
     public function list(): array
     {
         $resolved = [];
@@ -41,30 +60,46 @@ class StageFactory
         return $resolved;
     }
 
-    public function all()
+    /**
+     * @return array<string>
+     */
+    public function all(): array
     {
         return $this->configuration->stages();
     }
 
+    /**
+     * @param string $stage
+     * @return string
+     */
     private function resolve(string $stage): string
     {
         return "Sculptor\Stages\\{$this->version}\\{$stage}";
     }
 
-    public function make(string $class)
+    /**
+     * @param string $class
+     * @return Stage
+     */
+    public function make(string $class): Stage
     {
         $resolved = $this->resolve($class);
 
         return resolve($resolved);
     }
 
-    public function find(string $name)
+    /**
+     * @param string $name
+     * @return Stage|null
+     */
+    public function find(string $name): ?Stage
     {
         foreach ($this->configuration->stages() as $stage) {
-            $instance = static::make($stage);
+            $instance = $this->make($stage);
 
             if (Str::lower($instance->name()) == Str::lower($name) ||
                 Str::lower($instance->className()) == Str::lower($name)) {
+
                 return $instance;
             }
         }

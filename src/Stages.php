@@ -1,6 +1,7 @@
 <?php namespace Sculptor;
 
 use Sculptor\Contracts\Stage;
+use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageFactory;
 
 use Sculptor\Stages\Version;
@@ -16,9 +17,9 @@ use LaravelZero\Framework\Commands\Command;
 class Stages
 {
     /**
-     * @var array
+     * @var Environment
      */
-    private $env = [];
+    private $env;
 
     /**
      * @var Version
@@ -26,7 +27,7 @@ class Stages
     private $version;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $error;
     /**
@@ -40,14 +41,21 @@ class Stages
 
         $this->stages = $stages;
 
-        $this->stages->version($this->version->get());
+        $this->stages->version($this->version->version());
+
+        $this->env = new Environment();
     }
 
+    /**
+     * @param Command $context
+     * @param bool $remove
+     * @return bool
+     */
     public function run(Command $context, bool $remove = false): bool
     {
         Log::info("Running on Os version {$this->version->name()}");
 
-        Log::info("Detected version {$this->version->get()}, architecture {$this->version->arch()} (bits {$this->version->bits()})");
+        Log::info("Detected version {$this->version->version()}, architecture {$this->version->arch()} (bits {$this->version->bits()})");
 
         if (!$this->version->compatible()) {
             $this->error = 'This version of the operating system is not compatible';
@@ -58,7 +66,7 @@ class Stages
         foreach ($this->stages->all() as $stage) {
             $instance = $this->stages->make($stage);
 
-            if (!$instance) {
+            if ($instance == null) {
                 $this->error = "Unknown stage {$stage}";
 
                 return false;
@@ -78,6 +86,9 @@ class Stages
         return true;
     }
 
+    /**
+     * @return array<int, array<string, int|string>>
+     */
     public function list(): array
     {
         $index = 1;
@@ -94,9 +105,20 @@ class Stages
         return $result;
     }
 
+    /**
+     * @param string $name
+     * @param bool $remove
+     * @return bool|null
+     */
     public function stage(string $name, bool $remove = false): ?bool
     {
         $credentials = $this->stages->find('Credentials');
+
+        if (!$credentials) {
+            $this->error = 'Cannot load credential stage';
+
+            return false;
+        }
 
         Log::info("RUNNING STAGE {$credentials->name()}");
 
@@ -119,6 +141,11 @@ class Stages
         return $this->instance($instance);
     }
 
+    /**
+     * @param Stage $instance
+     * @param bool $remove
+     * @return bool
+     */
     private function instance(Stage $instance, bool $remove = false): bool
     {
         $run = false;
@@ -139,29 +166,32 @@ class Stages
             return false;
         }
 
-        if ($instance->env()) {
-            Log::info("ENV updated");
-
-            $this->env = $instance->env();
-        }
-
         return true;
     }
 
-    public function env(): array
+    /**
+     * @return Environment
+     */
+    public function env(): Environment
     {
         return $this->env;
     }
 
+    /**
+     * @return array|array[]
+     */
     public function show(): array
     {
         return [
-            ['name' => 'Public IP', 'value' => $this->env['ip']],
-            ['name' => 'Password', 'value' => $this->env['password']],
-            ['name' => 'Database Password', 'value' => $this->env['db_password']]
+            ['name' => 'Public IP', 'value' => $this->env->get('ip')],
+            ['name' => 'Password', 'value' => $this->env->get('password')],
+            ['name' => 'Database Password', 'value' => $this->env->get('db_password')]
         ];
     }
 
+    /**
+     * @return string
+     */
     public function error(): string
     {
         if (!$this->error) {

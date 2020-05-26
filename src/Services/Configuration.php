@@ -17,7 +17,7 @@ class Configuration
     private $templates;
 
     /**
-     * @var array
+     * @var array<int|string, array<int, string>>
      */
     private $configuration;
 
@@ -48,7 +48,7 @@ class Configuration
     }
 
     /**
-     * @return array
+     * @return array<string>
      */
     public function stages(): array
     {

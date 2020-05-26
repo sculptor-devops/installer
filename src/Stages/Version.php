@@ -27,19 +27,19 @@ class Version
         $this->runner = $runner;
     }
 
-    public function get()
+    public function version(): ?string
     {
         return $this->env->get('VERSION_ID');
     }
 
-    public function name()
+    public function name(): ?string
     {
         return $this->env->get('VERSION');
     }
 
     public function compatible(): bool
     {
-        return in_array($this->get(), APP_COMPATIBLE_VERSION) &&
+        return in_array($this->version(), APP_COMPATIBLE_VERSION) &&
                in_array($this->arch(), APP_COMPATIBLE_ARCH);
     }
 
@@ -48,7 +48,7 @@ class Version
         return clearNl($this->runner->run(['uname', '-m'])->output());
     }
 
-    public function bits(): int
+    public function bits(): string
     {
         return clearNl($this->runner->run(['getconf', 'LONG_BIT'])->output());
     }

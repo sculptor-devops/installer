@@ -8,7 +8,10 @@
 
 class Logs
 {
-    public static function filename()
+    /**
+     * @return string
+     */
+    public static function filename(): string
     {
         $log = app('log');
 

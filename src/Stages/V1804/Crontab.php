@@ -1,6 +1,8 @@
 <?php namespace Sculptor\Stages\V1804;
 
+use League\Flysystem\FileNotFoundException;
 use Sculptor\Contracts\Stage;
+use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
 
 use Exception;
@@ -15,7 +17,11 @@ use Illuminate\Support\Facades\Log;
 
 class Crontab extends StageBase implements Stage
 {
-    public function run(array $env = null): bool
+    /**
+     * @param Environment $env
+     * @return bool
+     */
+    public function run(Environment $env): bool
     {
         try {
 
@@ -36,6 +42,13 @@ class Crontab extends StageBase implements Stage
         }
     }
 
+    /**
+     * @param string $filename
+     * @param string $destination
+     * @param string $user
+     * @return bool
+     * @throws FileNotFoundException
+     */
     private function add(string $filename, string $destination, string $user): bool
     {
         $conf = $this->template($filename);
@@ -52,12 +65,18 @@ class Crontab extends StageBase implements Stage
         return true;
     }
 
+    /**
+     * @return string
+     */
     public function name(): string
     {
         return 'Crontab';
     }
 
-    public function env(): ?array
+    /**
+     * @return Environment|null
+     */
+    public function env(): ?Environment
     {
         return null;
     }

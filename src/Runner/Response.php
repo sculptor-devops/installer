@@ -9,12 +9,31 @@ use Sculptor\Contracts\RunnerResult;
  */
 class Response implements RunnerResult
 {
+    /**
+     * @var bool
+     */
     private $success;
-    private $error;
+    /**
+     * @var string
+     */
+    private $error = 'Unknown error';
+    /**
+     * @var int|null
+     */
     private $code;
+    /**
+     * @var string
+     */
     private $output;
 
-    public function __construct(bool $success, string $output, int $code = 0, string $error = null)
+    /**
+     * Response constructor.
+     * @param bool $success
+     * @param string $output
+     * @param int $code
+     * @param string $error
+     */
+    public function __construct(bool $success, string $output, ?int $code = 0, string $error = '')
     {
         $this->success = $success;
         $this->output = $output;
@@ -22,21 +41,33 @@ class Response implements RunnerResult
         $this->error = $error;
     }
 
+    /**
+     * @return bool
+     */
     public function success(): bool
     {
         return $this->success;
     }
 
+    /**
+     * @return string
+     */
     public function error(): string
     {
         return $this->error;
     }
 
-    public function code(): int
+    /**
+     * @return int|null
+     */
+    public function code(): ?int
     {
         return $this->code;
     }
 
+    /**
+     * @return string
+     */
     public function output(): string
     {
         return $this->output;

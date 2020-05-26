@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
 
 use Sculptor\Contracts\Stage;
+use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
 
 /**
@@ -15,7 +16,11 @@ use Sculptor\Stages\StageBase;
 
 class Sshd extends StageBase implements Stage
 {
-    public function run(array $env = null): bool
+    /**
+     * @param Environment $env
+     * @return bool
+     */
+    public function run(Environment $env): bool
     {
         try {
             $config = $this->template('sshd.conf');
@@ -45,12 +50,18 @@ class Sshd extends StageBase implements Stage
         }
     }
 
+    /**
+     * @return string
+     */
     public function name(): string
     {
         return 'SSH Daemon';
     }
 
-    public function env(): ?array
+    /**
+     * @return Environment|null
+     */
+    public function env(): ?Environment
     {
         return null;
     }

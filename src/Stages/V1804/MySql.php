@@ -1,5 +1,6 @@
 <?php namespace Sculptor\Stages\V1804;
 
+use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
 use Sculptor\Contracts\Stage;
 
@@ -14,10 +15,14 @@ use Illuminate\Support\Facades\Log;
 
 class MySql extends StageBase implements Stage
 {
-    public function run(array $env = null): bool
+    /**
+     * @param Environment $env
+     * @return bool
+     */
+    public function run(Environment $env): bool
     {
         try {
-            $dbPassword = $env['db_password'];
+            $dbPassword = $env->get('db_password');
 
             $this->command([
                 'echo',
@@ -47,7 +52,10 @@ class MySql extends StageBase implements Stage
         }
     }
 
-    private function secure(string $password)
+    /**
+     * @param string $password
+     */
+    private function secure(string $password): void
     {
         try {
             $this->command(['mysql', '-e', 'use mysql; UPDATE user SET authentication_string = password(\'' . $password . '\') WHERE user = \'root\';']);
@@ -69,12 +77,18 @@ class MySql extends StageBase implements Stage
         }
     }
 
+    /**
+     * @return string
+     */
     public function name(): string
     {
         return 'MySqlManager Server';
     }
 
-    public function env(): ?array
+    /**
+     * @return Environment|null
+     */
+    public function env(): ?Environment
     {
         return null;
     }

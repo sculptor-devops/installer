@@ -1,6 +1,7 @@
 <?php namespace Sculptor\Stages\V1804;
 
 use Sculptor\Contracts\Stage;
+use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
 
 use Exception;
@@ -15,7 +16,11 @@ use Illuminate\Support\Facades\Log;
 
 class Motd extends StageBase implements Stage
 {
-    public function run(array $env = null): bool
+    /**
+     * @param Environment $env
+     * @return bool
+     */
+    public function run(Environment $env): bool
     {
         try {
 
@@ -41,12 +46,18 @@ class Motd extends StageBase implements Stage
         }
     }
 
+    /**
+     * @return string
+     */
     public function name(): string
     {
         return 'Motd';
     }
 
-    public function env(): ?array
+    /**
+     * @return Environment|null
+     */
+    public function env(): ?Environment
     {
         return null;
     }

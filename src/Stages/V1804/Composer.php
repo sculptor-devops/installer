@@ -2,6 +2,7 @@
 
 use Sculptor\Contracts\RunnerResult;
 use Sculptor\Contracts\Stage;
+use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
 
 use Exception;
@@ -20,7 +21,11 @@ class Composer extends StageBase implements Stage
      */
     private $result;
 
-    public function run(array $env = null): bool
+    /**
+     * @param Environment $env
+     * @return bool
+     */
+    public function run(Environment $env): bool
     {
         try {
             $setup = '/tmp/composer-setup.php';
@@ -33,7 +38,7 @@ class Composer extends StageBase implements Stage
                 return false;
             }
 
-            $this->result = $this->runner->run(['php', $setup, '--install-dir=/bin', '--filename=composer']);
+            $this->command(['php', $setup, '--install-dir=/bin', '--filename=composer']);
 
             $delete = unlink($setup);
 
@@ -43,7 +48,7 @@ class Composer extends StageBase implements Stage
                 return false;
             }
 
-            return $this->result->success() && $copy && $delete;
+            return true;
 
         } catch (Exception $e) {
 
@@ -53,12 +58,18 @@ class Composer extends StageBase implements Stage
         }
     }
 
+    /**
+     * @return string
+     */
     public function name(): string
     {
         return 'Composer';
     }
 
-    public function env(): ?array
+    /**
+     * @return Environment|null
+     */
+    public function env(): ?Environment
     {
         return null;
     }

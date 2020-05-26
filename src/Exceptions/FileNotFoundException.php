@@ -11,7 +11,13 @@ use Throwable;
 
 class FileNotFoundException extends Exception
 {
-    public function __construct($file, $code = 0, Throwable $previous = null)
+    /**
+     * FileNotFoundException constructor.
+     * @param string $file
+     * @param int $code
+     * @param Throwable|null $previous
+     */
+    public function __construct(string $file, int $code = 0, Throwable $previous = null)
     {
         parent::__construct("File {$file} NOT FOUND", $code, $previous);
     }

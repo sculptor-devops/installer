@@ -1,6 +1,7 @@
 <?php namespace Sculptor\Stages\V1804;
 
 use Sculptor\Contracts\Stage;
+use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
 
 use Exception;
@@ -14,14 +15,21 @@ use Illuminate\Support\Facades\Log;
  */
 class Agent extends StageBase implements Stage
 {
+    /**
+     * @var string
+     */
     private $path = '/var/www/html';
 
-    public function run(array $env = null): bool
+    /**
+     * @param Environment $env
+     * @return bool
+     */
+    public function run(Environment $env): bool
     {
         try {
             $password = $this->password(16);
 
-            $dbPassword = $this->env['db_password'];
+            $dbPassword = $this->env->get('db_password');
 
             $deploy = $this->template('agent-deploy.php');
 
@@ -82,12 +90,18 @@ class Agent extends StageBase implements Stage
         }
     }
 
+    /**
+     * @return string
+     */
     public function name(): string
     {
         return 'Agent';
     }
 
-    public function env(): ?array
+    /**
+     * @return Environment|null
+     */
+    public function env(): ?Environment
     {
         return null;
     }

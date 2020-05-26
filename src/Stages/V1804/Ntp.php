@@ -1,6 +1,7 @@
 <?php namespace Sculptor\Stages\V1804;
 
 use Sculptor\Contracts\Stage;
+use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
 
 use Illuminate\Support\Facades\File;
@@ -15,7 +16,11 @@ use Illuminate\Support\Facades\Log;
 class Ntp extends StageBase implements Stage
 {
 
-    public function run(array $env = null): bool
+    /**
+     * @param Environment $env
+     * @return bool
+     */
+    public function run(Environment $env): bool
     {
         try {
             $conf = $this->template('ntp.conf');
@@ -42,12 +47,18 @@ class Ntp extends StageBase implements Stage
         }
     }
 
+    /**
+     * @return string
+     */
     public function name(): string
     {
         return 'Ntp';
     }
 
-    public function env(): ?array
+    /**
+     * @return Environment|null
+     */
+    public function env(): ?Environment
     {
         return null;
     }

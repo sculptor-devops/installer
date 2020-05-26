@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\File;
 use League\Flysystem\Adapter\Local as LocalFilesystem;
 use League\Flysystem\FileNotFoundException;
 use League\Flysystem\Filesystem;
+use Exception;
 
 /**
  * (c) Alessandro Cappellozza <alessandro.cappellozza@gmail.com>
@@ -34,22 +35,29 @@ class Templates
 
     /**
      * @param string $name
-     * @return string|null
-     * @throws FileNotFoundException
+     * @return string
+     * @throws FileNotFoundException|Exception
      */
-    public function read(string $name): ?string
+    public function read(string $name): string
     {
+
         $custom = getcwd() . "/" . APP_CONFIG_CUSTOM_TEMPLATE . "/{$name}";
 
         if (File::exists($custom)) {
             return File::get($custom);
         }
 
-        return $this->filesystem->read($name);
+        $content = $this->filesystem->read($name);
+
+        if (!$content) {
+            throw new Exception("Empty file {$name}");
+        }
+
+        return $content;
     }
 
     /**
-     * @return array
+     * @return array<int, array<string, mixed>>
      * @throws FileNotFoundException
      */
     public function all(): array

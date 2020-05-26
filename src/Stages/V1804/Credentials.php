@@ -1,6 +1,7 @@
 <?php namespace Sculptor\Stages\V1804;
 
 use Sculptor\Contracts\Stage;
+use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
 
 use Exception;
@@ -11,24 +12,17 @@ use Illuminate\Support\Facades\Log;
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
-
 class Credentials extends StageBase implements Stage
 {
-    public function run(array $env = null): bool
+    /**
+     * @param Environment $env
+     * @return bool
+     */
+    public function run(Environment $env): bool
     {
         try {
 
             $this->internal = 'Generic Error';
-
-            if ($env == null) {
-                $env = [];
-            }
-
-            if ($this->daemons->installed('mysql-server')) {
-                $this->internal = 'Machine seem to be already installed (mysql server at least is present)';
-
-                return false;
-            }
 
             $ip = quoted($this->get([
                 'dig',
@@ -43,13 +37,17 @@ class Credentials extends StageBase implements Stage
 
             $dbPassword = $this->get(['openssl', 'rand', '-base64', '16']);
 
-            $env = $this->push('ip', $ip, $env);
+            $env->add('ip', $ip);
 
-            $env = $this->push('password', $password, $env);
+            $env->add('password', $password);
 
-            $env = $this->push('db_password', $dbPassword, $env);
+            $env->add('db_password', $dbPassword);
 
-            $this->env = $env;
+            if ($this->daemons->installed('mysql-server')) {
+                $this->internal = 'Machine seem to be already installed (mysql server at least is present)';
+
+                return false;
+            }
 
             return true;
 
@@ -61,20 +59,18 @@ class Credentials extends StageBase implements Stage
         }
     }
 
+    /**
+     * @param array<string> $command
+     * @return string
+     */
     private function get(array $command): string
     {
         return clearNl($this->runner->run($command)->output());
     }
 
-    private function push(string $key, string $value, array $env): array
-    {
-        if (!array_key_exists($key, $env)) {
-            $env[$key] = $value;
-        }
-
-        return $env;
-    }
-
+    /**
+     * @return string
+     */
     private function ip(): string
     {
         $ip = quoted($this->get([
@@ -100,12 +96,18 @@ class Credentials extends StageBase implements Stage
         return $ip;
     }
 
+    /**
+     * @return string
+     */
     public function name(): string
     {
         return "Credentials";
     }
 
-    public function env(): ?array
+    /**
+     * @return Environment|null
+     */
+    public function env(): ?Environment
     {
         return $this->env;
     }

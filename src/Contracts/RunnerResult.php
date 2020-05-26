@@ -11,5 +11,5 @@ interface RunnerResult
     public function success(): bool;
     public function output(): string;
     public function error(): string;
-    public function code(): int;
+    public function code(): ?int;
 }

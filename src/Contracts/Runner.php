@@ -8,10 +8,38 @@
 
 interface Runner
 {
+    /**
+     * @return Runner
+     */
     public function tty(): Runner;
+
+    /**
+     * @param int|null $timeout
+     * @return Runner
+     */
     public function timeout(?int $timeout): Runner;
+
+    /**
+     * @param string $path
+     * @return Runner
+     */
     public function from(string $path): Runner;
+
+    /**
+     * @param string $input
+     * @return Runner
+     */
     public function input(string $input): Runner;
+
+    /**
+     * @param array<string, string> $export
+     * @return Runner
+     */
     public function env(array $export): Runner;
+
+    /**
+     * @param array<int, int|string> $command
+     * @return RunnerResult
+     */
     public function run(array $command): RunnerResult;
 }

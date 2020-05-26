@@ -43,7 +43,7 @@ class StageBase
      */
     protected $daemons;
     /**
-     * @var array
+     * @var Environment
      */
     protected $env;
     /**
@@ -74,7 +74,7 @@ class StageBase
     }
 
     /**
-     * @param array $commands
+     * @param array<string> $commands
      * @param bool $interactive
      * @param string|null $path
      * @return bool
@@ -106,10 +106,10 @@ class StageBase
 
     /**
      * @param string $name
-     * @return string|null
+     * @return string
      * @throws FileNotFoundException
      */
-    protected function template(string $name)
+    protected function template(string $name): string
     {
         return $this->templates->read($name);
     }
@@ -140,11 +140,11 @@ class StageBase
     }
 
     /**
-     * @param array|null $env
+     * @param Environment $env
      * @return bool
      * @throws Exception
      */
-    public function remove(array $env = null): bool
+    public function remove(Environment $env = null): bool
     {
         throw new Exception("Unimplemented");
     }
@@ -182,6 +182,10 @@ class StageBase
         return ((new ReflectionClass($this))->getName());
     }
 
+    /**
+     * @param int $len
+     * @return string
+     */
     public function password(int $len = 16): string
     {
         return clearNl($this->runner->run(['openssl', 'rand', '-base64', $len])->output());

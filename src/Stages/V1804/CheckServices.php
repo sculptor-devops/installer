@@ -1,6 +1,7 @@
 <?php namespace Sculptor\Stages\V1804;
 
 use Sculptor\Contracts\Stage;
+use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
 
 use Exception;
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\Log;
 
 class CheckServices extends StageBase implements Stage
 {
+    /**
+     * @var string[]
+     */
     private $services = [
         'mysql' => 'MySqlManager is not running',
         'nginx' => 'Nginx is not running',
@@ -22,7 +26,11 @@ class CheckServices extends StageBase implements Stage
         'php7.4-fpm' => 'PHP FPM is not running'
     ];
 
-    public function run(array $env = null): bool
+    /**
+     * @param Environment $env
+     * @return bool
+     */
+    public function run(Environment $env): bool
     {
         try {
             foreach ($this->services as $service => $error) {
@@ -42,6 +50,11 @@ class CheckServices extends StageBase implements Stage
         }
     }
 
+    /**
+     * @param string $name
+     * @param string $error
+     * @return bool
+     */
     private function active(string $name, string $error): bool
     {
         $active = $this->daemons->active($name);
@@ -55,12 +68,18 @@ class CheckServices extends StageBase implements Stage
         return true;
     }
 
+    /**
+     * @return string
+     */
     public function name(): string
     {
         return "Check services";
     }
 
-    public function env(): ?array
+    /**
+     * @return Environment|null
+     */
+    public function env(): ?Environment
     {
         return null;
     }

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
 
 use Sculptor\Contracts\Stage;
+use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
 
 /**
@@ -15,9 +16,16 @@ use Sculptor\Stages\StageBase;
 
 class Nginx extends StageBase implements Stage
 {
+    /**
+     * @var string
+     */
     private $path = '/var/www/html/current/public';
 
-    public function run(array $env = null): bool
+    /**
+     * @param Environment $env
+     * @return bool
+     */
+    public function run(Environment $env): bool
     {
         try {
             $conf = $this->template('nginx.conf');
@@ -82,7 +90,10 @@ class Nginx extends StageBase implements Stage
         }
     }
 
-    private function ssl()
+    /**
+     * @throws Exception
+     */
+    private function ssl(): void
     {
         $path = '/etc/nginx/ssl';
         if (!File::exists($path)) {
@@ -107,12 +118,18 @@ class Nginx extends StageBase implements Stage
         ]);
     }
 
+    /**
+     * @return string
+     */
     public function name(): string
     {
         return 'Nginx';
     }
 
-    public function env(): ?array
+    /**
+     * @return Environment|null
+     */
+    public function env(): ?Environment
     {
         return null;
     }

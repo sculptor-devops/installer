@@ -2,6 +2,7 @@
 
 use Exception;
 use Sculptor\Contracts\Stage;
+use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
 
 use Illuminate\Support\Facades\Log;
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\Log;
 
 class Packages extends StageBase implements Stage
 {
+    /**
+     * @var string[]
+     */
     private $packages = [
         'apt-get',
         '-y',
@@ -34,7 +38,11 @@ class Packages extends StageBase implements Stage
         'sudo'
     ];
 
-    public function run(array $env = null): bool
+    /**
+     * @param Environment $env
+     * @return bool
+     */
+    public function run(Environment $env): bool
     {
         try {
 
@@ -54,12 +62,18 @@ class Packages extends StageBase implements Stage
         }
     }
 
+    /**
+     * @return string
+     */
     public function name(): string
     {
         return 'Base Packages';
     }
 
-    public function env(): ?array
+    /**
+     * @return Environment|null
+     */
+    public function env(): ?Environment
     {
         return null;
     }

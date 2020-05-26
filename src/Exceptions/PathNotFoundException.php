@@ -11,7 +11,13 @@ use Throwable;
 
 class PathNotFoundException extends Exception
 {
-    public function __construct($path, $code = 0, Throwable $previous = null)
+    /**
+     * PathNotFoundException constructor.
+     * @param string $path
+     * @param int $code
+     * @param Throwable|null $previous
+     */
+    public function __construct(string $path, int $code = 0, Throwable $previous = null)
     {
         parent::__construct("PATH {$path} NOT FOUND", $code, $previous);
     }

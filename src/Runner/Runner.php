@@ -15,6 +15,9 @@ use Sculptor\Exceptions\PathNotFoundException;
  */
 class Runner implements RunnerInterface
 {
+    /**
+     * @var array<string, string>
+     */
     private $env = [];
 
     /**
@@ -27,11 +30,11 @@ class Runner implements RunnerInterface
      */
     private $useTty = false;
     /**
-     * @var null
+     * @var string
      */
     private $path = null;
     /**
-     * @var int
+     * @var int|null
      */
     private $timeout = 60;
 
@@ -72,6 +75,10 @@ class Runner implements RunnerInterface
         return $this;
     }
 
+    /**
+     * @param array<string, string> $export
+     * @return $this|RunnerInterface
+     */
     public function env(array $export): RunnerInterface
     {
         $this->env = $export;
@@ -80,7 +87,7 @@ class Runner implements RunnerInterface
     }
 
     /**
-     * @param array $command
+     * @param array<int, int|string> $command
      * @return RunnerResult
      */
     public function run(array $command): RunnerResult
@@ -114,7 +121,7 @@ class Runner implements RunnerInterface
 
     /**
      * @param bool $status
-     * @param Process $process
+     * @param Process<object> $process
      * @return Response
      */
     private function response(bool $status, Process $process): Response
@@ -133,6 +140,10 @@ class Runner implements RunnerInterface
         );
     }
 
+    /**
+     * @param string $input
+     * @return $this|RunnerInterface
+     */
     public function input(string $input): RunnerInterface
     {
         $this->input = $input;
