@@ -46,3 +46,6 @@ jobs:
         asset_path: ./builds/installer
         asset_name: installer 
         asset_content_type: application/octet-stream
+
+
+
