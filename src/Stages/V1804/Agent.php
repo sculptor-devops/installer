@@ -26,10 +26,11 @@ class Agent extends StageBase implements Stage
      */
     public function run(Environment $env): bool
     {
+
         try {
             $password = $this->password(16);
 
-            $dbPassword = $this->env->get('db_password');
+            $dbPassword = $env->get('db_password');
 
             $deploy = $this->template('agent-deploy.php');
 
@@ -43,7 +44,7 @@ class Agent extends StageBase implements Stage
 
             File::deleteDirectory("{$this->path}/current");
 
-            $this->command(['dep', 'deploy'], false, $this->path);
+            $this->command(['dep', 'deploy', '-q'], false, $this->path);
 
             $env = $this->replaceTemplate('agent-env')
                 ->replace('{PASSWORD}', $password)
