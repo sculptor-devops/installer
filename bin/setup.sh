@@ -1,5 +1,6 @@
 php="7.4"
 echo "Preparing Sculptor installation..."
+echo "Selected PHP$php" >> installer.log
 
 export DEBIAN_FRONTEND=noninteractive
 add-apt-repository -y ppa:ondrej/php >> installer.log 2>&1
