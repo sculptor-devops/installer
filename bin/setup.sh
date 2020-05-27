@@ -1,3 +1,4 @@
+php="7.4"
 echo "Preparing Sculptor installation..."
 
 export DEBIAN_FRONTEND=noninteractive
@@ -20,14 +21,14 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo "Installi base package..."
-apt-get -y install php7.4-fpm php7.4-common php7.4-mbstring php7.4-mysql php7.4-xml php7.4-zip php7.4-bcmath php7.4-imagick >> installer.log 2>&1
+echo "Installing base package..."
+apt-get -y install php$php-fpm php$php-common php$php-mbstring php$php-mysql php$php-xml php$php-zip php$php-bcmath php$php-imagick >> installer.log 2>&1
 if [ $? -ne 0 ]; then
     echo "Apt install php failed (see installer.log for details)"
     exit 1
 fi
 
-update-alternatives --set php /usr/bin/php7.4 >> installer.log 2>&1
+update-alternatives --set php /usr/bin/php$php >> installer.log 2>&1
 if [ $? -ne 0 ]; then
     echo "Apt update alternatives failed (see installer.log for details)"
     exit 1
