@@ -24,7 +24,7 @@ jobs:
       run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
 
     - name: Build
-      run: php laradock-cli app:build --build-version=${{ steps.get_tag.outputs.VERSION }}
+      run: php installer app:build --build-version=${{ steps.get_tag.outputs.VERSION }}
     
     - name: Create Release
       id: create_release
