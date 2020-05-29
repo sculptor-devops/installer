@@ -27,7 +27,7 @@
         "illuminate/database": "^7.0",
         "illuminate/log": "^7.0",
         "laravel-zero/framework": "^7.0",
-        "sculptor-devops/foundation": "^0.0.3",
+        "sculptor-devops/foundation": "^0.0.4",
         "symfony/yaml": "^5.0"
     },
     "require-dev": {
