@@ -38,15 +38,18 @@ class Firewall extends StageBase implements Stage
                 return false;
             }
 
-            $this->command(['ufw', '--force', 'enable']);
+            if (!$this->firewall->enable()) {
+                $this->internal = 'Cannot enable firewall';
 
-            $this->command(['ufw', 'allow', 'ssh']);
+                return false;
+            }
 
-            $this->command(['ufw', 'allow', 'http']);
+            foreach ([ 'ssh', 'http', 'https', 'Nginx Full' ] as $port) {
+                if (!$this->allow($port)) {
 
-            $this->command(['ufw', 'allow', 'https']);
-
-            $this->command(['ufw', 'allow', 'Nginx Full']);
+                    return false;
+                }
+            }
 
             return true;
 
@@ -56,6 +59,18 @@ class Firewall extends StageBase implements Stage
 
             return false;
         }
+    }
+
+    private function allow(string $port): bool
+    {
+        if (!$this->firewall->allow($port)) {
+
+            $this->internal = "Cannot enable firewall rule on {$port}";
+
+            return false;
+        }
+
+        return true;
     }
 
     /**

@@ -5,6 +5,7 @@ use Sculptor\Foundation\Contracts\Response;
 use Sculptor\Foundation\Contracts\Runner;
 use Sculptor\Foundation\Contracts\Database;
 use Sculptor\Foundation\Services\Daemons;
+use Sculptor\Foundation\Services\Firewall;
 use Sculptor\Foundation\Support\Replacer;
 use Sculptor\Services\Templates;
 
@@ -51,6 +52,10 @@ class StageBase
      * @var Database
      */
     protected $db;
+    /**
+     * @var Firewall
+     */
+    protected $firewall;
 
     /**
      * StageBase constructor.
@@ -58,14 +63,17 @@ class StageBase
      * @param Daemons $daemons
      * @param Templates $templates
      * @param Database $db
+     * @param Firewall $firewall
      */
-    public function __construct(Runner $runner, Daemons $daemons, Templates $templates, Database $db)
+    public function __construct(Runner $runner, Daemons $daemons, Templates $templates, Database $db, Firewall $firewall)
     {
         $this->runner = $runner;
 
         $this->daemons = $daemons;
 
         $this->templates = $templates;
+
+        $this->firewall = $firewall;
 
         $this->db = $db;
     }

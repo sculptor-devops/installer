@@ -3,6 +3,7 @@
 use Sculptor\Foundation\Contracts\Database;
 use Sculptor\Foundation\Contracts\Runner;
 use Sculptor\Foundation\Services\Daemons;
+use Sculptor\Foundation\Services\Firewall;
 use Sculptor\Services\Templates;
 use Sculptor\Stages\Environment;
 
@@ -19,9 +20,10 @@ interface Stage
      * @param Runner $runner
      * @param Daemons $daemons
      * @param Templates $templates
-     * @param Database $db
+     * @param Database $dbm
+     * @param Firewall $firewall
      */
-    public function __construct(Runner $runner, Daemons $daemons, Templates $templates, Database $db);
+    public function __construct(Runner $runner, Daemons $daemons, Templates $templates, Database $dbm, Firewall $firewall);
 
     /**
      * @param Environment $env
