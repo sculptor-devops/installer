@@ -24,7 +24,7 @@ class Credentials extends StageBase implements Stage
 
             $this->internal = 'Generic Error';
 
-            $ip = quoted($this->get([
+            $ip = quoteContent($this->get([
                 'dig',
                 '-4',
                 'TXT',
@@ -65,7 +65,7 @@ class Credentials extends StageBase implements Stage
      */
     private function get(array $command): string
     {
-        return clearNl($this->runner->run($command)->output());
+        return clearNewLine($this->runner->run($command)->output());
     }
 
     /**
@@ -73,7 +73,7 @@ class Credentials extends StageBase implements Stage
      */
     private function ip(): string
     {
-        $ip = quoted($this->get([
+        $ip = quoteContent($this->get([
             'dig',
             '-4',
             'TXT',
@@ -83,7 +83,7 @@ class Credentials extends StageBase implements Stage
         ]));
 
         if ($ip == null || $ip == '') {
-            $ip = quoted($this->get([
+            $ip = quoteContent($this->get([
                 'dig',
                 '-6',
                 'TXT',

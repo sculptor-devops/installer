@@ -1,11 +1,10 @@
 <?php namespace App\Providers;
 
-use Sculptor\Contracts\Runner;
-use Sculptor\Runner\Runner as RunService;
-use Sculptor\Contracts\DatabaseManager;
-use Sculptor\Database\MySqlManager;
-
 use Illuminate\Support\ServiceProvider;
+use Sculptor\Foundation\Contracts\Database;
+use Sculptor\Foundation\Contracts\Runner;
+use Sculptor\Foundation\Runner\Runner as RunnerImplementation;
+use Sculptor\Foundation\Database\MySql;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,11 +26,11 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         app()->bind(Runner::class, function() {
-            return new RunService();
+            return new RunnerImplementation();
         });
 
-        app()->bind(DatabaseManager::class, function() {
-            return new MySqlManager();
+        app()->bind(Database::class, function() {
+            return new MySql();
         });
     }
 }

@@ -1,6 +1,8 @@
 <?php namespace Sculptor\Contracts;
 
-use Sculptor\Services\Daemons;
+use Sculptor\Foundation\Contracts\Database;
+use Sculptor\Foundation\Contracts\Runner;
+use Sculptor\Foundation\Services\Daemons;
 use Sculptor\Services\Templates;
 use Sculptor\Stages\Environment;
 
@@ -17,9 +19,9 @@ interface Stage
      * @param Runner $runner
      * @param Daemons $daemons
      * @param Templates $templates
-     * @param DatabaseManager $db
+     * @param Database $db
      */
-    public function __construct(Runner $runner, Daemons $daemons, Templates $templates, DatabaseManager $db);
+    public function __construct(Runner $runner, Daemons $daemons, Templates $templates, Database $db);
 
     /**
      * @param Environment $env

@@ -1,6 +1,5 @@
 <?php namespace Sculptor\Stages;
 
-use Illuminate\Contracts\Foundation\Application;
 use Sculptor\Contracts\Stage;
 use Sculptor\Services\Configuration;
 use Illuminate\Support\Str;

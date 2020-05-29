@@ -27,6 +27,7 @@
         "illuminate/database": "^7.0",
         "illuminate/log": "^7.0",
         "laravel-zero/framework": "^7.0",
+        "sculptor-devops/foundation": "^0.0.3",
         "symfony/yaml": "^5.0"
     },
     "require-dev": {
@@ -41,8 +42,7 @@
             "Sculptor\\": "src/"
         },
         "files": [
-            "src/Constants.php",
-            "src/Helpers.php"
+            "src/Constants.php"
         ]
     },
     "autoload-dev": {

@@ -1,10 +1,11 @@
 <?php namespace Sculptor\Stages;
 
-use Sculptor\Contracts\DatabaseManager;
-use Sculptor\Replacer;
-use Sculptor\Contracts\Runner;
-use Sculptor\Contracts\RunnerResult;
-use Sculptor\Services\Daemons;
+use Illuminate\Support\Facades\Log;
+use Sculptor\Foundation\Contracts\Response;
+use Sculptor\Foundation\Contracts\Runner;
+use Sculptor\Foundation\Contracts\Database;
+use Sculptor\Foundation\Services\Daemons;
+use Sculptor\Foundation\Support\Replacer;
 use Sculptor\Services\Templates;
 
 use Illuminate\Support\Facades\File;
@@ -31,7 +32,7 @@ class StageBase
     protected $timeout = 3600;
 
     /**
-     * @var RunnerResult
+     * @var Response
      */
     protected $error;
     /**
@@ -51,7 +52,7 @@ class StageBase
      */
     private $templates;
     /**
-     * @var DatabaseManager
+     * @var Database
      */
     protected $db;
 
@@ -60,9 +61,9 @@ class StageBase
      * @param Runner $runner
      * @param Daemons $daemons
      * @param Templates $templates
-     * @param DatabaseManager $db
+     * @param Database $db
      */
-    public function __construct(Runner $runner, Daemons $daemons, Templates $templates, DatabaseManager $db)
+    public function __construct(Runner $runner, Daemons $daemons, Templates $templates, Database $db)
     {
         $this->runner = $runner;
 
@@ -97,6 +98,11 @@ class StageBase
 
         if (!$result->success()) {
             $this->error = $result;
+
+            Log::error("Command: {$process->line()}");
+            Log::error("Error: {$result->error()}");
+            Log::error("Error output: {$result->output()}");
+            Log::error("Error code: {$result->code()}");
 
             throw new Exception($result->error());
         }

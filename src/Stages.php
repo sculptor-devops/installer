@@ -1,10 +1,10 @@
 <?php namespace Sculptor;
 
 use Sculptor\Contracts\Stage;
+use Sculptor\Foundation\Support\Version;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageFactory;
 
-use Sculptor\Stages\Version;
 use Illuminate\Support\Facades\Log;
 use LaravelZero\Framework\Commands\Command;
 
@@ -57,7 +57,7 @@ class Stages
 
         Log::info("Detected version {$this->version->version()}, architecture {$this->version->arch()} (bits {$this->version->bits()})");
 
-        if (!$this->version->compatible()) {
+        if (!$this->version->compatible(APP_COMPATIBLE_VERSION, APP_COMPATIBLE_ARCH)) {
             $this->error = 'This version of the operating system is not compatible';
 
             return false;
