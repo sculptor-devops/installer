@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Log;
  */
 class Firewall extends StageBase implements Stage
 {
+    private $ports = [ 'ssh', 'http', 'https', 'Nginx Full' ];
+
     /**
      * @param Environment $env
      * @return bool
@@ -44,7 +46,7 @@ class Firewall extends StageBase implements Stage
                 return false;
             }
 
-            foreach ([ 'ssh', 'http', 'https', 'Nginx Full' ] as $port) {
+            foreach ($this->ports as $port) {
                 if (!$this->allow($port)) {
 
                     return false;
