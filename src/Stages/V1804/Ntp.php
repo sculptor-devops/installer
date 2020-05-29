@@ -23,12 +23,10 @@ class Ntp extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
-            $conf = $this->template('ntp.conf');
 
-            $written = File::put('/etc/systemd/timesyncd.conf', $conf);
-
-            if (!$written) {
-                $this->internal = 'Unable to write configuration';
+            if (!$this->write('/etc/systemd/timesyncd.conf',
+                $this->template('ntp.conf'),
+                'Unable to write configuration')) {
 
                 return false;
             }
@@ -53,13 +51,5 @@ class Ntp extends StageBase implements Stage
     public function name(): string
     {
         return 'Ntp';
-    }
-
-    /**
-     * @return Environment|null
-     */
-    public function env(): ?Environment
-    {
-        return null;
     }
 }

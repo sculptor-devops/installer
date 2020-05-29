@@ -44,12 +44,14 @@ class SuUser extends StageBase implements Stage
 
             $this->command(['usermod', '-G', 'adm', APP_PANEL_HTTP_USER]);
 
-            $conf = $this->template('sudoer.conf');
 
-            $written = File::put('/etc/sudoers.d/' . APP_PANEL_USER, str_replace('{USERNAME}', APP_PANEL_USER, $conf));
+            $filename = '/etc/sudoers.d/' . APP_PANEL_USER;
 
-            if (!$written) {
-                $this->internal = 'Unable to write sudoer configuration';
+            $conf = $this->replaceTemplate('sudoer.conf')
+                ->replace('{USERNAME}', APP_PANEL_USER)
+                ->value();
+
+            if (!$this->write($filename, $conf, 'Unable to write sudoer configuration')) {
 
                 return false;
             }
@@ -98,7 +100,7 @@ class SuUser extends StageBase implements Stage
      */
     private function encodePassword(string $password): string
     {
-        return clearNl($this->runner->run([
+        return clearNewLine($this->runner->run([
                 'openssl',
                 'passwd',
                 '-1',
@@ -113,13 +115,5 @@ class SuUser extends StageBase implements Stage
     public function name(): string
     {
         return 'Superuser';
-    }
-
-    /**
-     * @return Environment|null
-     */
-    public function env(): ?Environment
-    {
-        return null;
     }
 }

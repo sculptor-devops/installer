@@ -84,12 +84,4 @@ class MySql extends StageBase implements Stage
     {
         return 'MySqlManager Server';
     }
-
-    /**
-     * @return Environment|null
-     */
-    public function env(): ?Environment
-    {
-        return null;
-    }
 }

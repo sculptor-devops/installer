@@ -54,12 +54,4 @@ class Deployer extends StageBase implements Stage
     {
         return "Deployer";
     }
-
-    /**
-     * @return Environment|null
-     */
-    public function env(): ?Environment
-    {
-        return null;
-    }
 }

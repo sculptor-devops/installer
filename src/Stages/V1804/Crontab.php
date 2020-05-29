@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Log;
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
-
 class Crontab extends StageBase implements Stage
 {
     /**
@@ -25,15 +24,18 @@ class Crontab extends StageBase implements Stage
     {
         try {
 
-            if(!$this->add('panel.crontab', '/etc/cron.d/sculptor.admin', APP_PANEL_USER)) {
+            if (!$this->add('panel.crontab', '/etc/cron.d/sculptor.admin', APP_PANEL_USER)) {
+
                 return false;
             }
 
-            if(!$this->add('www-data.crontab', '/etc/cron.d/sculptor.www', APP_PANEL_HTTP_PANEL)) {
+            if (!$this->add('www-data.crontab', '/etc/cron.d/sculptor.www', APP_PANEL_HTTP_PANEL)) {
+
                 return false;
             }
 
             return true;
+
         } catch (Exception $e) {
 
             Log::error($e->getMessage());
@@ -48,15 +50,11 @@ class Crontab extends StageBase implements Stage
      * @param string $user
      * @return bool
      * @throws FileNotFoundException
+     * @throws Exception
      */
     private function add(string $filename, string $destination, string $user): bool
     {
-        $conf = $this->template($filename);
-
-        $written = File::put($destination, $conf);
-
-        if (!$written) {
-            $this->internal = "Cannot write to {$destination}";
+        if (!$this->write($destination, $this->template($filename), "Cannot write to {$destination}")) {
             return false;
         }
 
@@ -71,13 +69,5 @@ class Crontab extends StageBase implements Stage
     public function name(): string
     {
         return 'Crontab';
-    }
-
-    /**
-     * @return Environment|null
-     */
-    public function env(): ?Environment
-    {
-        return null;
     }
 }

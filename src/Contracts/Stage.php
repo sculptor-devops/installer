@@ -50,9 +50,4 @@ interface Stage
      * @return string|null
      */
     public function error(): ?string;
-
-    /**
-     * @return Environment
-     */
-    public function env(): ?Environment;
 }

@@ -1,5 +1,7 @@
 <?php namespace Sculptor\Stages;
 
+use Illuminate\Support\Facades\DB;
+
 /**
  * (c) Alessandro Cappellozza <alessandro.cappellozza@gmail.com>
  *  For the full copyright and license information, please view the LICENSE
@@ -43,5 +45,26 @@ class Environment
     public function toArray(): array
     {
         return $this->env;
+    }
+
+    /**
+     * @param string $password
+     * @return $this
+     */
+    public function connection(string $password): self
+    {
+        config([
+            'database.connections.temp' => [
+                'driver' => 'mysql',
+                'host' => '127.0.0.1',
+                'database' => 'mysql',
+                'username' => 'root',
+                'password' => $password
+            ]
+        ]);
+
+        DB::setDefaultConnection('temp');
+
+        return $this;
     }
 }

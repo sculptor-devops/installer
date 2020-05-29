@@ -44,10 +44,6 @@ class StageBase
      */
     protected $daemons;
     /**
-     * @var Environment
-     */
-    protected $env;
-    /**
      * @var Templates
      */
     private $templates;
@@ -96,13 +92,7 @@ class StageBase
 
         $result = $process->run($commands);
 
-        if (!$result->success()) {
-            $this->error = $result;
-
-            Log::error("Command: {$process->line()}");
-            Log::error("Error: {$result->error()}");
-            Log::error("Error output: {$result->output()}");
-            Log::error("Error code: {$result->code()}");
+        if (!$this->dump($result)->success()) {
 
             throw new Exception($result->error());
         }
@@ -194,6 +184,41 @@ class StageBase
      */
     public function password(int $len = 16): string
     {
-        return clearNl($this->runner->run(['openssl', 'rand', '-base64', $len])->output());
+        return clearNewLine($this->runner->run(['openssl', 'rand', '-base64', $len])->output());
+    }
+
+    /**
+     * @param array<string> $command
+     * @return string
+     * @throws Exception
+     */
+    public function output(array $command): string
+    {
+        $result = $this->runner->run($command);
+
+        if (!$this->dump($result)->success()) {
+
+            throw new Exception($result->error());
+        }
+
+        return $result->output();
+    }
+
+    /**
+     * @param Response $result
+     * @return Response
+     */
+    private function dump(Response $result): Response
+    {
+        if (!$result->success()) {
+            $this->error = $result;
+
+            // Log::error("Command: {$this->runner->line()}");
+            Log::error("Error: {$result->error()}");
+            Log::error("Error output: {$result->output()}");
+            Log::error("Error code: {$result->code()}");
+        }
+
+        return $result;
     }
 }

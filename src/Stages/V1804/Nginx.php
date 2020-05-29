@@ -32,9 +32,7 @@ class Nginx extends StageBase implements Stage
 
             $this->command(['apt-get', '-y', 'install', 'nginx']);
 
-            $enable = $this->daemons->enable('nginx.service');
-
-            if (!$enable) {
+            if (!$this->daemons->enable('nginx.service')) {
                 $this->internal = 'Cannot enable service';
 
                 return false;
@@ -42,17 +40,14 @@ class Nginx extends StageBase implements Stage
 
             $this->ssl();
 
-            $config = File::put('/etc/nginx/sites-available/default', $conf);
-
-            if (!$config) {
-                $this->internal = 'Cannot write to configuration';
+            if (!$this->write('/etc/nginx/sites-available/default',
+                $conf,
+                'Cannot write to configuration')) {
 
                 return false;
             }
 
-            $restart = $this->daemons->restart('nginx.service');
-
-            if (!$restart) {
+            if (!$this->daemons->restart('nginx.service')) {
                 $this->internal = 'Cannot restart service';
 
                 return false;
@@ -70,12 +65,9 @@ class Nginx extends StageBase implements Stage
                 return false;
             }
 
-            $index = $this->template('index.html');
-
-            $written = File::put("{$this->path}/index.html", $index);
-
-            if (!$written) {
-                $this->internal = 'Cannot create index file';
+            if (!$this->write("{$this->path}/index.html",
+                $this->template('index.html'),
+                'Cannot create index file')) {
 
                 return false;
             }
@@ -96,7 +88,9 @@ class Nginx extends StageBase implements Stage
     private function ssl(): void
     {
         $path = '/etc/nginx/ssl';
+
         if (!File::exists($path)) {
+
             File::makeDirectory($path);
         }
 
@@ -124,13 +118,5 @@ class Nginx extends StageBase implements Stage
     public function name(): string
     {
         return 'Nginx';
-    }
-
-    /**
-     * @return Environment|null
-     */
-    public function env(): ?Environment
-    {
-        return null;
     }
 }

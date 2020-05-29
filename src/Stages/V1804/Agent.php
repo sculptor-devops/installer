@@ -32,6 +32,8 @@ class Agent extends StageBase implements Stage
 
             $dbPassword = $env->get('db_password');
 
+            $env->connection($dbPassword);
+
             $deploy = $this->template('agent-deploy.php');
 
             $written = File::put("{$this->path}/deploy.php", $deploy);
@@ -46,14 +48,14 @@ class Agent extends StageBase implements Stage
 
             $this->command(['dep', 'deploy', '-q'], false, $this->path);
 
-            $env = $this->replaceTemplate('agent-env')
+            $agent = $this->replaceTemplate('agent-env')
                 ->replace('{PASSWORD}', $password)
                 ->replace('{DB_PASSWORD}', $dbPassword)
                 ->value();
 
-            File::put('/var/www/html/shared/.env', $env);
+            File::put('/var/www/html/shared/.env', $agent);
 
-            $this->db->set($dbPassword)->db(APP_PANEL_DB);
+            $this->db->db(APP_PANEL_DB);
 
             $this->db->user(APP_PANEL_DB_USER, $password, APP_PANEL_DB);
 
@@ -97,13 +99,5 @@ class Agent extends StageBase implements Stage
     public function name(): string
     {
         return 'Agent';
-    }
-
-    /**
-     * @return Environment|null
-     */
-    public function env(): ?Environment
-    {
-        return null;
     }
 }

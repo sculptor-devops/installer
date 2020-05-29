@@ -36,9 +36,7 @@ class NodeJs extends StageBase implements Stage
 
             $this->command(['apt-get', 'install', '-y', 'nodejs']);
 
-            $delete = unlink($setup);
-
-            if (!$delete) {
+            if (!unlink($setup)) {
                 $this->internal = "Unable to delete setup";
 
                 return false;
@@ -60,13 +58,5 @@ class NodeJs extends StageBase implements Stage
     public function name(): string
     {
         return 'NodeJs';
-    }
-
-    /**
-     * @return Environment|null
-     */
-    public function env(): ?Environment
-    {
-        return null;
     }
 }

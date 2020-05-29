@@ -1,6 +1,5 @@
 <?php namespace Sculptor\Stages\V1804;
 
-use Sculptor\Contracts\RunnerResult;
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
@@ -16,11 +15,6 @@ use Illuminate\Support\Facades\Log;
 
 class Composer extends StageBase implements Stage
 {
-    /**
-     * @var RunnerResult
-     */
-    private $result;
-
     /**
      * @param Environment $env
      * @return bool
@@ -64,13 +58,5 @@ class Composer extends StageBase implements Stage
     public function name(): string
     {
         return 'Composer';
-    }
-
-    /**
-     * @return Environment|null
-     */
-    public function env(): ?Environment
-    {
-        return null;
     }
 }

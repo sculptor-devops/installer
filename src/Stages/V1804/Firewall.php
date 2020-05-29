@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Log;
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
-
 class Firewall extends StageBase implements Stage
 {
     /**
@@ -23,21 +22,17 @@ class Firewall extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
-            $conf = $this->template('file2ban.conf');
 
             $this->command(['apt-get', '-y', 'install', 'fail2ban'], false);
 
-            $config = File::put('/etc/fail2ban/jail.local', $conf);
-
-            if (!$config) {
-                $this->internal = 'Cannot write configuration';
+            if (!$this->write('/etc/fail2ban/jail.local',
+                $this->template('file2ban.conf'),
+                'Cannot write configuration')) {
 
                 return false;
             }
 
-            $restart = $this->daemons->restart('fail2ban');
-
-            if (!$restart) {
+            if (!$this->daemons->restart('fail2ban')) {
                 $this->internal = 'Cannot restart service';
 
                 return false;
@@ -69,13 +64,5 @@ class Firewall extends StageBase implements Stage
     public function name(): string
     {
         return 'Firewall';
-    }
-
-    /**
-     * @return Environment|null
-     */
-    public function env(): ?Environment
-    {
-        return null;
     }
 }

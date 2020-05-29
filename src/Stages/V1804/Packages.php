@@ -69,12 +69,4 @@ class Packages extends StageBase implements Stage
     {
         return 'Base Packages';
     }
-
-    /**
-     * @return Environment|null
-     */
-    public function env(): ?Environment
-    {
-        return null;
-    }
 }

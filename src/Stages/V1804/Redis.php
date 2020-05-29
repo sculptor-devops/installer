@@ -24,17 +24,13 @@ class Redis extends StageBase implements Stage
         try {
             $this->command(['apt', '-y', 'install', 'redis-server']);
 
-            $enabled = $this->daemons->enable('redis-server.service');
-
-            if (!$enabled) {
+            if (!$this->daemons->enable('redis-server.service')) {
                 $this->internal = 'Cannot enable service';
 
                 return false;
             }
 
-            $restarted = $this->daemons->restart('redis-server.service');
-
-            if (!$restarted) {
+            if (!$this->daemons->restart('redis-server.service')) {
                 $this->internal = 'Cannot restart service';
 
                 return false;
@@ -56,13 +52,5 @@ class Redis extends StageBase implements Stage
     public function name(): string
     {
         return 'Redis Server';
-    }
-
-    /**
-     * @return Environment|null
-     */
-    public function env(): ?Environment
-    {
-        return null;
     }
 }

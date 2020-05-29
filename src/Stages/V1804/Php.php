@@ -25,9 +25,11 @@ class Php extends StageBase implements Stage
         $php = APP_PANEL_PHP_VERSION;
 
         try {
-            $conf = $this->template('php.ini');
 
-            if (!$this->write("/etc/php/{$php}/fpm/conf.d/sculptor.ini", $conf, 'Cannot write ini configuration')) {
+            if (!$this->write("/etc/php/{$php}/fpm/conf.d/sculptor.ini",
+                $this->template('php.ini'),
+                'Cannot write ini configuration')) {
+
                 return false;
             }
 
@@ -39,9 +41,7 @@ class Php extends StageBase implements Stage
                 return false;
             }
 
-            $restart = $this->daemons->restart("php{$php}-fpm");
-
-            if (!$restart) {
+            if (!$this->daemons->restart("php{$php}-fpm")) {
                 $this->internal = 'Cannot restart service';
 
                 return false;
@@ -63,13 +63,5 @@ class Php extends StageBase implements Stage
     public function name(): string
     {
         return 'Php Cgi';
-    }
-
-    /**
-     * @return Environment|null
-     */
-    public function env(): ?Environment
-    {
-        return null;
     }
 }

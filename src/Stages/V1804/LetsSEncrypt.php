@@ -44,12 +44,4 @@ class LetsSEncrypt extends StageBase implements Stage
     {
         return "Let's Encrypt";
     }
-
-    /**
-     * @return Environment|null
-     */
-    public function env(): ?Environment
-    {
-        return null;
-    }
 }

@@ -24,17 +24,12 @@ class Motd extends StageBase implements Stage
     {
         try {
 
-
-            $motd = $this->template('motd');
-
-            $written = File::put('/etc/motd', $motd);
-
-            if (!$written) {
+            if (!$this->write('/etc/motd',
+                $this->template('motd'),
+                'Cannot write motd')) {
 
                 return false;
             }
-
-            $this->internal = 'Cannot write to motd file';
 
             return true;
 
@@ -52,13 +47,5 @@ class Motd extends StageBase implements Stage
     public function name(): string
     {
         return 'Motd';
-    }
-
-    /**
-     * @return Environment|null
-     */
-    public function env(): ?Environment
-    {
-        return null;
     }
 }

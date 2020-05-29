@@ -103,12 +103,4 @@ class Credentials extends StageBase implements Stage
     {
         return "Credentials";
     }
-
-    /**
-     * @return Environment|null
-     */
-    public function env(): ?Environment
-    {
-        return $this->env;
-    }
 }

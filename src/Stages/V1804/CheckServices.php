@@ -75,12 +75,4 @@ class CheckServices extends StageBase implements Stage
     {
         return "Check services";
     }
-
-    /**
-     * @return Environment|null
-     */
-    public function env(): ?Environment
-    {
-        return null;
-    }
 }

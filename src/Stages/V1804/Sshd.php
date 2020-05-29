@@ -23,20 +23,16 @@ class Sshd extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
-            $config = $this->template('sshd.conf');
 
-            $written = File::put('/etc/ssh/sshd_config', $config);
-
-            if (!$written) {
-                $this->internal = 'Cannot read configuration';
+            if (!$this->write('/etc/ssh/sshd_config',
+                $this->template('sshd.conf'),
+                'Cannot read configuration')) {
 
                 return false;
             }
 
-            $restart = $this->daemons->restart('sshd');
-
-            if (!$restart) {
-                $this->internal = 'Cannont restart service';
+            if (!$this->daemons->restart('sshd')) {
+                $this->internal = 'Cannot restart service';
 
                 return false;
             }
@@ -56,13 +52,5 @@ class Sshd extends StageBase implements Stage
     public function name(): string
     {
         return 'SSH Daemon';
-    }
-
-    /**
-     * @return Environment|null
-     */
-    public function env(): ?Environment
-    {
-        return null;
     }
 }
