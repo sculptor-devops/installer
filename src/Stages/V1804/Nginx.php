@@ -28,7 +28,11 @@ class Nginx extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
-            $conf = $this->template('nginx.conf');
+            $port = $env->get('port');
+
+            $conf = $this->replaceTemplate('nginx.conf')
+                ->replace('{PORT}', $port)
+                ->value();
 
             $this->command(['apt-get', '-y', 'install', 'nginx']);
 

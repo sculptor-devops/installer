@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Log;
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
-
 class Php extends StageBase implements Stage
 {
     /**
@@ -22,7 +21,8 @@ class Php extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         $www = APP_PANEL_HTTP_USER;
-        $php = APP_PANEL_PHP_VERSION;
+
+        $php = $env->get('php');
 
         try {
 

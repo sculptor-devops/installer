@@ -17,6 +17,17 @@ class Environment
     private $env = [];
 
     /**
+     * Environment constructor.
+     * @param array<string,string>|null $env
+     */
+    public function __construct(array $env = null)
+    {
+        if ($env ) {
+            $this->env = $env;
+        }
+    }
+
+    /**
      * @param string $key
      * @param string $value
      */
@@ -32,11 +43,26 @@ class Environment
      */
     public function get(string $key, string $default = ''): string
     {
-        if (!array_key_exists($key, $this->env)) {
+        if (!$this->has($key)) {
             return $default;
         }
 
-        return $this->env[$key];
+        $value = $this->env[$key];
+
+        if ($value == null) {
+            return '';
+        }
+
+        return $value;
+    }
+
+    /**
+     * @param string $key
+     * @return bool
+     */
+    public function has(string $key): bool
+    {
+        return array_key_exists($key, $this->env);
     }
 
     /**

@@ -43,7 +43,7 @@ class Stages
 
         $this->stages->version($this->version->version());
 
-        $this->env = new Environment();
+        $this->env = $stages->env();
     }
 
     /**

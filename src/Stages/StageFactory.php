@@ -13,6 +13,11 @@ use Illuminate\Support\Str;
 class StageFactory
 {
     /**
+     * @var Environment
+     */
+    private $env;
+
+    /**
      * @var string
      */
     private $version;
@@ -104,5 +109,21 @@ class StageFactory
         }
 
         return null;
+    }
+
+    /**
+     * @return Environment
+     */
+    public function env(): Environment
+    {
+        if ($this->env == null) {
+            $this->env = new Environment();
+        }
+
+        $this->env->add('php', $this->configuration->php());
+
+        $this->env->add('user', $this->configuration->user());
+
+        return $this->env;
     }
 }

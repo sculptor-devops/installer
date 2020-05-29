@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Log;
  */
 class Firewall extends StageBase implements Stage
 {
+    /**
+     * @var array<string>
+     */
     private $ports = [ 'ssh', 'http', 'https', 'Nginx Full' ];
 
     /**
@@ -24,6 +27,7 @@ class Firewall extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
+            $port = $env->get('port');
 
             $this->command(['apt-get', '-y', 'install', 'fail2ban'], false);
 
@@ -46,6 +50,10 @@ class Firewall extends StageBase implements Stage
                 return false;
             }
 
+            if($port != APP_PANEL_HTTP_PORT) {
+                $this->firewall->allow($port, true);
+            }
+
             foreach ($this->ports as $port) {
                 if (!$this->allow($port)) {
 
@@ -63,6 +71,10 @@ class Firewall extends StageBase implements Stage
         }
     }
 
+    /**
+     * @param string $port
+     * @return bool
+     */
     private function allow(string $port): bool
     {
         if (!$this->firewall->allow($port)) {
