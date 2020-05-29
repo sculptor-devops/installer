@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Log;
 class CheckServices extends StageBase implements Stage
 {
     /**
-     * @var string[]
+     * @var array<string, string>
      */
     private $services = [
         'mysql' => 'MySqlManager is not running',
