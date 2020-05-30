@@ -8,7 +8,7 @@ namespace Sculptor\Stages\V2004;
  *  file that was distributed with this source code.
  */
 
-class SuUser extends \Sculptor\Stages\V1804\Sshd
+class SuUser extends \Sculptor\Stages\V1804\SuUser
 {
     //
 }

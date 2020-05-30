@@ -5,7 +5,6 @@ namespace Sculptor\Stages\V1804;
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
-
 use Exception;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
@@ -54,14 +53,11 @@ class SuUser extends StageBase implements Stage
                 ->value();
 
             if (!$this->write($filename, $conf, 'Unable to write sudoer configuration')) {
-
                 return false;
             }
 
             return true;
-
         } catch (Exception $e) {
-
             Log::error($e->getMessage());
 
             return false;
@@ -107,8 +103,7 @@ class SuUser extends StageBase implements Stage
                 'passwd',
                 '-1',
                 "{$password}"
-            ]
-        )->output());
+            ])->output());
     }
 
     /**

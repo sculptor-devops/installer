@@ -8,7 +8,7 @@ namespace Sculptor\Stages\V2004;
  *  file that was distributed with this source code.
  */
 
-class Agent  extends \Sculptor\Stages\V1804\Agent
+class Agent extends \Sculptor\Stages\V1804\Agent
 {
     //
 }
