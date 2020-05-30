@@ -3,7 +3,12 @@ echo "Preparing Sculptor installation..."
 echo "Selected PHP$php" >> installer.log
 
 export DEBIAN_FRONTEND=noninteractive
-add-apt-repository -y ppa:ondrej/php >> installer.log 2>&1
+
+cat /etc/os-release|grep 'VERSION_ID="20.04"' >> /dev/null 2>&1
+if [ $? -ne 0 ]; then
+    add-apt-repository -y ppa:ondrej/php >> installer.log 2>&1
+fi
+
 if [ $? -ne 0 ]; then
     echo "Apt repository addition failed (see installer.log for details)"
     exit 1
