@@ -1,11 +1,10 @@
 stages:
   - Credentials # Mandatory do not remove
+  - Packages
   - SuUser
   - Motd
   - Ntp
   - Php
-  - Packages
-  - Sshd
   - NodeJs
   - Nginx
   - MySql
