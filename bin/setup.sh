@@ -54,7 +54,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Running installer..."
-./installer run
+./installer run --dump
 if [ $? -ne 0 ]; then
     echo "Installer run failed (see installer.log for details)"
     exit 1

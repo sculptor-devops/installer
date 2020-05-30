@@ -1,10 +1,11 @@
-<?php namespace Sculptor;
+<?php
+
+namespace Sculptor;
 
 use Sculptor\Contracts\Stage;
 use Sculptor\Foundation\Support\Version;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageFactory;
-
 use Illuminate\Support\Facades\Log;
 use LaravelZero\Framework\Commands\Command;
 
@@ -47,18 +48,31 @@ class Stages
     }
 
     /**
-     * @param Command $context
      * @return bool
      */
-    public function run(Command $context): bool
+    private function compatible(): bool
+    {
+        if (!$this->version->compatible(APP_COMPATIBLE_VERSION, APP_COMPATIBLE_ARCH)) {
+            $this->error = 'This version of the operating system is not compatible';
+
+            return false;
+        }
+
+        return true;
+    }
+
+
+    /**
+     * @param Command|null $context
+     * @return bool
+     */
+    public function run(?Command $context): bool
     {
         Log::info("Running on Os version {$this->version->name()}");
 
         Log::info("Detected version {$this->version->version()}, architecture {$this->version->arch()} (bits {$this->version->bits()})");
 
-        if (!$this->version->compatible(APP_COMPATIBLE_VERSION, APP_COMPATIBLE_ARCH)) {
-            $this->error = 'This version of the operating system is not compatible';
-
+        if (!$this->compatible()) {
             return false;
         }
 
@@ -73,16 +87,28 @@ class Stages
 
             Log::info("RUNNING STAGE {$instance->name()}");
 
-            $result = $context->task($instance->name(), function () use($instance) {
-               return $this->instance($instance);
-            });
-
-            if (!$result) {
+            if (!$this->exec($context, $instance)) {
                 return false;
             }
         }
 
         return true;
+    }
+
+    /**
+     * @param Command|null $context
+     * @param Stage $instance
+     * @return bool
+     */
+    private function exec(?Command $context, Stage $instance): bool
+    {
+        if ($context) {
+            return $context->task($instance->name(), function () use ($instance) {
+                return $this->start($instance);
+            });
+        }
+
+        return $this->start($instance);
     }
 
     /**
@@ -92,6 +118,10 @@ class Stages
     {
         $index = 1;
         $result = [];
+
+        if (!$this->compatible()) {
+            return [];
+        }
 
         foreach ($this->stages->all() as $stage) {
             $instance = $this->stages->make($stage);
@@ -110,17 +140,15 @@ class Stages
      */
     public function stage(string $name): ?bool
     {
-        $credentials = $this->stages->find('Credentials');
-
-        if (!$credentials) {
-            $this->error = 'Cannot load credential stage';
-
+        if (!$this->compatible()) {
             return false;
         }
 
+        $credentials = $this->stages->find('Credentials');
+
         Log::info("RUNNING STAGE {$credentials->name()}");
 
-        if (!$this->instance($credentials)) {
+        if (!$this->start($credentials)) {
             $this->error = $credentials->error();
 
             return false;
@@ -136,14 +164,14 @@ class Stages
 
         Log::info("RUNNING STAGE {$name}");
 
-        return $this->instance($instance);
+        return $this->start($instance);
     }
 
     /**
      * @param Stage $instance
      * @return bool
      */
-    private function instance(Stage $instance): bool
+    private function start(Stage $instance): bool
     {
         $run = $instance->run($this->env);
 

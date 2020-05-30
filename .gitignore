@@ -8,3 +8,4 @@
 .phpunit.result.cache
 /installer.yml
 /database/database.sqlite
+/bin/docker/installer

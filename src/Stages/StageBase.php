@@ -1,6 +1,7 @@
 <?php namespace Sculptor\Stages;
 
 use Illuminate\Support\Facades\Log;
+use Sculptor\Exceptions\CommandErrorException;
 use Sculptor\Foundation\Contracts\Response;
 use Sculptor\Foundation\Contracts\Runner;
 use Sculptor\Foundation\Contracts\Database;
@@ -104,13 +105,15 @@ class StageBase
         $result = $process->run($commands);
 
         if (!$this->dump($result)->success()) {
-
-            throw new Exception($result->error());
+            throw new CommandErrorException($result->error());
         }
 
         return true;
     }
 
+    /**
+     *
+     */
     protected function noninteractive()
     {
         $this->noninteractive = true;
@@ -144,7 +147,6 @@ class StageBase
     public function error(): ?string
     {
         if ($this->error == null) {
-
             return $this->internal;
         }
 
@@ -200,7 +202,6 @@ class StageBase
         $result = $this->runner->run($command);
 
         if (!$this->dump($result)->success()) {
-
             throw new Exception($result->error());
         }
 
@@ -223,5 +224,23 @@ class StageBase
         }
 
         return $result;
+    }
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    protected function enable(string $name): bool
+    {
+         return $this->daemons->enable($name);
+    }
+
+    /**
+     * @param string $name
+     * @return bool
+     */
+    protected function restart(string $name): bool
+    {
+        return $this->daemons->restart($name);
     }
 }

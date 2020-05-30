@@ -1,9 +1,10 @@
-<?php namespace Sculptor\Stages\V1804;
+<?php
+
+namespace Sculptor\Stages\V1804;
 
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
 use Sculptor\Contracts\Stage;
-
 use Exception;
 use Illuminate\Support\Facades\Log;
 
@@ -12,7 +13,6 @@ use Illuminate\Support\Facades\Log;
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
-
 class MySql extends StageBase implements Stage
 {
     /**
@@ -22,9 +22,7 @@ class MySql extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
-            $dbPassword = $env->get('db_password');
-
-            $env->connection($dbPassword);
+            $env->connection();
 
             $this->command([
                 'echo',
@@ -45,9 +43,7 @@ class MySql extends StageBase implements Stage
             $this->secure($dbPassword);
 
             return true;
-
         } catch (Exception $e) {
-
             Log::error($e->getMessage());
 
             return false;
@@ -60,21 +56,25 @@ class MySql extends StageBase implements Stage
     private function secure(string $password): void
     {
         try {
-            $this->command(['mysql', '-e', 'use mysql; UPDATE user SET authentication_string = password(\'' . $password . '\') WHERE user = \'root\';']);
+            foreach (
+                [
+                         'UPDATE user SET authentication_string = password(\'' . $password . '\') WHERE user = \'root\';',
+                         'UPDATE user SET plugin=\'mysql_native_password\' WHERE User=\'root\' and plugin=\'auth_socket\'',
+                         'DELETE FROM user WHERE user=\'auth_socket\'',
+                         'DELETE FROM user WHERE user=\'root\' AND host NOT IN (\'localhost\', \'127.0.0.1\', \'::1\')',
+                         'DROP DATABASE IF EXISTS test',
+                         'FLUSH PRIVILEGES'
+                     ] as $command
+            ) {
+                $this->command([
+                    'mysql',
+                    '-e',
+                    "use mysql; {$command}"
+                ]);
+            }
 
-            $this->command(['mysql', '-e', 'use mysql; UPDATE user SET plugin=\'mysql_native_password\' WHERE User=\'root\' and plugin=\'auth_socket\'']);
-
-            $this->command(['mysql', '-e', 'use mysql; DELETE FROM user WHERE user=\'auth_socket\'']);
-
-            $this->command(['mysql', '-e', 'use mysql; DELETE FROM user WHERE user=\'root\' AND host NOT IN (\'localhost\', \'127.0.0.1\', \'::1\')']);
-
-            $this->command(['mysql', '-e', 'DROP DATABASE IF EXISTS test']);
-
-            $this->command(['mysql', '-e', 'FLUSH PRIVILEGES']);
-
-            $this->daemons->restart('mysql');
-
-        } catch (\Exception $e) {
+            $this->restart('mysql');
+        } catch (Exception $e) {
             Log::warning("Unable to secure MySqlManager: {$e->getMessage()}");
         }
     }

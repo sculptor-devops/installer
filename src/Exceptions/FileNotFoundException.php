@@ -1,4 +1,6 @@
-<?php namespace Sculptor\Exceptions;
+<?php
+
+namespace Sculptor\Exceptions;
 
 use Exception;
 use Throwable;

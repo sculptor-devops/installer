@@ -34,7 +34,7 @@ class Sshd extends StageBase implements Stage
                 return false;
             }
 
-            if (!$this->daemons->restart('sshd')) {
+            if (!$this->restart('sshd')) {
                 $this->internal = 'Cannot restart service';
 
                 return false;

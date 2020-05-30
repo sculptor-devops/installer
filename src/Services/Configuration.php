@@ -1,6 +1,9 @@
-<?php namespace Sculptor\Services;
+<?php
+
+namespace Sculptor\Services;
 
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use League\Flysystem\FileNotFoundException;
 use Symfony\Component\Yaml\Yaml;
 
@@ -38,10 +41,15 @@ class Configuration
      */
     private function load(): void
     {
+        LOG::info('Current directory is ' . getcwd());
+
         $custom = getcwd() . '/' . APP_CONFIG_FILENAME;
+
         $configuration = $this->template();
 
         if (File::exists($custom)) {
+            LOG::info("Using custom configuration {$custom}");
+
             $configuration = File::get($custom);
         }
 
@@ -64,14 +72,12 @@ class Configuration
     private function getString(string $key, string $default = ''): string
     {
         if (!$this->has($key)) {
-
             return $default;
         }
 
         $value = $this->configuration[$key];
 
         if (!is_string($value)) {
-
             return $default;
         }
 

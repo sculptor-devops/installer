@@ -84,7 +84,7 @@ class Agent extends StageBase implements Stage
 
             File::put('/etc/supervisor/conf.d/www.sculptor.conf', $supervisor);
 
-            $this->daemons->restart('supervisor');
+            $this->restart('supervisor');
 
             return true;
         } catch (Exception $e) {

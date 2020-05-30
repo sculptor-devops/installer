@@ -1,0 +1,18 @@
+stages:
+  - Credentials # Mandatory do not remove
+  - Packages
+  - SuUser
+  - Motd
+  # - Ntp
+  - Php
+  - NodeJs
+  - Nginx
+  - MySql
+  - Redis
+  - LetsSEncrypt
+  - Composer
+  - Deployer
+  # - Firewall
+  - Crontab
+  - Agent
+  - CheckServices

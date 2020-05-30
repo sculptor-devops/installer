@@ -37,7 +37,7 @@ class Nginx extends StageBase implements Stage
 
             $this->command(['apt-get', '-y', 'install', 'nginx']);
 
-            if (!$this->daemons->enable('nginx.service')) {
+            if (!$this->enable('nginx.service')) {
                 $this->internal = 'Cannot enable service';
 
                 return false;
@@ -55,7 +55,7 @@ class Nginx extends StageBase implements Stage
                 return false;
             }
 
-            if (!$this->daemons->restart('nginx.service')) {
+            if (!$this->restart('nginx.service')) {
                 $this->internal = 'Cannot restart service';
 
                 return false;

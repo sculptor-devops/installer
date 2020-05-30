@@ -23,9 +23,7 @@ class MySql extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
-            $dbPassword = $env->get('db_password');
-
-            $env->connection($dbPassword);
+            $env->connection();
 
             $this->command([
                 'echo',
@@ -71,7 +69,7 @@ class MySql extends StageBase implements Stage
 
             $this->command(['mysql', '-e', 'FLUSH PRIVILEGES']);
 
-            $this->daemons->restart('mysql');
+            $this->restart('mysql');
         } catch (\Exception $e) {
             Log::warning("Unable to secure MySqlManager: {$e->getMessage()}");
         }

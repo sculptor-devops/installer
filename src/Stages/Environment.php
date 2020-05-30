@@ -1,4 +1,6 @@
-<?php namespace Sculptor\Stages;
+<?php
+
+namespace Sculptor\Stages;
 
 use Illuminate\Support\Facades\DB;
 
@@ -22,7 +24,7 @@ class Environment
      */
     public function __construct(array $env = null)
     {
-        if ($env ) {
+        if ($env) {
             $this->env = $env;
         }
     }
@@ -74,11 +76,12 @@ class Environment
     }
 
     /**
-     * @param string $password
      * @return $this
      */
-    public function connection(string $password): self
+    public function connection(): self
     {
+        $password = $this->get('db_password');
+
         config([
             'database.connections.temp' => [
                 'driver' => 'mysql',

@@ -2,10 +2,10 @@
 
 namespace Sculptor\Stages\V1804;
 
+use Exception;
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
-use Exception;
 use Illuminate\Support\Facades\Log;
 
 /**
@@ -44,13 +44,14 @@ class Php extends StageBase implements Stage
                 return false;
             }
 
-            if (!$this->daemons->restart("php{$php}-fpm")) {
+            if (!$this->restart("php{$php}-fpm")) {
                 $this->internal = 'Cannot restart service';
 
                 return false;
             }
 
             return true;
+
         } catch (Exception $e) {
             Log::error($e->getMessage());
 

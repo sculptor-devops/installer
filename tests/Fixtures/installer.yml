@@ -1,0 +1,8 @@
+php: '7.2'
+user: 'custom'
+port: '1234'
+dbPassword: 'password'
+
+stages:
+  - Credentials # Mandatory do not remove
+  - TestStage

@@ -42,7 +42,7 @@ class Firewall extends StageBase implements Stage
                 return false;
             }
 
-            if (!$this->daemons->restart('fail2ban')) {
+            if (!$this->restart('fail2ban')) {
                 $this->internal = 'Cannot restart service';
 
                 return false;

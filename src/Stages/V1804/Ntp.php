@@ -2,6 +2,7 @@
 
 namespace Sculptor\Stages\V1804;
 
+use Exception;
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
@@ -38,7 +39,7 @@ class Ntp extends StageBase implements Stage
             $this->command(['timedatectl', 'set-timezone', 'UTC']);
 
             return true;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::error($e->getMessage());
 
             return false;

@@ -1,4 +1,6 @@
-<?php namespace Sculptor\Services;
+<?php
+
+namespace Sculptor\Services;
 
 use Illuminate\Support\Facades\File;
 use League\Flysystem\Adapter\Local as LocalFilesystem;
@@ -65,7 +67,6 @@ class Templates
         $result = [];
 
         foreach ($this->filesystem->listContents('/') as $file) {
-
             if ($file['basename'] != APP_CONFIG_FILENAME && $file['type'] == 'file') {
                 $result[] = [
                     'name' => $file['basename'],

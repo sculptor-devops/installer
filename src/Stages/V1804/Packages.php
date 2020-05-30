@@ -35,7 +35,9 @@ class Packages extends StageBase implements Stage
         'apt-utils',
         'debconf-utils',
         'supervisor',
-        'sudo'
+        'sudo',
+        'ufw',
+        'git'
     ];
 
     /**
@@ -45,7 +47,6 @@ class Packages extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
-
             $this->noninteractive();
 
             $this->command(['apt-get', 'update']);
@@ -57,7 +58,6 @@ class Packages extends StageBase implements Stage
             return true;
 
         } catch (Exception $e) {
-
             Log::error($e->getMessage());
 
             return false;
