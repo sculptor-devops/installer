@@ -8,7 +8,7 @@ stages:
   - Sshd
   - NodeJs
   - Nginx
-  - MySqlManager
+  - MySql
   - Redis
   - LetsSEncrypt
   - Composer

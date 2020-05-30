@@ -1,4 +1,6 @@
-<?php namespace Sculptor\Stages\V2004;
+<?php
+
+namespace Sculptor\Stages\V2004;
 
 /**
  * (c) Alessandro Cappellozza <alessandro.cappellozza@gmail.com>

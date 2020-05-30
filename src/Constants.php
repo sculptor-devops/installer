@@ -6,7 +6,7 @@
  */
 
 define('APP_PATH', '.installer');
-define('APP_COMPATIBLE_VERSION', ['18.04' /*, '20.04'*/]);
+define('APP_COMPATIBLE_VERSION', ['18.04' , '20.04']);
 define('APP_COMPATIBLE_ARCH', ['x86_64']);
 define('APP_PANEL_USER', 'sculptor');
 define('APP_PANEL_DB', 'sculptor');

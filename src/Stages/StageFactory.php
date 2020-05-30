@@ -1,4 +1,6 @@
-<?php namespace Sculptor\Stages;
+<?php
+
+namespace Sculptor\Stages;
 
 use Sculptor\Contracts\Stage;
 use Sculptor\Services\Configuration;
@@ -41,7 +43,7 @@ class StageFactory
      */
     public function version(?string $version): void
     {
-        if($version) {
+        if ($version) {
             $this->version = 'V' . str_replace('.', '', $version);
 
             return;
@@ -101,9 +103,10 @@ class StageFactory
         foreach ($this->configuration->stages() as $stage) {
             $instance = $this->make($stage);
 
-            if (Str::lower($instance->name()) == Str::lower($name) ||
-                Str::lower($instance->className()) == Str::lower($name)) {
-
+            if (
+                Str::lower($instance->name()) == Str::lower($name) ||
+                Str::lower($instance->className()) == Str::lower($name)
+            ) {
                 return $instance;
             }
         }

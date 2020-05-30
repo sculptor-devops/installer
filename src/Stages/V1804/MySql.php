@@ -24,6 +24,8 @@ class MySql extends StageBase implements Stage
         try {
             $dbPassword = $env->get('db_password');
 
+            $env->connection($dbPassword);
+
             $this->command([
                 'echo',
                 '"mysql-server mysql-server/root_password password ' . $dbPassword . '"',

@@ -1,9 +1,10 @@
-<?php namespace Sculptor\Stages\V1804;
+<?php
+
+namespace Sculptor\Stages\V1804;
 
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
 use Sculptor\Contracts\Stage;
-
 use Exception;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
@@ -31,10 +32,13 @@ class Firewall extends StageBase implements Stage
 
             $this->command(['apt-get', '-y', 'install', 'fail2ban'], false);
 
-            if (!$this->write('/etc/fail2ban/jail.local',
-                $this->template('file2ban.conf'),
-                'Cannot write configuration')) {
-
+            if (
+                !$this->write(
+                    '/etc/fail2ban/jail.local',
+                    $this->template('file2ban.conf'),
+                    'Cannot write configuration'
+                )
+            ) {
                 return false;
             }
 
@@ -50,21 +54,18 @@ class Firewall extends StageBase implements Stage
                 return false;
             }
 
-            if($port != APP_PANEL_HTTP_PORT) {
+            if ($port != APP_PANEL_HTTP_PORT) {
                 $this->firewall->allow($port, true);
             }
 
             foreach ($this->ports as $port) {
                 if (!$this->allow($port)) {
-
                     return false;
                 }
             }
 
             return true;
-
         } catch (Exception $e) {
-
             Log::error($e->getMessage());
 
             return false;
@@ -78,7 +79,6 @@ class Firewall extends StageBase implements Stage
     private function allow(string $port): bool
     {
         if (!$this->firewall->allow($port)) {
-
             $this->internal = "Cannot enable firewall rule on {$port}";
 
             return false;

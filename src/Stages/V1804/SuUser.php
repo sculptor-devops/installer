@@ -1,4 +1,6 @@
-<?php namespace Sculptor\Stages\V1804;
+<?php
+
+namespace Sculptor\Stages\V1804;
 
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;

@@ -48,10 +48,9 @@ class Stages
 
     /**
      * @param Command $context
-     * @param bool $remove
      * @return bool
      */
-    public function run(Command $context, bool $remove = false): bool
+    public function run(Command $context): bool
     {
         Log::info("Running on Os version {$this->version->name()}");
 
@@ -74,8 +73,8 @@ class Stages
 
             Log::info("RUNNING STAGE {$instance->name()}");
 
-            $result = $context->task($instance->name(), function () use($instance, $remove) {
-               return $this->instance($instance, $remove);
+            $result = $context->task($instance->name(), function () use($instance) {
+               return $this->instance($instance);
             });
 
             if (!$result) {
@@ -107,10 +106,9 @@ class Stages
 
     /**
      * @param string $name
-     * @param bool $remove
      * @return bool|null
      */
-    public function stage(string $name, bool $remove = false): ?bool
+    public function stage(string $name): ?bool
     {
         $credentials = $this->stages->find('Credentials');
 
@@ -122,7 +120,7 @@ class Stages
 
         Log::info("RUNNING STAGE {$credentials->name()}");
 
-        if (!$this->instance($credentials, $remove)) {
+        if (!$this->instance($credentials)) {
             $this->error = $credentials->error();
 
             return false;
@@ -143,20 +141,11 @@ class Stages
 
     /**
      * @param Stage $instance
-     * @param bool $remove
      * @return bool
      */
-    private function instance(Stage $instance, bool $remove = false): bool
+    private function instance(Stage $instance): bool
     {
-        $run = false;
-
-        if (!$remove) {
-            $run = $instance->run($this->env);
-        }
-
-        if ($remove) {
-            $run = $instance->remove($this->env);
-        }
+        $run = $instance->run($this->env);
 
         if (!$run) {
             $this->error = $instance->error();

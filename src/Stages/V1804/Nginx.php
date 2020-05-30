@@ -1,9 +1,10 @@
-<?php namespace Sculptor\Stages\V1804;
+<?php
+
+namespace Sculptor\Stages\V1804;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
-
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
@@ -44,10 +45,13 @@ class Nginx extends StageBase implements Stage
 
             $this->ssl();
 
-            if (!$this->write('/etc/nginx/sites-available/default',
-                $conf,
-                'Cannot write to configuration')) {
-
+            if (
+                !$this->write(
+                    '/etc/nginx/sites-available/default',
+                    $conf,
+                    'Cannot write to configuration'
+                )
+            ) {
                 return false;
             }
 
@@ -69,17 +73,18 @@ class Nginx extends StageBase implements Stage
                 return false;
             }
 
-            if (!$this->write("{$this->path}/index.html",
-                $this->template('index.html'),
-                'Cannot create index file')) {
-
+            if (
+                !$this->write(
+                    "{$this->path}/index.html",
+                    $this->template('index.html'),
+                    'Cannot create index file'
+                )
+            ) {
                 return false;
             }
 
             return true;
-
         } catch (Exception $e) {
-
             Log::error($e->getMessage());
 
             return false;
@@ -94,7 +99,6 @@ class Nginx extends StageBase implements Stage
         $path = '/etc/nginx/ssl';
 
         if (!File::exists($path)) {
-
             File::makeDirectory($path);
         }
 

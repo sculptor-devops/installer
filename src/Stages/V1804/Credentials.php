@@ -1,9 +1,10 @@
-<?php namespace Sculptor\Stages\V1804;
+<?php
+
+namespace Sculptor\Stages\V1804;
 
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
-
 use Exception;
 use Illuminate\Support\Facades\Log;
 
@@ -21,21 +22,13 @@ class Credentials extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
-
             $this->internal = 'Generic Error';
 
-            $ip = quoteContent($this->get([
-                'dig',
-                '-4',
-                'TXT',
-                '+short',
-                'o-o.myaddr.l.google.com',
-                '@ns1.google.com'
-            ]));
+            $ip = $this->ip();
 
-            $password = $this->get(['openssl', 'rand', '-base64', '20']);
+            $password = $this->password(20);
 
-            $dbPassword = $this->get(['openssl', 'rand', '-base64', '16']);
+            $dbPassword = $this->password(16);
 
             $env->add('ip', $ip);
 
@@ -54,9 +47,7 @@ class Credentials extends StageBase implements Stage
             }
 
             return true;
-
         } catch (Exception $e) {
-
             Log::error($e->getMessage());
 
             return false;

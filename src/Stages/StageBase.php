@@ -23,6 +23,10 @@ use ReflectionException;
 class StageBase
 {
     /**
+     * @bool
+     */
+    private $noninteractive;
+    /**
      * @var string
      */
     protected $internal = 'Unexpected error see logs for details';
@@ -80,17 +84,16 @@ class StageBase
 
     /**
      * @param array<string> $commands
-     * @param bool $interactive
      * @param string|null $path
      * @return bool
      * @throws Exception
      */
-    protected function command(array $commands, bool $interactive = true, string $path = null): bool
+    protected function command(array $commands, string $path = null): bool
     {
         $process = $this->runner
             ->timeout($this->timeout);
 
-        if (!$interactive) {
+        if ($this->noninteractive) {
             $process = $process->env(['DEBIAN_FRONTEND' => 'noninteractive']);
         }
 
@@ -106,6 +109,11 @@ class StageBase
         }
 
         return true;
+    }
+
+    protected function noninteractive()
+    {
+        $this->noninteractive = true;
     }
 
     /**
@@ -144,16 +152,6 @@ class StageBase
     }
 
     /**
-     * @param Environment $env
-     * @return bool
-     * @throws Exception
-     */
-    public function remove(Environment $env = null): bool
-    {
-        throw new Exception("Unimplemented");
-    }
-
-    /**
      * @param string $file
      * @param string $content
      * @param string $error
@@ -173,17 +171,14 @@ class StageBase
     }
 
     /**
-     * @param bool $short
      * @return string
      * @throws ReflectionException
      */
-    public function className(bool $short = true): string
+    public function className(): string
     {
-        if ($short) {
-            return ((new ReflectionClass($this))->getShortName());
-        }
+        // return ((new ReflectionClass($this))->getName());
 
-        return ((new ReflectionClass($this))->getName());
+        return ((new ReflectionClass($this))->getShortName());
     }
 
     /**
@@ -221,7 +216,7 @@ class StageBase
         if (!$result->success()) {
             $this->error = $result;
 
-            // Log::error("Command: {$this->runner->line()}");
+            Log::error("Command: {$this->runner->line()}");
             Log::error("Error: {$result->error()}");
             Log::error("Error output: {$result->output()}");
             Log::error("Error code: {$result->code()}");

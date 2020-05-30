@@ -1,10 +1,11 @@
-<?php namespace Sculptor\Stages\V1804;
+<?php
+
+namespace Sculptor\Stages\V1804;
 
 use League\Flysystem\FileNotFoundException;
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
-
 use Exception;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
@@ -23,21 +24,16 @@ class Crontab extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
-
             if (!$this->add('panel.crontab', '/etc/cron.d/sculptor.admin', APP_PANEL_USER)) {
-
                 return false;
             }
 
             if (!$this->add('www-data.crontab', '/etc/cron.d/sculptor.www', APP_PANEL_HTTP_PANEL)) {
-
                 return false;
             }
 
             return true;
-
         } catch (Exception $e) {
-
             Log::error($e->getMessage());
 
             return false;

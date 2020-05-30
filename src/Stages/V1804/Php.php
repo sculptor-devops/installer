@@ -1,9 +1,10 @@
-<?php namespace Sculptor\Stages\V1804;
+<?php
+
+namespace Sculptor\Stages\V1804;
 
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
-
 use Exception;
 use Illuminate\Support\Facades\Log;
 
@@ -25,11 +26,13 @@ class Php extends StageBase implements Stage
         $php = $env->get('php');
 
         try {
-
-            if (!$this->write("/etc/php/{$php}/fpm/conf.d/sculptor.ini",
-                $this->template('php.ini'),
-                'Cannot write ini configuration')) {
-
+            if (
+                !$this->write(
+                    "/etc/php/{$php}/fpm/conf.d/sculptor.ini",
+                    $this->template('php.ini'),
+                    'Cannot write ini configuration'
+                )
+            ) {
                 return false;
             }
 
@@ -48,9 +51,7 @@ class Php extends StageBase implements Stage
             }
 
             return true;
-
         } catch (Exception $e) {
-
             Log::error($e->getMessage());
 
             return false;

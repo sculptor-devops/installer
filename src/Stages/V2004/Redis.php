@@ -1,4 +1,6 @@
-<?php namespace Sculptor\Stages\V2004;
+<?php
+
+namespace Sculptor\Stages\V2004;
 
 /**
  * (c) Alessandro Cappellozza <alessandro.cappellozza@gmail.com>
@@ -6,7 +8,7 @@
  *  file that was distributed with this source code.
  */
 
-class Redis  extends \Sculptor\Stages\V1804\Redis
+class Redis extends \Sculptor\Stages\V1804\Redis
 {
 
 }

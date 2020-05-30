@@ -1,11 +1,11 @@
-<?php namespace Sculptor\Stages\V1804;
+<?php
+
+namespace Sculptor\Stages\V1804;
 
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
-
 use Exception;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 
 /**
@@ -23,18 +23,18 @@ class Motd extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
-
-            if (!$this->write('/etc/motd',
-                $this->template('motd'),
-                'Cannot write motd')) {
-
+            if (
+                !$this->write(
+                    '/etc/motd',
+                    $this->template('motd'),
+                    'Cannot write motd'
+                )
+            ) {
                 return false;
             }
 
             return true;
-
         } catch (Exception $e) {
-
             Log::error($e->getMessage());
 
             return false;

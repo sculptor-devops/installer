@@ -1,9 +1,10 @@
-<?php namespace Sculptor\Stages\V1804;
+<?php
+
+namespace Sculptor\Stages\V1804;
 
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
 use Sculptor\Contracts\Stage;
-
 use Exception;
 use Illuminate\Support\Facades\Log;
 
@@ -22,15 +23,12 @@ class LetsSEncrypt extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
-
             $this->command(['add-apt-repository', '-y', 'ppa:certbot/certbot']);
 
             $this->command(['apt-get', '-y', 'install', 'python-certbot-nginx']);
 
             return true;
-
         } catch (Exception $e) {
-
             Log::error($e->getMessage());
 
             return false;

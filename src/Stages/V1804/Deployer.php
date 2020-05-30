@@ -1,9 +1,10 @@
-<?php namespace Sculptor\Stages\V1804;
+<?php
+
+namespace Sculptor\Stages\V1804;
 
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
-
 use Exception;
 use Illuminate\Support\Facades\Log;
 
@@ -38,9 +39,7 @@ class Deployer extends StageBase implements Stage
             $this->command(['chmod', '+x', '/usr/local/bin/dep']);
 
             return true;
-
         } catch (Exception $e) {
-
             Log::error($e->getMessage());
 
             return false;

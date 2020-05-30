@@ -46,11 +46,13 @@ class Packages extends StageBase implements Stage
     {
         try {
 
-            $this->command(['apt-get', 'update'], false);
+            $this->noninteractive();
 
-            $this->command($this->packages, false);
+            $this->command(['apt-get', 'update']);
 
-            $this->command(['apt-get', '-y', 'autoremove'], false);
+            $this->command($this->packages);
+
+            $this->command(['apt-get', '-y', 'autoremove']);
 
             return true;
 

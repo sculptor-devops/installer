@@ -1,10 +1,10 @@
-<?php namespace Sculptor\Stages\V1804;
+<?php
+
+namespace Sculptor\Stages\V1804;
 
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
-
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 
 /**
@@ -23,11 +23,13 @@ class Ntp extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
-
-            if (!$this->write('/etc/systemd/timesyncd.conf',
-                $this->template('ntp.conf'),
-                'Unable to write configuration')) {
-
+            if (
+                !$this->write(
+                    '/etc/systemd/timesyncd.conf',
+                    $this->template('ntp.conf'),
+                    'Unable to write configuration'
+                )
+            ) {
                 return false;
             }
 
@@ -36,9 +38,7 @@ class Ntp extends StageBase implements Stage
             $this->command(['timedatectl', 'set-timezone', 'UTC']);
 
             return true;
-
         } catch (\Exception $e) {
-
             Log::error($e->getMessage());
 
             return false;

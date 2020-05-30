@@ -1,9 +1,10 @@
-<?php namespace Sculptor\Stages\V1804;
+<?php
+
+namespace Sculptor\Stages\V1804;
 
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
-
 use Exception;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
@@ -46,7 +47,7 @@ class Agent extends StageBase implements Stage
 
             File::deleteDirectory("{$this->path}/current");
 
-            $this->command(['dep', 'deploy', '-q'], false, $this->path);
+            $this->command(['dep', 'deploy', '-q'], $this->path);
 
             $agent = $this->replaceTemplate('agent-env')
                 ->replace('{PASSWORD}', $password)
@@ -59,11 +60,13 @@ class Agent extends StageBase implements Stage
 
             $this->db->user(APP_PANEL_DB_USER, $password, APP_PANEL_DB);
 
-            $this->command(['php', "{$this->path}/current/artisan", 'key:generate'], false, $this->path);
+            $this->noninteractive();
 
-            $this->command(['dep', 'deploy:migrate'], false, $this->path);
+            $this->command(['php', "{$this->path}/current/artisan", 'key:generate'], $this->path);
 
-            $this->command(['dep', 'deploy:owner'], false, $this->path);
+            $this->command(['dep', 'deploy:migrate'], $this->path);
+
+            $this->command(['dep', 'deploy:owner'], $this->path);
 
             File::put('/bin/sculptor', "php {$this->path}/current/artisan $@");
 
@@ -84,9 +87,7 @@ class Agent extends StageBase implements Stage
             $this->daemons->restart('supervisor');
 
             return true;
-
         } catch (Exception $e) {
-
             Log::error($e->getMessage());
 
             return false;

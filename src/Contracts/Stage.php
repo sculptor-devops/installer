@@ -32,21 +32,14 @@ interface Stage
     public function run(Environment $env): bool;
 
     /**
-     * @param Environment $env
-     * @return bool
-     */
-    public function remove(Environment $env = null): bool;
-
-    /**
      * @return string
      */
     public function name(): string;
 
     /**
-     * @param bool $short
      * @return string
      */
-    public function className(bool $short = true): string;
+    public function className(): string;
 
     /**
      * @return string|null

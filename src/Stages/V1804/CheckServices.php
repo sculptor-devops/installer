@@ -1,9 +1,10 @@
-<?php namespace Sculptor\Stages\V1804;
+<?php
+
+namespace Sculptor\Stages\V1804;
 
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
-
 use Exception;
 use Illuminate\Support\Facades\Log;
 
@@ -35,15 +36,12 @@ class CheckServices extends StageBase implements Stage
         try {
             foreach ($this->services as $service => $error) {
                 if (!$this->active($service, $error)) {
-
                     return false;
                 }
             }
 
             return true;
-
         } catch (Exception $e) {
-
             Log::error($e->getMessage());
 
             return false;
