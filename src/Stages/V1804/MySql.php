@@ -62,7 +62,7 @@ class MySql extends StageBase implements Stage
         try {
             $this->command(['mysql', '-e', 'use mysql; UPDATE user SET authentication_string = password(\'' . $password . '\') WHERE user = \'root\';']);
 
-            $this->command(['mysql', '-e', 'use mysql;UPDATE user SET plugin=\'mysql_native_password\' WHERE User=\'root\' and plugin=\'auth_socket\'']);
+            $this->command(['mysql', '-e', 'use mysql; UPDATE user SET plugin=\'mysql_native_password\' WHERE User=\'root\' and plugin=\'auth_socket\'']);
 
             $this->command(['mysql', '-e', 'use mysql; DELETE FROM user WHERE user=\'auth_socket\'']);
 
@@ -84,6 +84,6 @@ class MySql extends StageBase implements Stage
      */
     public function name(): string
     {
-        return 'MySqlManager Server';
+        return 'MySql Server';
     }
 }
