@@ -27,7 +27,7 @@
         "illuminate/database": "^7.0",
         "illuminate/log": "^7.0",
         "laravel-zero/framework": "^7.0",
-        "sculptor-devops/foundation": "^0.0.4",
+        "sculptor-devops/foundation": "^0.0.5",
         "symfony/yaml": "^5.0"
     },
     "require-dev": {
@@ -66,9 +66,6 @@
             "./vendor/bin/phpmd src text phpmd.xml"
         ],
         "phpstan": [
-            "@php artisan code:analyse --level=max --paths=src,tests"
-        ],
-        "analyze": [
             "vendor/bin/phpstan analyse src --level 8"
         ],
         "post-create-project-cmd": [

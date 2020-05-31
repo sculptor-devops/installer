@@ -23,6 +23,8 @@ class MySql extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
+            $dbPassword = $env->get('dbPassword ');
+
             $env->connection();
 
             $this->command([
@@ -57,7 +59,7 @@ class MySql extends StageBase implements Stage
     private function secure(string $password): void
     {
         try {
-            $this->command(['mysql', '-e', 'use mysql; ALTER USER \'root\'@\'localhost\' IDENTIFIED WITH caching_sha2_password BY \'' . $password .'\'']);
+            $this->command(['mysql', '-e', 'use mysql; ALTER USER \'root\'@\'localhost\' IDENTIFIED WITH caching_sha2_password BY \'' . $password . '\'']);
 
             $this->command(['mysql', '-e', 'use mysql; UPDATE user SET plugin=\'mysql_native_password\' WHERE User=\'root\' and plugin=\'auth_socket\'']);
 

@@ -146,6 +146,10 @@ class Stages
 
         $credentials = $this->stages->find('Credentials');
 
+        if (!$credentials) {
+            return false;
+        }
+
         Log::info("RUNNING STAGE {$credentials->name()}");
 
         if (!$this->start($credentials)) {

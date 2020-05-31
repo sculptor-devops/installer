@@ -1,4 +1,6 @@
-<?php namespace Sculptor\Stages;
+<?php
+
+namespace Sculptor\Stages;
 
 use Illuminate\Support\Facades\Log;
 use Sculptor\Exceptions\CommandErrorException;
@@ -9,7 +11,6 @@ use Sculptor\Foundation\Services\Daemons;
 use Sculptor\Foundation\Services\Firewall;
 use Sculptor\Foundation\Support\Replacer;
 use Sculptor\Services\Templates;
-
 use Illuminate\Support\Facades\File;
 use League\Flysystem\FileNotFoundException;
 use Exception;
@@ -24,9 +25,9 @@ use ReflectionException;
 class StageBase
 {
     /**
-     * @bool
+     * @var bool
      */
-    private $noninteractive;
+    private $noninteractive = false;
     /**
      * @var string
      */
@@ -114,7 +115,7 @@ class StageBase
     /**
      *
      */
-    protected function noninteractive()
+    protected function noninteractive(): void
     {
         $this->noninteractive = true;
     }

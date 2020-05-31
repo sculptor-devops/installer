@@ -1,4 +1,6 @@
-<?php namespace Sculptor\Services;
+<?php
+
+namespace Sculptor\Services;
 
 use Exception;
 use Illuminate\Container\Container;
@@ -19,9 +21,7 @@ class Logs
             $log = Container::getInstance()->make('log');
 
             return $log->driver()->getHandlers()[0]->getUrl();
-
         } catch (Exception $e) {
-
             return "Unable to get log file : {$e->getMessage()}";
         }
     }

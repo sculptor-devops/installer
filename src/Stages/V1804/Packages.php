@@ -1,10 +1,11 @@
-<?php namespace Sculptor\Stages\V1804;
+<?php
+
+namespace Sculptor\Stages\V1804;
 
 use Exception;
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
-
 use Illuminate\Support\Facades\Log;
 
 /**
@@ -56,7 +57,6 @@ class Packages extends StageBase implements Stage
             $this->command(['apt-get', '-y', 'autoremove']);
 
             return true;
-
         } catch (Exception $e) {
             Log::error($e->getMessage());
 

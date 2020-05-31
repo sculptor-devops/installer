@@ -1,4 +1,6 @@
-<?php namespace Sculptor\Contracts;
+<?php
+
+namespace Sculptor\Contracts;
 
 use Sculptor\Foundation\Contracts\Database;
 use Sculptor\Foundation\Contracts\Runner;

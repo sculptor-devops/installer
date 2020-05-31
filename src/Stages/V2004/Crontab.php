@@ -12,4 +12,3 @@ class Crontab extends \Sculptor\Stages\V1804\Crontab
 {
     //
 }
-

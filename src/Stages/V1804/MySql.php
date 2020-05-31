@@ -22,6 +22,8 @@ class MySql extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
+            $dbPassword = $env->get('dbPassword ');
+
             $env->connection();
 
             $this->command([

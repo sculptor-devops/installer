@@ -51,7 +51,6 @@ class Php extends StageBase implements Stage
             }
 
             return true;
-
         } catch (Exception $e) {
             Log::error($e->getMessage());
 

@@ -23,6 +23,8 @@ class NodeJs extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
+            $this->noninteractive();
+
             $setup = '/docker/setup_12.x';
 
             $copy = copy('https://deb.nodesource.com/setup_12.x', $setup);
@@ -33,7 +35,7 @@ class NodeJs extends StageBase implements Stage
                 return false;
             }
 
-            $this->command(['sh', '/docker/setup_12.x'], false);
+            $this->command(['sh', '/docker/setup_12.x']);
 
             $this->command(['apt-get', 'install', '-y', 'nodejs']);
 
@@ -44,7 +46,6 @@ class NodeJs extends StageBase implements Stage
             }
 
             return true;
-
         } catch (Exception $e) {
             Log::error($e->getMessage());
 

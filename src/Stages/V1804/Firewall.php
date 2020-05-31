@@ -28,9 +28,11 @@ class Firewall extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
+            $this->noninteractive();
+
             $port = $env->get('port');
 
-            $this->command(['apt-get', '-y', 'install', 'fail2ban'], false);
+            $this->command(['apt-get', '-y', 'install', 'fail2ban']);
 
             if (
                 !$this->write(

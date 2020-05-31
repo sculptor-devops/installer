@@ -33,7 +33,7 @@ class Agent extends StageBase implements Stage
 
             $dbPassword = $env->get('db_password');
 
-            $env->connection($dbPassword);
+            $env->connection();
 
             $deploy = $this->template('agent-deploy.php');
 
