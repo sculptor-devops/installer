@@ -27,13 +27,10 @@ class Agent extends StageBase implements Stage
      */
     public function run(Environment $env): bool
     {
-
         try {
             $password = $this->password(16);
 
             $dbPassword = $env->get('db_password');
-
-            $env->connection();
 
             $deploy = $this->template('agent-deploy.php');
 

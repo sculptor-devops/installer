@@ -3,6 +3,7 @@
 namespace Sculptor\Stages;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 /**
  * (c) Alessandro Cappellozza <alessandro.cappellozza@gmail.com>
@@ -80,17 +81,17 @@ class Environment
      */
     public function connection(): self
     {
-        $password = $this->get('db_password');
-
         config([
             'database.connections.temp' => [
                 'driver' => 'mysql',
                 'host' => '127.0.0.1',
                 'database' => 'mysql',
                 'username' => 'root',
-                'password' => $password
+                'password' => $this->get('db_password')
             ]
         ]);
+
+        Log::info('New DB connection database.connections.temp');
 
         DB::setDefaultConnection('temp');
 

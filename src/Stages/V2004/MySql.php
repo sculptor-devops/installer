@@ -4,9 +4,8 @@ namespace Sculptor\Stages\V2004;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
-use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
-use Sculptor\Stages\StageBase;
+use Sculptor\Stages\V1804\MySql as MySqlBase;
 
 /**
  * (c) Alessandro Cappellozza <alessandro.cappellozza@gmail.com>
@@ -14,47 +13,12 @@ use Sculptor\Stages\StageBase;
  *  file that was distributed with this source code.
  */
 
-class MySql extends StageBase implements Stage
+class MySql extends MySqlBase
 {
-    /**
-     * @param Environment $env
-     * @return bool
-     */
-    public function run(Environment $env): bool
-    {
-        try {
-            $dbPassword = $env->get('db_password');
-
-            $this->command([
-                'echo',
-                '"mysql-server mysql-server/root_password password ' . $dbPassword . '"',
-                '|',
-                'debconf-set-selections'
-            ]);
-
-            $this->command([
-                'echo',
-                '"mysql-server mysql-server/root_password_again password ' . $dbPassword . '"',
-                '|',
-                'debconf-set-selections'
-            ]);
-
-            $this->command(['apt-get', '-y', 'install', 'mysql-server', 'mysql-client']);
-
-            $this->secure($dbPassword);
-
-            return true;
-        } catch (Exception $e) {
-            Log::error($e->getMessage());
-
-            return false;
-        }
-    }
-
     /**
      * @param string $password
      */
-    private function secure(string $password): void
+    protected function secure(string $password): void
     {
         try {
             $this->command(['mysql', '-e', 'use mysql; ALTER USER \'root\'@\'localhost\' IDENTIFIED WITH caching_sha2_password BY \'' . $password . '\'']);
@@ -68,15 +32,8 @@ class MySql extends StageBase implements Stage
             $this->command(['mysql', '-e', 'DROP DATABASE IF EXISTS test']);
 
             $this->command(['mysql', '-e', 'FLUSH PRIVILEGES']);
-
-            $this->restart('mysql');
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             Log::warning("Unable to secure MySqlManager: {$e->getMessage()}");
         }
-    }
-
-    public function name(): string
-    {
-        return 'MySql Server';
     }
 }
