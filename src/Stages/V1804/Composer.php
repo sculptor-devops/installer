@@ -23,7 +23,7 @@ class Composer extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
-            $setup = '/docker/composer-setup.php';
+            $setup = '/tmp/composer-setup.php';
 
             $copy = copy('https://getcomposer.org/installer', $setup);
 

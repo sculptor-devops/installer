@@ -25,7 +25,7 @@ class NodeJs extends StageBase implements Stage
         try {
             $this->noninteractive();
 
-            $setup = '/docker/setup_12.x';
+            $setup = '/tmp/setup_12.x';
 
             $copy = copy('https://deb.nodesource.com/setup_12.x', $setup);
 
@@ -35,7 +35,7 @@ class NodeJs extends StageBase implements Stage
                 return false;
             }
 
-            $this->command(['sh', '/docker/setup_12.x']);
+            $this->command(['sh', '/tmp/setup_12.x']);
 
             $this->command(['apt-get', 'install', '-y', 'nodejs']);
 

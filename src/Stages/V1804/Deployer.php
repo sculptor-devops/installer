@@ -24,7 +24,7 @@ class Deployer extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
-            $setup = '/docker/deployer.phar';
+            $setup = '/tmp/deployer.phar';
 
             $copy = copy('https://deployer.org/deployer.phar', $setup);
 

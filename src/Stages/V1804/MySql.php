@@ -22,9 +22,7 @@ class MySql extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
-            $dbPassword = $env->get('dbPassword ');
-
-            $env->connection();
+            $dbPassword = $env->get('db_password');
 
             $this->command([
                 'echo',
@@ -61,11 +59,11 @@ class MySql extends StageBase implements Stage
             foreach (
                 [
                          'UPDATE user SET authentication_string = password(\'' . $password . '\') WHERE user = \'root\';',
-                         'UPDATE user SET plugin=\'mysql_native_password\' WHERE User=\'root\' and plugin=\'auth_socket\'',
-                         'DELETE FROM user WHERE user=\'auth_socket\'',
-                         'DELETE FROM user WHERE user=\'root\' AND host NOT IN (\'localhost\', \'127.0.0.1\', \'::1\')',
-                         'DROP DATABASE IF EXISTS test',
-                         'FLUSH PRIVILEGES'
+                         'UPDATE user SET plugin=\'mysql_native_password\' WHERE User=\'root\' and plugin=\'auth_socket\';',
+                         'DELETE FROM user WHERE user=\'auth_socket\';',
+                         'DELETE FROM user WHERE user=\'root\' AND host NOT IN (\'localhost\', \'127.0.0.1\', \'::1\');',
+                         'DROP DATABASE IF EXISTS test;',
+                         'FLUSH PRIVILEGES;'
                      ] as $command
             ) {
                 $this->command([

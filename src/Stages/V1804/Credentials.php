@@ -46,6 +46,8 @@ class Credentials extends StageBase implements Stage
                 return false;
             }
 
+            $env->connection();
+
             return true;
         } catch (Exception $e) {
             Log::error($e->getMessage());

@@ -1,5 +1,10 @@
 export DEBIAN_FRONTEND=noninteractive
-add-apt-repository -y ppa:ondrej/php
+
+cat /etc/os-release|grep 'VERSION_ID="20.04"'
+if [ $? -ne 0 ]; then
+    add-apt-repository -y ppa:ondrej/php
+fi
+
 apt-get update
 apt-get -y dist-upgrade
 
@@ -16,6 +21,3 @@ update-alternatives --set php /usr/bin/php7.4
 
 # install compose
 apt-get -y install composer
-
-# install packages (need only in dev)
-composer install
