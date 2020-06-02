@@ -44,7 +44,7 @@ class MySql extends StageBase implements Stage
      * @param string $password
      * @throws Exception
      */
-    protected function debconf(string $password)
+    protected function debconf(string $password): void
     {
         $this->command([
             'echo',
