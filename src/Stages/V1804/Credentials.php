@@ -40,12 +40,6 @@ class Credentials extends StageBase implements Stage
                 $env->add('db_password', $dbPassword);
             }
 
-            if ($this->daemons->installed('mysql-server')) {
-                $this->internal = 'Machine seem to be already installed (mysql server at least is present)';
-
-                return false;
-            }
-
             $env->connection();
 
             return true;

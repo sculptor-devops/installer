@@ -20,7 +20,13 @@ class Nginx extends StageBase implements Stage
     /**
      * @var string
      */
+
     private $path = '/var/www/html/current/public';
+
+    /**
+     * @var string
+     */
+    private $default = '/var/www/default';
 
     /**
      * @param Environment $env
@@ -33,6 +39,7 @@ class Nginx extends StageBase implements Stage
 
             $conf = $this->replaceTemplate('nginx.conf')
                 ->replace('{PORT}', $port)
+                ->replace('{USER}', APP_PANEL_HTTP_PANEL)
                 ->value();
 
             $this->command(['apt-get', '-y', 'install', 'nginx']);
@@ -44,6 +51,8 @@ class Nginx extends StageBase implements Stage
             }
 
             $this->ssl();
+
+            $this->roots();
 
             if (
                 !$this->write(
@@ -58,28 +67,6 @@ class Nginx extends StageBase implements Stage
             if (!$this->restart('nginx.service')) {
                 $this->internal = 'Cannot restart service';
 
-                return false;
-            }
-
-            $root = true;
-
-            if (!File::exists($this->path)) {
-                $root = File::makeDirectory($this->path, 0755, true);
-            }
-
-            if (!$root) {
-                $this->internal = 'Cannot create www root';
-
-                return false;
-            }
-
-            if (
-                !$this->write(
-                    "{$this->path}/index.html",
-                    $this->template('index.html'),
-                    'Cannot create index file'
-                )
-            ) {
                 return false;
             }
 
@@ -118,6 +105,31 @@ class Nginx extends StageBase implements Stage
             '-out',
             "{$path}/self-signed.crt"
         ]);
+    }
+
+    private function roots(): bool
+    {
+        $index = $this->template('index.html');
+
+        foreach([ $this->path, $this->default ] as $www) {
+            $created = true;
+
+            if (!File::exists($www)) {
+                $created = File::makeDirectory($www, 0755, true);
+            }
+
+            if (!$created) {
+                $this->internal = "Cannot create www root {$www}";
+
+                return false;
+            }
+
+            if (!$this->write("{$www}/index.html", $index, "Cannot create index file in {$www}")) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /**

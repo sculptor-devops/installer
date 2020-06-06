@@ -127,6 +127,18 @@ class StageFactory
 
         $this->env->add('user', $this->configuration->user());
 
+        $this->env->add('port', $this->configuration->port());
+
+        $this->env->add('stages', Str::lower(implode(',', $this->all())));
+
+        if ($this->configuration->password()) {
+            $this->env->add('password', $this->configuration->password());
+        }
+
+        if ($this->configuration->dbPassword()) {
+            $this->env->add('db_password', $this->configuration->dbPassword());
+        }        
+
         return $this->env;
     }
 }

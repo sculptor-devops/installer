@@ -54,5 +54,15 @@ class StageFactoryTest extends TestCase
         $this->assertEquals('TestStage', $factory->find('test stage')->className());
 
         $this->assertEquals(null, $factory->find('test stage not exists'));
+
+        $this->assertEquals([
+            "php" => "7.2",
+            "user" => "custom",
+            "port" => "1234",
+            "stages" => "credentials,teststage",
+            "password" => "password",
+            "db_password" => "dbPassword"
+          ]
+        , $factory->env()->toArray());
     }
 }

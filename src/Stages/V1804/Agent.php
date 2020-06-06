@@ -30,8 +30,6 @@ class Agent extends StageBase implements Stage
         try {
             $password = $this->password(16);
 
-            $dbPassword = $env->get('db_password');
-
             $deploy = $this->template('agent-deploy.php');
 
             $written = File::put("{$this->path}/deploy.php", $deploy);
@@ -48,7 +46,7 @@ class Agent extends StageBase implements Stage
 
             $agent = $this->replaceTemplate('agent-env')
                 ->replace('{PASSWORD}', $password)
-                ->replace('{DB_PASSWORD}', $dbPassword)
+                ->replace('{INSTALLED}', $$env->get('stages'))
                 ->value();
 
             File::put('/var/www/html/shared/.env', $agent);
@@ -69,17 +67,15 @@ class Agent extends StageBase implements Stage
 
             File::chmod('/bin/sculptor', 755);
 
-            $supervisor = $this->replaceTemplate('system.sculptor.conf')
-                ->replace('{USER}', APP_PANEL_USER)
-                ->value();
+            File::put('/etc/supervisor/conf.d/system.sculptor.conf', 
+                        $this->replaceTemplate('system.sculptor.conf')
+                            ->replace('{USER}', APP_PANEL_USER)
+                            ->value());
 
-            File::put('/etc/supervisor/conf.d/system.sculptor.conf', $supervisor);
-
-            $supervisor = $this->replaceTemplate('www.sculptor.conf')
-                ->replace('{USER}', APP_PANEL_HTTP_PANEL)
-                ->value();
-
-            File::put('/etc/supervisor/conf.d/www.sculptor.conf', $supervisor);
+            File::put('/etc/supervisor/conf.d/evens.sculptor.conf', 
+                        $this->replaceTemplate('evens.sculptor.conf')
+                            ->replace('{USER}', APP_PANEL_HTTP_PANEL)
+                            ->value());
 
             $this->restart('supervisor');
 

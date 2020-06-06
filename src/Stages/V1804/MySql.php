@@ -24,6 +24,12 @@ class MySql extends StageBase implements Stage
         try {
             $dbPassword = $env->get('db_password');
 
+            if ($this->daemons->installed('mysql-server')) {
+                $this->internal = 'Machine seem to be already installed (mysql server at least is present)';
+
+                return false;
+            }
+
             $this->debconf($dbPassword);
 
             $this->command(['apt-get', '-y', 'install', 'mysql-server', 'mysql-client']);

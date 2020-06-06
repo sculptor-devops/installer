@@ -29,6 +29,8 @@ class ConfigurationTest extends TestCase
 
         $this->assertEquals('1234', $configuration->port());
 
-        $this->assertEquals('password', $configuration->dbPassword());
+        $this->assertEquals('dbPassword', $configuration->dbPassword());
+
+        $this->assertEquals('password', $configuration->password());        
     }
 }

@@ -56,9 +56,7 @@ class Firewall extends StageBase implements Stage
                 return false;
             }
 
-            if ($port != APP_PANEL_HTTP_PORT) {
-                $this->firewall->allow($port, true);
-            }
+            $this->firewall->allow(APP_PANEL_HTTP_PORT, true);
 
             foreach ($this->ports as $port) {
                 if (!$this->allow($port)) {

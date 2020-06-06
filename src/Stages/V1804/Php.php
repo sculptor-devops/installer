@@ -21,7 +21,7 @@ class Php extends StageBase implements Stage
      */
     public function run(Environment $env): bool
     {
-        $www = APP_PANEL_HTTP_USER;
+        $www = APP_PANEL_HTTP_PANEL;
 
         $php = $env->get('php');
 

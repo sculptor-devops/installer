@@ -24,6 +24,8 @@ class SuUser extends StageBase implements Stage
     {
         try {
             $password = $env->get('password');
+            
+            $dbPassword = $env->get('db_password');
 
             if (!sudo()) {
                 $this->internal = 'This user is not an superuser';
@@ -31,13 +33,13 @@ class SuUser extends StageBase implements Stage
                 return false;
             }
 
-            if (!$this->create(APP_PANEL_USER, $password, true)) {
+            if (!$this->create(APP_PANEL_USER, $password, $dbPassword, true)) {
                 $this->internal = "Cannot create user " . APP_PANEL_USER;
 
                 return false;
             }
 
-            if (!$this->create(APP_PANEL_HTTP_USER, $password, false)) {
+            if (!$this->create(APP_PANEL_HTTP_USER, $password, '', false)) {
                 $this->internal = "Cannot create user " . APP_PANEL_HTTP_USER;
 
                 return false;
@@ -45,14 +47,11 @@ class SuUser extends StageBase implements Stage
 
             $this->command(['usermod', '-G', 'adm', APP_PANEL_HTTP_USER]);
 
-
-            $filename = '/etc/sudoers.d/' . APP_PANEL_USER;
-
             $conf = $this->replaceTemplate('sudoer.conf')
                 ->replace('{USERNAME}', APP_PANEL_USER)
                 ->value();
 
-            if (!$this->write($filename, $conf, 'Unable to write sudoer configuration')) {
+            if (!$this->write('/etc/sudoers.d/' . APP_PANEL_USER, $conf, 'Unable to write sudoer configuration')) {
                 return false;
             }
 
@@ -67,14 +66,17 @@ class SuUser extends StageBase implements Stage
     /**
      * @param string $user
      * @param string $password
+     * @param string $dbPassword
      * @param bool $shell
      * @return bool
      * @throws Exception
      */
-    private function create(string $user, string $password, bool $shell): bool
+    private function create(string $user, string $password, string $dbPassword, bool $shell): bool
     {
         $home = "/home/{$user}";
+
         $bash = $shell ? '/bin/bash' : '/bin/false';
+
         $exists = $this->runner->run(['id', '-u', $user])->success();
 
         if ($exists) {
@@ -87,9 +89,38 @@ class SuUser extends StageBase implements Stage
             File::makeDirectory($home);
         }
 
+
+        if ($dbPassword == '') {
+            $this->command(['chown', "{$user}:{$user}", $home]);
+
+            return true;
+        }
+
+
+        if (!$this->dbPassword($home, $dbPassword)) {
+            $this->internal = "Unable to write db password in {$home}";
+
+            return false;
+        }
+
         $this->command(['chown', "{$user}:{$user}", $home]);
 
         return true;
+    }
+
+    /**
+     * @param string $home
+     * @param string $dbPassword
+     * @return bool
+     * @throws Exception
+     */    
+    private function dbPassword(string $home, string $dbPassword): bool
+    {
+        if ($dbPassword == '') {
+            return true;
+        }
+
+        return File::put("{$home}/.db_password", $dbPassword) == true;
     }
 
     /**
