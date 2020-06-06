@@ -113,7 +113,7 @@ class SuUser extends StageBase implements Stage
      * @param string $dbPassword
      * @return bool
      * @throws Exception
-     */    
+     */
     private function dbPassword(string $home, string $dbPassword): bool
     {
         if ($dbPassword == '') {

@@ -137,7 +137,7 @@ class StageFactory
 
         if ($this->configuration->dbPassword()) {
             $this->env->add('db_password', $this->configuration->dbPassword());
-        }        
+        }
 
         return $this->env;
     }

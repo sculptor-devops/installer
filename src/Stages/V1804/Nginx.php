@@ -111,7 +111,7 @@ class Nginx extends StageBase implements Stage
     {
         $index = $this->template('index.html');
 
-        foreach([ $this->path, $this->default ] as $www) {
+        foreach ([ $this->path, $this->default ] as $www) {
             $created = true;
 
             if (!File::exists($www)) {
