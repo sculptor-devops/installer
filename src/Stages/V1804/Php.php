@@ -21,8 +21,6 @@ class Php extends StageBase implements Stage
      */
     public function run(Environment $env): bool
     {
-        $www = APP_PANEL_HTTP_PANEL;
-
         $php = $env->get('php');
 
         try {
@@ -36,13 +34,16 @@ class Php extends StageBase implements Stage
                 return false;
             }
 
-            $pool = $this->replaceTemplate('php-pool.conf')
+            foreach([ APP_PANEL_HTTP_USER, APP_PANEL_HTTP_PANEL ] as $www) {
+                $pool = $this->replaceTemplate('php-pool.conf')
                 ->replace("{USER}", $www)
                 ->value();
 
-            if (!$this->write("/etc/php/{$php}/fpm/pool.d/{$www}.conf", $pool, 'Cannot write pool configuration')) {
-                return false;
+                if (!$this->write("/etc/php/{$php}/fpm/pool.d/{$www}.conf", $pool, 'Cannot write pool configuration')) {
+                    return false;
+                }
             }
+
 
             if (!$this->restart("php{$php}-fpm")) {
                 $this->internal = 'Cannot restart service';
