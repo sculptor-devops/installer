@@ -65,7 +65,13 @@ class Environment
      */
     public function has(string $key): bool
     {
-        return array_key_exists($key, $this->env);
+        if (!array_key_exists($key, $this->env)) {
+            return false;
+        }
+
+        $value = $this->env[$key];
+
+        return $value != null || $value != '';
     }
 
     /**
