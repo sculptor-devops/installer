@@ -121,17 +121,29 @@ class Configuration
     /**
      * @return string
      */
-    public function password(): ?string
+    public function password(): string
     {
-        return $this->getString('password');
+        $password = $this->getString('password');
+
+        if ($password) {
+            return $password;
+        }
+
+        return '';
     }
 
     /**
      * @return string
      */
-    public function dbPassword(): ?string
+    public function dbPassword(): string
     {
-        return $this->getString('dbPassword');
+        $dbPassword = $this->getString('dbPassword');
+
+        if ($dbPassword) {
+            return $dbPassword;
+        }
+
+        return '';        
     }
 
     /**

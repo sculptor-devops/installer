@@ -34,16 +34,11 @@ class Php extends StageBase implements Stage
                 return false;
             }
 
-            foreach([ APP_PANEL_HTTP_USER, APP_PANEL_HTTP_PANEL ] as $www) {
-                $pool = $this->replaceTemplate('php-pool.conf')
-                ->replace("{USER}", $www)
-                ->value();
-
-                if (!$this->write("/etc/php/{$php}/fpm/pool.d/{$www}.conf", $pool, 'Cannot write pool configuration')) {
+            foreach ([ APP_PANEL_HTTP_USER, APP_PANEL_HTTP_PANEL ] as $user) {
+                if (!$this->pool($php, $user)) {
                     return false;
                 }
             }
-
 
             if (!$this->restart("php{$php}-fpm")) {
                 $this->internal = 'Cannot restart service';
@@ -57,6 +52,24 @@ class Php extends StageBase implements Stage
 
             return false;
         }
+    }
+
+    /**
+     * @param string $php
+     * @param string $user
+     * @return bool
+     */
+    private function pool(string $php, string $user): bool
+    {
+        $pool = $this->replaceTemplate('php-pool.conf')
+        ->replace("{USER}", $user)
+        ->value();
+
+        if (!$this->write("/etc/php/{$php}/fpm/pool.d/{$user}.conf", $pool, "Cannot write pool configuration {$user}")) {
+            return false;
+        }
+
+        return true;
     }
 
     /**
