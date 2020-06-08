@@ -33,7 +33,7 @@ class SuUser extends StageBase implements Stage
                 return false;
             }
 
-            if (!$this->create(APP_PANEL_USER, $password, $dbPassword, true)) {
+            if (!$this->create(APP_PANEL_USER, $password, $dbPassword, false)) {
                 $this->internal = "Cannot create user " . APP_PANEL_USER;
 
                 return false;
@@ -89,13 +89,11 @@ class SuUser extends StageBase implements Stage
             File::makeDirectory($home);
         }
 
-
         if ($dbPassword == '') {
             $this->command(['chown', "{$user}:{$user}", $home]);
 
             return true;
         }
-
 
         if (!$this->dbPassword($home, $dbPassword)) {
             $this->internal = "Unable to write db password in {$home}";
