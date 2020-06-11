@@ -143,7 +143,7 @@ class Configuration
             return $dbPassword;
         }
 
-        return '';        
+        return '';
     }
 
     /**

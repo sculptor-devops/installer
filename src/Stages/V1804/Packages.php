@@ -17,6 +17,11 @@ use Illuminate\Support\Facades\Log;
 class Packages extends StageBase implements Stage
 {
     /**
+     * @var string
+     */
+    private $service = 'unattended-upgrades';
+
+    /**
      * @var string[]
      */
     private $packages = [
@@ -38,7 +43,8 @@ class Packages extends StageBase implements Stage
         'supervisor',
         'sudo',
         'ufw',
-        'git'
+        'git',
+        'unattended-upgrades'
     ];
 
     /**
@@ -55,6 +61,23 @@ class Packages extends StageBase implements Stage
             $this->command($this->packages);
 
             $this->command(['apt-get', '-y', 'autoremove']);
+
+            if (
+                !$this->write(
+                    "/etc/apt/apt.conf.d/20auto-upgrades",
+                    $this->template('20auto-upgrades.conf')
+                )
+            ) {
+                return false;
+            }
+
+            if (!$this->enable($this->service)) {
+                return false;
+            }
+            
+            if (!$this->restart($this->service)) {
+                return false;
+            }
 
             return true;
         } catch (Exception $e) {

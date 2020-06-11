@@ -24,7 +24,8 @@ class CheckServices extends StageBase implements Stage
         'nginx' => 'Nginx is not running',
         'redis' => 'Redis is not running',
         'supervisor' => 'Supervisror is not running',
-        'php7.4-fpm' => 'PHP FPM is not running'
+        'php7.4-fpm' => 'PHP FPM is not running',
+        'unattended-upgrades' => 'Security updates not enabled'
     ];
 
     /**

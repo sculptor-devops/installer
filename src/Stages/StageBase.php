@@ -160,9 +160,13 @@ class StageBase
      * @param string $error
      * @return bool
      */
-    protected function write(string $file, string $content, string $error): bool
+    protected function write(string $file, string $content, string $error = null): bool
     {
         $written = File::put($file, $content);
+
+        if ($error == null) {
+            $error = "Error writing file {$file}";
+        }
 
         if (!$written) {
             $this->internal = $error;
@@ -229,19 +233,41 @@ class StageBase
 
     /**
      * @param string $name
+     * @param string $error
      * @return bool
      */
-    protected function enable(string $name): bool
+    protected function enable(string $name, string $error = null): bool
     {
-         return $this->daemons->enable($name);
+        if ($error == null) {
+            $error = "Error enabling service {$name}";
+        }
+
+        if (!$this->daemons->enable($name)) {
+            $this->internal = $error;
+
+            return false;
+        }
+
+        return true;
     }
 
     /**
      * @param string $name
+     * @param string $error
      * @return bool
      */
-    protected function restart(string $name): bool
+    protected function restart(string $name, string $error = null): bool
     {
-        return $this->daemons->restart($name);
+        if ($error == null) {
+            $error = "Error restarting service {$name}";
+        }
+        
+        if (!$this->daemons->restart($name)) {
+            $this->internal = $error;
+
+            return false;
+        }
+
+        return true;
     }
 }
