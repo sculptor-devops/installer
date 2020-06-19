@@ -30,16 +30,12 @@ class Agent extends StageBase implements Stage
         try {
             $password = $this->password(16);
 
-            $deploy = $this->template('agent-deploy.php');
-
-            $written = File::put("{$this->path}/deploy.php", $deploy);
-
-            if (!$written) {
-                $this->internal = 'Cannot write deploy script';
-
+            if (!$this->write("{$this->path}/deploy.php",
+                                $this->template('agent-deploy.php'),
+                                'Cannot write deploy script')) {
                 return false;
             }
-
+    
             File::deleteDirectory("{$this->path}/current");
 
             $this->command(['dep', 'deploy', '-q'], $this->path);
@@ -47,6 +43,7 @@ class Agent extends StageBase implements Stage
             $agent = $this->replaceTemplate('agent-env')
                 ->replace('{PASSWORD}', $password)
                 ->replace('{INSTALLED}', $env->get('stages'))
+                ->replace('{URL}', 'https://' . $env->get('ip') . ':' . $env->get('port'))
                 ->value();
 
             File::put('/var/www/html/shared/.env', $agent);
