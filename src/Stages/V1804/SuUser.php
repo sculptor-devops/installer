@@ -90,7 +90,7 @@ class SuUser extends StageBase implements Stage
         }
 
         if ($dbPassword == '') {
-            $this->command(['chown', "{$user}:{$user}", $home]);
+            $this->command(['chown', "-R", "{$user}:{$user}", $home]);
 
             return true;
         }
@@ -101,7 +101,7 @@ class SuUser extends StageBase implements Stage
             return false;
         }
 
-        $this->command(['chown', "{$user}:{$user}", $home]);
+        $this->command(['chown', "-R", "{$user}:{$user}", $home]);
 
         return true;
     }
@@ -114,11 +114,21 @@ class SuUser extends StageBase implements Stage
      */
     private function dbPassword(string $home, string $dbPassword): bool
     {
+        $passwordFile = "{$home}/.db_password";
+
         if ($dbPassword == '') {
             return true;
         }
 
-        return File::put("{$home}/.db_password", $dbPassword) == true;
+        if (!File::put($passwordFile, $dbPassword)) {
+            $this->internal = "Unable to write {$passwordFile}";
+
+            return false;
+        }
+
+        $this->command(['chmod', "600", $passwordFile]);
+
+        return  true;
     }
 
     /**

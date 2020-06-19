@@ -28,7 +28,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Installing base package..."
-apt-get -y install php$php-fpm php$php-common php$php-mbstring php$php-mysql php$php-xml php$php-zip php$php-bcmath php$php-imagick >> installer.log 2>&1
+apt-get -y install php$php-fpm php$php-common php$php-mbstring php$php-mysql php$php-xml php$php-zip php$php-bcmath php$php-imagick php$php-sqlite3 >> installer.log 2>&1
 if [ $? -ne 0 ]; then
     echo "Apt install php failed (see installer.log for details)"
     exit 1
@@ -54,7 +54,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Running installer..."
-./installer run --dump
+./installer run
 if [ $? -ne 0 ]; then
     echo "Installer run failed (see installer.log for details)"
     exit 1
