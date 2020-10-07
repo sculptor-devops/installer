@@ -57,6 +57,7 @@ task('deploy', [
     'deploy:clear_paths',
     'deploy:symlink',
     'deploy:unlock',
+    'deploy:owner',
     'cleanup',
     'success'
 ]);
