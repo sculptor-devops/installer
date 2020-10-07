@@ -72,8 +72,8 @@ class Agent extends StageBase implements Stage
             );
 
             File::put(
-                '/etc/supervisor/conf.d/evens.sculptor.conf',
-                $this->replaceTemplate('evens.sculptor.conf')
+                '/etc/supervisor/conf.d/events.sculptor.conf',
+                $this->replaceTemplate('events.sculptor.conf')
                             ->replace('{USER}', APP_PANEL_HTTP_PANEL)
                 ->value()
             );
