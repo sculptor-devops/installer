@@ -62,7 +62,7 @@ class Agent extends StageBase implements Stage
 
             File::put('/bin/sculptor', "php {$this->path}/current/artisan $@");
 
-            File::chmod('/bin/sculptor', 755);
+            File::chmod('/bin/sculptor', 0755);
 
             File::put(
                 '/etc/supervisor/conf.d/system.sculptor.conf',

@@ -20,7 +20,7 @@ class LetsSEncrypt extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
-            $this->command(['apt-get', '-y', 'install', 'certbot', 'python3-certbot-nginx']);
+	    $this->command(['snap', 'install', '--classic', 'certbot']);
 
             return true;
         } catch (Exception $e) {
