@@ -44,7 +44,8 @@ class Packages extends StageBase implements Stage
         'sudo',
         'ufw',
         'git',
-        'unattended-upgrades'
+	'unattended-upgrades',
+	'sysstat'
     ];
 
     /**
