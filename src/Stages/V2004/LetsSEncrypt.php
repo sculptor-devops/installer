@@ -22,6 +22,8 @@ class LetsSEncrypt extends StageBase implements Stage
         try {
 	    $this->command(['snap', 'install', '--classic', 'certbot']);
 
+	    $this->command(['ln -s', '/snap/bin/certbot', '/usr/bin/certbot']);
+
             return true;
         } catch (Exception $e) {
             Log::error($e->getMessage());
