@@ -1,2 +1,2 @@
-0 5 * * 7 sudo certbot renew --nginx --non-interactive --post-hook "systemctl restart nginx.service"
-
+# Sculptor scheduler do not modify
+* * * * * sculptor schedule:run >> /dev/null 2>&1
