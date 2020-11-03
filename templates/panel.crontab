@@ -1,2 +1,2 @@
-# Sculptor scheduler do not modify
-* * * * * sculptor schedule:run >> /dev/null 2>&1
+# www-data scheduler do not modify
+* * * * *  /usr/bin/php /var/www/html/current/artisan schedule:run >> /dev/null 2>&1
