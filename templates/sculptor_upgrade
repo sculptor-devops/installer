@@ -1,0 +1,4 @@
+cd {PATH} 
+sudo dep deploy
+sudo dep deploy:migrate
+sudo sculptor queue:restart
