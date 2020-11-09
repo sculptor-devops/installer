@@ -58,6 +58,8 @@ class Agent extends StageBase implements Stage
 
             $this->command(['dep', 'deploy:migrate'], $this->path);
 
+	    $this->command(['php', "{$this->path}/current/artisan", 'passport:keys'], $this->path);
+
             $this->command(['dep', 'deploy:owner'], $this->path);
 
             File::put('/bin/sculptor', "sudo -u www-data php {$this->path}/current/artisan $@");
