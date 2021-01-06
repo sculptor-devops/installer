@@ -13,25 +13,24 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Validate composer.json and composer.lock
-      run: composer validate
-
-    - name: Install dependencies
-      uses: php-actions/composer@v5
-      with:
-        php_version: 7.3
-        composer_version: 1
-
-    # - name: Install dependencies   
-    #  run: composer install --prefer-dist --no-progress --no-suggest
-
     - name: Get the tag
       id: get_tag
       run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
 
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '7.4'
+
+    - name: Validate composer.json and composer.lock
+      run: composer validate
+
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+        
     - name: Build
       run: php installer app:build --build-version=${{ steps.get_tag.outputs.VERSION }}
-    
+
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
@@ -64,5 +63,3 @@ jobs:
         asset_path: ./bin/setup.sh
         asset_name: setup.sh 
         asset_content_type: text/plain 
-
-
