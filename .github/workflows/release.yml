@@ -2,8 +2,8 @@ name: Release
 
 on:
   push:
-    #tags:
-     # - 'v*'
+    tags:
+      - 'v*'
 
 jobs:
   build:
@@ -31,5 +31,35 @@ jobs:
     - name: Build
       run: php installer app:build --build-version=${{ steps.get_tag.outputs.VERSION }}
 
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.get_tag.outputs.VERSION }}
+        release_name: Release ${{ steps.get_tag.outputs.VERSION }}
+        draft: false
+        prerelease: false    
 
+    - name: Upload Installer Asset
+      id: upload-release-asset-installer
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./builds/installer
+        asset_name: installer 
+        asset_content_type: application/octet-stream
 
+    - name: Upload Setup Asset
+      id: upload-release-asset-setup
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./bin/setup.sh
+        asset_name: setup.sh 
+        asset_content_type: text/plain 
