@@ -12,16 +12,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - uses: php-actions/composer@v5
-      with:
-        php_version: 7.4
-        composer_version: 1  
-        
+
     - name: Validate composer.json and composer.lock
       run: composer validate
 
-    - name: Install dependencies   
-      run: composer install --prefer-dist --no-progress --no-suggest
+    - name: Install dependencies
+      uses: php-actions/composer@v5
+      with:
+        php_version: 7.4
+        composer_version: 1
+
+    # - name: Install dependencies   
+    #  run: composer install --prefer-dist --no-progress --no-suggest
 
     - name: Get the tag
       id: get_tag
