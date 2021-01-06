@@ -19,21 +19,19 @@ jobs:
     - name: Install dependencies
       uses: php-actions/composer@v5
       with:
-        php_version: 7.3
+        php_version: 7.4
         composer_version: 1
-
-    # - name: Install dependencies   
-    #  run: composer install --prefer-dist --no-progress --no-suggest
 
     - name: Get the tag
       id: get_tag
       run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
 
-    - name: Debug
-      run: ./vendor/laravel-zero/framework/bin/box compile --working-dir=/home/runner/work/installer/installer/ --config=/home/runner/work/installer/installer/box.json --debug
-
     - name: Build
-      run: php installer app:build --build-version=${{ steps.get_tag.outputs.VERSION }}
+      uses: php-actions/composer@v5
+      with:
+        php_version: 7.4
+        composer_version: 1      
+        command: php installer app:build --build-version=${{ steps.get_tag.outputs.VERSION }}
     
     - name: Create Release
       id: create_release
