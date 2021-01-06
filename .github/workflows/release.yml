@@ -2,8 +2,8 @@ name: Release
 
 on:
   push:
-    tags:
-      - 'v*'
+    #tags:
+     # - 'v*'
 
 jobs:
   build:
@@ -28,6 +28,9 @@ jobs:
     - name: Get the tag
       id: get_tag
       run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+
+    - name: Debug
+      run: ./vendor/laravel-zero/framework/bin/box compile --working-dir=/home/runner/work/installer/installer/ --config=/home/runner/work/installer/installer/box.json --debug
 
     - name: Build
       run: php installer app:build --build-version=${{ steps.get_tag.outputs.VERSION }}
