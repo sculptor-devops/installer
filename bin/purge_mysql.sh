@@ -4,3 +4,5 @@ if [ $? -ne 0 ]; then
 else
    dpkg --purge mysql-client mysql-server mysql-common mysql-client-8.0 mysql-server-8.0 mysql-client-core-8.0 mysql-server-core-8.0
 fi
+
+rm -rf /var/lib/mysql

@@ -1,1 +1,8 @@
-sudo -u www-data php {PATH}/current/artisan $@
+#!/bin/bash
+id=$(id -u);
+
+if [ "$id" -ne 0 ]; then
+        sudo -u {USER} php {PATH}/current/artisan "$@"
+else
+        php {PATH}/current/artisan "$@"
+fi

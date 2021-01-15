@@ -2,6 +2,7 @@
 
 namespace Sculptor\Stages\V1804;
 
+use League\Flysystem\FileNotFoundException;
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
@@ -31,11 +32,11 @@ class Agent extends StageBase implements Stage
             $password = $this->password(16);
 
             if (!$this->write("{$this->path}/deploy.php",
-                                $this->template('agent-deploy.php'),
-                                'Cannot write deploy script')) {
+                $this->template('agent-deploy.php'),
+                'Cannot write deploy script')) {
                 return false;
             }
-    
+
             File::deleteDirectory("{$this->path}/current");
 
             $this->command(['dep', 'deploy', '-q'], $this->path);
@@ -58,26 +59,24 @@ class Agent extends StageBase implements Stage
 
             $this->command(['dep', 'deploy:migrate'], $this->path);
 
-	    $this->command(['php', "{$this->path}/current/artisan", 'passport:keys'], $this->path);
+            $this->command(['php', "{$this->path}/current/artisan", 'passport:keys'], $this->path);
 
             $this->command(['dep', 'deploy:owner'], $this->path);
 
-            File::put('/bin/sculptor', "sudo -u www-data php {$this->path}/current/artisan \"$@\"");
-
-            File::chmod('/bin/sculptor', 0755);
+            $this->bin();
 
             File::put(
                 '/etc/supervisor/conf.d/system.sculptor.conf',
                 $this->replaceTemplate('system.sculptor.conf')
-                            ->replace('{USER}', APP_PANEL_USER)
-                ->value()
+                    ->replace('{USER}', APP_PANEL_USER)
+                    ->value()
             );
 
             File::put(
                 '/etc/supervisor/conf.d/events.sculptor.conf',
                 $this->replaceTemplate('events.sculptor.conf')
-                            ->replace('{USER}', APP_PANEL_HTTP_PANEL)
-                ->value()
+                    ->replace('{USER}', APP_PANEL_HTTP_PANEL)
+                    ->value()
             );
 
             $this->restart('supervisor');
@@ -87,6 +86,30 @@ class Agent extends StageBase implements Stage
             Log::error($e->getMessage());
 
             return false;
+        }
+    }
+
+    /**
+     * @throws FileNotFoundException
+     * @throws Exception
+     */
+    private function bin(): void
+    {
+        foreach ([
+                     'sculptor_agent' => '/bin/sculptor',
+                     'sculptor_upgrade' => '/bin/sculptor-upgrade'
+                 ] as $source => $destination) {
+            if (!File::put(
+                $destination,
+                $this->replaceTemplate($source)
+                    ->replace('{USER}', APP_PANEL_HTTP_PANEL)
+                    ->replace('{PATH}', $this->path)
+                    ->value()
+            )) {
+                throw new Exception("Cannot write file {$destination}");
+            }
+
+            File::chmod($destination, 0755);
         }
     }
 
