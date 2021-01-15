@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Log;
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
-
 class LetsSEncrypt extends StageBase implements Stage
 {
     /**
@@ -25,7 +24,7 @@ class LetsSEncrypt extends StageBase implements Stage
         try {
             $this->command(['snap', 'install', '--classic', 'certbot']);
 
-	    $this->command(['ln', '-s', '/snap/bin/certbot', '/usr/bin/certbot']);
+            $this->command(['ln', '-s', '/snap/bin/certbot', '/usr/bin/certbot']);
 
             return true;
         } catch (Exception $e) {

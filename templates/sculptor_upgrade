@@ -1,4 +1,14 @@
-cd {PATH} 
-sudo dep deploy
-sudo dep deploy:migrate
-sudo sculptor queue:restart
+#!/bin/bash
+cd {PATH}
+id=$(id -u);
+
+if [ "$id" -ne 0 ]; then
+  echo "You need to be root"
+  exit 1
+fi
+
+dep deploy:unlock
+dep deploy
+dep deploy:migrate
+sculptor queue:restart
+sculptor system:daemons reload web
