@@ -1,9 +1,5 @@
 export DEBIAN_FRONTEND=noninteractive
-
-cat /etc/os-release|grep 'VERSION_ID="20.04"'
-if [ $? -ne 0 ]; then
-    add-apt-repository -y ppa:ondrej/php
-fi
+add-apt-repository -y ppa:ondrej/php
 
 apt-get update
 apt-get -y dist-upgrade
