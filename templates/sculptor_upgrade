@@ -12,3 +12,6 @@ dep deploy
 dep deploy:migrate
 sculptor queue:restart
 sculptor system:daemons reload web
+
+echo -n "Now version is "
+sculptor system:info --version-only
