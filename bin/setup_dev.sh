@@ -14,6 +14,7 @@ apt-get -y install php7.4-bcmath
 apt-get -y install php7.4-imagick
 apt-get -y install php7.4-sqlite3
 apt-get -y install php7.4-intl
+apt-get -y install php7.4-redis
 update-alternatives --set php /usr/bin/php7.4
 
 # install compose
