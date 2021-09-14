@@ -25,9 +25,9 @@ class NodeJs extends StageBase implements Stage
         try {
             $this->noninteractive();
 
-            $setup = '/tmp/setup_12.x';
+            $setup = '/tmp/setup_14.x';
 
-            $copy = copy('https://deb.nodesource.com/setup_12.x', $setup);
+            $copy = copy('https://deb.nodesource.com/setup_14.x', $setup);
 
             if (!$copy) {
                 $this->internal = "Unable to download setup";
@@ -35,7 +35,7 @@ class NodeJs extends StageBase implements Stage
                 return false;
             }
 
-            $this->command(['sh', '/tmp/setup_12.x']);
+            $this->command(['sh', '/tmp/setup_14.x']);
 
             $this->command(['apt-get', 'install', '-y', 'nodejs']);
 

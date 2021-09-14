@@ -6,7 +6,7 @@
         "config",
         "vendor",
         "src",
-        "templates"
+        "templates"        
     ],
     "files": [
         "composer.json"
@@ -16,6 +16,5 @@
     "compactors": [
         "KevinGH\\Box\\Compactor\\Php",
         "KevinGH\\Box\\Compactor\\Json"
-    ],
-    "main": "installer"
+    ]
 }

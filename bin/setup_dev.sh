@@ -4,18 +4,18 @@ add-apt-repository -y ppa:ondrej/php
 apt-get update
 apt-get -y dist-upgrade
 
-apt-get -y install php7.4-fpm
-apt-get -y install php7.4-common
-apt-get -y install php7.4-mbstring
-apt-get -y install php7.4-mysql
-apt-get -y install php7.4-xml
-apt-get -y install php7.4-zip
-apt-get -y install php7.4-bcmath
-apt-get -y install php7.4-imagick
-apt-get -y install php7.4-sqlite3
-apt-get -y install php7.4-intl
-apt-get -y install php7.4-redis
-update-alternatives --set php /usr/bin/php7.4
+apt-get -y install php8.0-fpm
+apt-get -y install php8.0-common
+apt-get -y install php8.0-mbstring
+apt-get -y install php8.0-mysql
+apt-get -y install php8.0-xml
+apt-get -y install php8.0-zip
+apt-get -y install php8.0-bcmath
+apt-get -y install php8.0-imagick
+apt-get -y install php8.0-sqlite3
+apt-get -y install php8.0-intl
+apt-get -y install php8.0-redis
+update-alternatives --set php /usr/bin/php8.0
 
 # install compose
 apt-get -y install composer

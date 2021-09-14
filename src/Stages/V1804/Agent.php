@@ -49,9 +49,7 @@ class Agent extends StageBase implements Stage
 
             File::put('/var/www/html/shared/.env', $agent);
 
-            $this->db->db(APP_PANEL_DB);
-
-            $this->db->user(APP_PANEL_DB_USER, $password, APP_PANEL_DB);
+            $this->database($env, $password);
 
             $this->noninteractive();
 
@@ -86,6 +84,19 @@ class Agent extends StageBase implements Stage
             Log::error($e->getMessage());
 
             return false;
+        }
+    }
+
+    private function database(Environment $env, string $password): void
+    {
+        $env->connection();
+
+        if (!$this->db->db(APP_PANEL_DB)) {
+            throw new Exception("Cannot create database " . APP_PANEL_DB . ": {$this->db->error()}");
+        }
+
+        if (!$this->db->user(APP_PANEL_DB_USER, $password, APP_PANEL_DB)) {
+            throw new Exception("Cannot create database user " . APP_PANEL_DB_USER . ": {$this->db->error()}");
         }
     }
 

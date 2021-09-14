@@ -87,19 +87,17 @@ class Environment
      */
     public function connection(): self
     {
-        config([
-            'database.connections.temp' => [
-                'driver' => 'mysql',
-                'host' => '127.0.0.1',
-                'database' => 'mysql',
-                'username' => 'root',
-                'password' => $this->get('db_password')
-            ]
-        ]);
+        Log::info('New DB connection db_server');
 
-        Log::info('New DB connection database.connections.temp');
+        config(['database.connections.db_server' => [
+            'driver' => 'mysql',
+            'host' => '127.0.0.1',
+            'database' => 'mysql',
+            'username' => 'root',
+            'password' => $this->get('db_password')
+        ]]);
 
-        DB::setDefaultConnection('temp');
+        DB::setDefaultConnection('db_server');
 
         return $this;
     }

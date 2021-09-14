@@ -43,7 +43,7 @@ return [
 
         'single' => [
             'driver' => 'single',
-            'path' => userHome('installer.log'), // getcwd() . '/installer.log',
+            'path' => userHome('installer.log'),
             'level' => 'debug',
         ],
 
@@ -95,5 +95,10 @@ return [
             'driver' => 'monolog',
             'handler' => NullHandler::class,
         ],
+
+        'emergency' => [
+            'path' => storage_path('logs/laravel.log'),
+        ],
     ],
+
 ];

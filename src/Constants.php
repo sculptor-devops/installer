@@ -14,7 +14,7 @@ define('APP_PANEL_DB', 'sculptor');
 define('APP_PANEL_DB_USER', 'sculptor');
 define('APP_PANEL_HTTP_PANEL', 'www-data');
 define('APP_PANEL_HTTP_USER', 'www');
-define('APP_PANEL_PHP_VERSION', '7.4');
+define('APP_PANEL_PHP_VERSION', '8.0');
 define('APP_PANEL_HTTP_PORT', '9443');
 define('APP_CONFIG_FILENAME', 'installer.yml');
 define('APP_CONFIG_CUSTOM_TEMPLATE', 'custom_templates');

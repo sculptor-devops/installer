@@ -96,7 +96,7 @@ class StageBase
             ->timeout($this->timeout);
 
         if ($this->noninteractive) {
-            $process = $process->env(['DEBIAN_FRONTEND' => 'noninteractive']);
+            $process = $process->env(['DEBIAN_FRONTEND' => 'noninteractive', 'COMPOSER_ALLOW_SUPERUSER' => 1]);
         }
 
         if ($path) {

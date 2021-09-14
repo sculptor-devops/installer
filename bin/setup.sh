@@ -1,4 +1,4 @@
-php="7.4"
+php="8.0"
 echo "Preparing Sculptor installation..."
 echo "Selected PHP$php" >> installer.log
 
@@ -50,7 +50,7 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Running installer..."
-./installer run
+export COMPOSER_ALLOW_SUPERUSER=1; ./installer run
 if [ $? -ne 0 ]; then
     echo "Installer run failed (see installer.log for details)"
     exit 1

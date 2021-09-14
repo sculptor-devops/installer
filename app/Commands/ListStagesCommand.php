@@ -31,7 +31,6 @@ class ListStagesCommand extends Command
      */
     public function handle(Stages $stages): int
     {
-
         $this->preamble();
 
         $stages = $stages->list();

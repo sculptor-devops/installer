@@ -32,10 +32,6 @@ class ConfigCommand extends Command
      */
     public function handle(Configuration $configuration, Templates $templates): int
     {
-
-
-
-
         $this->configuration($configuration);
 
         if ($this->option('templates')) {

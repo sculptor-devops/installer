@@ -3,9 +3,10 @@
 namespace Sculptor;
 
 use Sculptor\Contracts\Stage;
-use Sculptor\Foundation\Support\Version;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageFactory;
+use Sculptor\Foundation\Support\Version;
+
 use Illuminate\Support\Facades\Log;
 use LaravelZero\Framework\Commands\Command;
 
@@ -60,7 +61,6 @@ class Stages
 
         return true;
     }
-
 
     /**
      * @param Command|null $context
