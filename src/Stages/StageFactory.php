@@ -129,6 +129,8 @@ class StageFactory
 
         $this->env->add('port', $this->configuration->port());
 
+        $this->env->addArray('php_versions', $this->configuration->phpVersions());
+
         $this->env->add('stages', Str::lower(implode(',', $this->all())));
 
         if ($this->configuration->password()) {

@@ -15,6 +15,20 @@ use Illuminate\Support\Facades\Log;
  */
 class Php extends StageBase implements Stage
 {
+    private $modules = [
+        'fpm',
+        'common',
+        'mbstring',
+        'mysql',
+        'xml',
+        'zip',
+        'bcmath',
+        'imagick',
+        'redis',
+        'sqlite3',
+        'intl'
+    ];
+
     /**
      * @param Environment $env
      * @return bool
@@ -24,6 +38,8 @@ class Php extends StageBase implements Stage
         $php = $env->get('php');
 
         try {
+            $this->version($env->getArray('php_versions'));
+
             if (
                 !$this->write(
                     "/etc/php/{$php}/fpm/conf.d/sculptor.ini",
@@ -71,6 +87,24 @@ class Php extends StageBase implements Stage
 
         return true;
     }
+
+    private function version(array $versions): bool
+    {
+        foreach ($versions as $version) {
+            $modules = collect($this->modules)
+                ->map(function ($item) use($version) {
+                    return "php{$version}-{$item}";
+                });
+
+            $this->command(collect(['apt-get', '-y', 'install'])->concat($modules)->toArray());
+
+            $this->pool($version, APP_PANEL_HTTP_USER);
+        }
+
+        $this->command(['update-alternatives', '--set', 'php', '/usr/bin/php' . APP_PANEL_PHP_VERSION]);
+
+        return true;
+    }    
 
     /**
      * @return string

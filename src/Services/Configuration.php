@@ -84,6 +84,25 @@ class Configuration
         return $value;
     }
 
+     /**
+     * @param string $key
+     * @return array
+     */
+    private function getArray(string $key): array
+    {
+        if (!$this->has($key)) {
+            return [];
+        }
+
+        $value = $this->configuration[$key];
+
+        if (!is_array($value)) {
+            return [];
+        }
+
+        return $value;
+    }    
+
     /**
      * @param string $key
      * @return bool
@@ -153,4 +172,12 @@ class Configuration
     {
         return $this->getString('port', APP_PANEL_HTTP_PORT);
     }
+
+    /**
+     * @return array
+     */
+    public function phpVersions(): array
+    {
+        return $this->getArray('php_versions');
+    }    
 }

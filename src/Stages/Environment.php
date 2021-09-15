@@ -41,6 +41,15 @@ class Environment
 
     /**
      * @param string $key
+     * @param array $value
+     */
+    public function addArray(string $key, array $value): void
+    {
+        $this->env[$key] = $value;
+    }
+
+    /**
+     * @param string $key
      * @param string $default
      * @return string
      */
@@ -54,6 +63,26 @@ class Environment
 
         if ($value == null) {
             return '';
+        }
+
+        return $value;
+    }
+
+    /**
+     * @param string $key
+     * @param string $default
+     * @return array
+     */
+    public function getArray(string $key): array
+    {
+        if (!$this->has($key)) {
+            return [];
+        }
+
+        $value = $this->env[$key];
+
+        if ($value == null) {
+            return [];
         }
 
         return $value;
