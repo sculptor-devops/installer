@@ -40,33 +40,43 @@ class Php extends StageBase implements Stage
         try {
             $this->version($env->getArray('php_versions'));
 
-            if (
-                !$this->write(
-                    "/etc/php/{$php}/fpm/conf.d/sculptor.ini",
-                    $this->template('php.ini'),
-                    'Cannot write ini configuration'
-                )
-            ) {
-                return false;
-            }
+            $this->agent($php);
 
-            foreach ([ APP_PANEL_HTTP_USER, APP_PANEL_HTTP_PANEL ] as $user) {
-                if (!$this->pool($php, $user)) {
-                    return false;
-                }
-            }
-
-            if (!$this->restart("php{$php}-fpm")) {
-                $this->internal = 'Cannot restart service';
-
-                return false;
-            }
+            $this->command(['update-alternatives', '--set', 'php', '/usr/bin/php' . APP_PANEL_PHP_VERSION]);
 
             return true;
         } catch (Exception $e) {
+            $this->internal = $e->getMessage();
             Log::error($e->getMessage());
 
             return false;
+        }
+    }
+
+    /**
+     * @param string $php
+     * @return void
+     */
+    private function agent(string $php): void
+    {
+        if (
+            !$this->write(
+                "/etc/php/{$php}/fpm/conf.d/sculptor.ini",
+                $this->template('php.ini'),
+                'Cannot write ini configuration'
+            )
+        ) {
+            throw new Exception("Cannot write php{$php} for sculptor agent");
+        }
+
+        foreach ([ APP_PANEL_HTTP_USER, APP_PANEL_HTTP_PANEL ] as $user) {
+            if (!$this->pool($php, $user)) {
+                throw new Exception("Cannot write php{$php} for user {$user}");
+            }
+        }
+
+        if (!$this->restart("php{$php}-fpm")) {
+            throw new Exception("Cannot restart php{$php} service");
         }
     }
 
@@ -79,6 +89,7 @@ class Php extends StageBase implements Stage
     {
         $pool = $this->replaceTemplate('php-pool.conf')
         ->replace("{USER}", $user)
+        ->replace("{PHP}", $php)        
         ->value();
 
         if (!$this->write("/etc/php/{$php}/fpm/pool.d/{$user}.conf", $pool, "Cannot write pool configuration {$user}")) {
@@ -88,7 +99,11 @@ class Php extends StageBase implements Stage
         return true;
     }
 
-    private function version(array $versions): bool
+    /**
+     * @param array $versions
+     * @return void
+     */    
+    private function version(array $versions): void
     {
         foreach ($versions as $version) {
             $modules = collect($this->modules)
@@ -98,12 +113,14 @@ class Php extends StageBase implements Stage
 
             $this->command(collect(['apt-get', '-y', 'install'])->concat($modules)->toArray());
 
-            $this->pool($version, APP_PANEL_HTTP_USER);
+            if (!$this->pool($version, APP_PANEL_HTTP_USER)) {
+                throw new Exception("Cannot restart php{$version} service");
+            }
+
+            if (!$this->restart("php{$version}-fpm")) {
+                throw new Exception("Cannot restart php{$version} service");
+            }            
         }
-
-        $this->command(['update-alternatives', '--set', 'php', '/usr/bin/php' . APP_PANEL_PHP_VERSION]);
-
-        return true;
     }    
 
     /**

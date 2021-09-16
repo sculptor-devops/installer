@@ -24,7 +24,6 @@ class CheckServices extends StageBase implements Stage
         'nginx' => 'Nginx is not running',
         'redis' => 'Redis is not running',
         'supervisor' => 'Supervisror is not running',
-        'php' . APP_PANEL_PHP_VERSION . '-fpm' => 'PHP FPM is not running',
         'unattended-upgrades' => 'Security updates not enabled'
     ];
 
@@ -35,6 +34,12 @@ class CheckServices extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
+            $versions = $env->getArray('php_versions');
+
+            foreach($versions as $version) {
+                $this->services["php{$version}-fpm"] = "PHP FPM {$version} is not running";
+            }
+
             foreach ($this->services as $service => $error) {
                 if (!$this->active($service, $error)) {
                     return false;
