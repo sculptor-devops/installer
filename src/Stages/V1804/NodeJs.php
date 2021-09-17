@@ -25,31 +25,38 @@ class NodeJs extends StageBase implements Stage
         try {
             $this->noninteractive();
 
-            $setup = '/tmp/setup_14.x';
-
-            $copy = copy('https://deb.nodesource.com/setup_14.x', $setup);
-
-            if (!$copy) {
-                $this->internal = "Unable to download setup";
-
-                return false;
-            }
-
-            $this->command(['sh', '/tmp/setup_14.x']);
-
-            $this->command(['apt-get', 'install', '-y', 'nodejs']);
-
-            if (!unlink($setup)) {
-                $this->internal = "Unable to delete setup";
-
-                return false;
-            }
+            $this->install($env->get('node_version'));
 
             return true;
         } catch (Exception $e) {
+            $this->internal = $e->getMessage();
+
             Log::error($e->getMessage());
 
             return false;
+        }
+    }
+
+    /**
+     * @param string $version
+     * @return void
+     */
+    private function install(string $version): void
+    {
+        Log::info("     Installing node js version {$version}");
+
+        $setup = "/tmp/setup_{$version}.x";
+
+        if (!copy("https://deb.nodesource.com/setup_{$version}.x", $setup)) {
+            throw new Exception("Unable to download setup");
+        }
+
+        $this->command(['sh', $setup]);
+
+        $this->command(['apt-get', 'install', '-y', 'nodejs']);
+
+        if (!unlink($setup)) {
+            throw new Exception("Unable to delete setup");
         }
     }
 

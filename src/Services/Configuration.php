@@ -101,7 +101,26 @@ class Configuration
         }
 
         return $value;
-    }    
+    }
+
+     /**
+     * @param string $key
+     * @return int
+     */
+    private function getInt(string $key): int
+    {
+        if (!$this->has($key)) {
+            return 0;
+        }
+
+        $value = $this->configuration[$key];
+
+        if (!is_int($value)) {
+            return 0;
+        }
+
+        return $value;
+    }       
 
     /**
      * @param string $key
@@ -180,4 +199,13 @@ class Configuration
     {
         return $this->getArray('php_versions');
     }    
+
+    /**
+     * @return string
+     */
+    public function nodeVersion(): string
+    {
+        return $this->getInt('node_version');
+    } 
+   
 }

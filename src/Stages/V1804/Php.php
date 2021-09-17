@@ -70,6 +70,8 @@ class Php extends StageBase implements Stage
         }
 
         foreach ([ APP_PANEL_HTTP_USER, APP_PANEL_HTTP_PANEL ] as $user) {
+            Log::info("     Installing php fpm pool version {$php} for {$user}");
+
             if (!$this->pool($php, $user)) {
                 throw new Exception("Cannot write php{$php} for user {$user}");
             }
@@ -106,6 +108,8 @@ class Php extends StageBase implements Stage
     private function version(array $versions): void
     {
         foreach ($versions as $version) {
+            Log::info("     Installing php fpm pool version {$version} user " . APP_PANEL_HTTP_USER);
+
             $modules = collect($this->modules)
                 ->map(function ($item) use($version) {
                     return "php{$version}-{$item}";

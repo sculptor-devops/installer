@@ -1,3 +1,4 @@
+# Installation Stages
 stages:
   - Credentials # Mandatory do not remove
   - Packages
@@ -16,3 +17,15 @@ stages:
   - Crontab
   - Agent
   - CheckServices
+
+# PHP Versions
+php_versions:
+  # - 5.6
+  # - 7.0
+  # - 7.1
+  # - 7.2
+  # - 7.3
+  # - 8.0
+
+# NodeJs Version
+node_version: 14
