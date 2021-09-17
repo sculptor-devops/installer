@@ -42,6 +42,12 @@ class StageCommand extends Command
 
         $this->info("Run time taken {$this->elapsed()}");
 
+        if (!$this->deprecated($stages->deprecated())) {
+            $this->warn("Operation cancelled");
+
+            return 1;            
+        }
+
         if (!$done) {
             $this->error("Error: {$stages->error()}");
 

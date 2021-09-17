@@ -4,7 +4,6 @@ namespace Sculptor\Stages\V1804;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\File;
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
@@ -28,20 +27,20 @@ class Sshd extends StageBase implements Stage
                 !$this->write(
                     '/etc/ssh/sshd_config',
                     $this->template('sshd.conf'),
-                    'Cannot read configuration'
+                    'Cannot read sshd configuration'
                 )
             ) {
                 return false;
             }
 
             if (!$this->restart('sshd')) {
-                $this->internal = 'Cannot restart service';
-
-                return false;
+                throw new Exception('Cannot restart service');
             }
 
             return true;
         } catch (Exception $e) {
+            $this->internal = $e->getMessage();
+
             Log::error($e->getMessage());
 
             return false;

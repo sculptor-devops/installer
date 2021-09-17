@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\File;
 use Sculptor\Services\Logs;
-use Sculptor\Stages\Version;
+use Illuminate\Support\Str;
 
 trait CommonCommand
 {
@@ -34,5 +34,16 @@ trait CommonCommand
 
             $this->info($logs);
         }
+    }
+
+    private function deprecated(bool $deprecated): bool
+    {
+        if ($deprecated) {
+            $continue = Str::lower($this->ask('This version is deprecated and untested with newer version, continue? (yes/no)'));
+
+            return $continue == 'yes' || $continue == 'y';
+        }
+
+        return true;
     }
 }

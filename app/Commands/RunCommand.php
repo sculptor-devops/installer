@@ -33,6 +33,12 @@ class RunCommand extends Command
     {
         $this->preamble();
 
+        if (!$this->deprecated($stages->deprecated())) {
+            $this->warn("Operation cancelled");
+
+            return 1;
+        }
+
         if (!$stages->run($this)) {
 
             $this->error($stages->error());

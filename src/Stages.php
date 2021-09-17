@@ -62,6 +62,17 @@ class Stages
         return true;
     }
 
+    public function deprecated(): bool
+    {
+        if (!$this->version->compatible(APP_DEPRECATED_VERSION, APP_COMPATIBLE_ARCH)) {
+            $this->error = 'This version of the operating system is deprecated';
+
+            return false;
+        }
+
+        return true;
+    }
+
     /**
      * @param Command|null $context
      * @return bool

@@ -44,6 +44,7 @@ class ConfigCommand extends Command
     private function configuration(Configuration $configuration): void
     {
         $filename = getcwd() . '/' . APP_CONFIG_FILENAME;
+        
         if (File::exists($filename)) {
             $this->warn("Customized configuration already exists {$filename}");
 
