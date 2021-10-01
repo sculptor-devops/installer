@@ -31,3 +31,7 @@ php_versions:
 
 # NodeJs Version
 node_version: 14
+
+# Passwords
+# db_password: database_password
+# password: sudo_user_password
