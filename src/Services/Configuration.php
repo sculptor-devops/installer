@@ -175,7 +175,7 @@ class Configuration
      */
     public function dbPassword(): string
     {
-        $dbPassword = $this->getString('dbPassword');
+        $dbPassword = $this->getString('db_password');
 
         if ($dbPassword) {
             return $dbPassword;
