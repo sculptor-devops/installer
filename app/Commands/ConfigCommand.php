@@ -1,5 +1,6 @@
 <?php namespace App\Commands;
 
+use League\Flysystem\FileNotFoundException;
 use Sculptor\Services\Configuration;
 use Sculptor\Services\Templates;
 
@@ -28,7 +29,8 @@ class ConfigCommand extends Command
      *
      * @param Configuration $configuration
      * @param Templates $templates
-     * @return mixed
+     * @return int
+     * @throws FileNotFoundException
      */
     public function handle(Configuration $configuration, Templates $templates): int
     {
@@ -41,10 +43,13 @@ class ConfigCommand extends Command
         return 0;
     }
 
+    /**
+     * @throws FileNotFoundException
+     */
     private function configuration(Configuration $configuration): void
     {
         $filename = getcwd() . '/' . APP_CONFIG_FILENAME;
-        
+
         if (File::exists($filename)) {
             $this->warn("Customized configuration already exists {$filename}");
 
@@ -58,6 +63,9 @@ class ConfigCommand extends Command
         File::put($filename, $config);
     }
 
+    /**
+     * @throws FileNotFoundException
+     */
     private function templates(Templates $templates): void
     {
         $path = getcwd() . '/' . APP_CONFIG_CUSTOM_TEMPLATE;

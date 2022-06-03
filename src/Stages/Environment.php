@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Log;
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
-
 class Environment
 {
 
@@ -129,5 +128,22 @@ class Environment
         DB::setDefaultConnection('db_server');
 
         return $this;
+    }
+
+    public function toFlatArray(): array
+    {
+        $result = [];
+
+        foreach ($this->toArray() as $key => $value) {
+            if (is_array($value)) {
+                $result[] = "$key=" . join(', ', $value);
+
+                continue;
+            }
+
+            $result[] = "$key=$value";
+        }
+
+        return $result;
     }
 }

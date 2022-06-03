@@ -24,12 +24,15 @@ class Crontab extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
-            if (!$this->add('panel.crontab', '/etc/cron.d/sculptor.admin', APP_PANEL_USER)) {
-                return false;
-            }
+            foreach ([
+                         // panel.crontab' => ['path' => '/etc/cron.d/sculptor.admin', 'user' => APP_PANEL_USER],
+                         // 'www-data.crontab' => ['path' => '/etc/cron.d/sculptor.www', 'user' => APP_PANEL_HTTP_PANEL],
+                         'cli.crontab' => ['path' => '/etc/cron.d/sculptor.cli', 'user' => 'root'] /* whoami()*/
+                     ] as $name => $value) {
 
-            if (!$this->add('www-data.crontab', '/etc/cron.d/sculptor.www', APP_PANEL_HTTP_PANEL)) {
-                return false;
+                if (!$this->add($name, $value['path'], $value['user'])) {
+                    return false;
+                }
             }
 
             return true;

@@ -31,6 +31,6 @@ class ConfigurationTest extends TestCase
 
         $this->assertEquals('dbPassword', $configuration->dbPassword());
 
-        $this->assertEquals('password', $configuration->password());        
+        $this->assertEquals('password', $configuration->password());
     }
 }

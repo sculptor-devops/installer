@@ -6,7 +6,6 @@ use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageFactory;
 use Sculptor\Foundation\Support\Version;
-
 use Illuminate\Support\Facades\Log;
 use LaravelZero\Framework\Commands\Command;
 
@@ -82,6 +81,10 @@ class Stages
         Log::info("Running on Os version {$this->version->name()}");
 
         Log::info("Detected version {$this->version->version()}, architecture {$this->version->arch()} (bits {$this->version->bits()})");
+
+        Log::info("Selected stages: " . join(', ', $this->stages->all()));
+
+        Log::info("Environment: " . join(', ', $this->stages->env()->toFlatArray()));
 
         if (!$this->compatible()) {
             return false;

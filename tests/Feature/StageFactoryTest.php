@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use League\Flysystem\FileNotFoundException;
 use Sculptor\Services\Configuration;
 use Sculptor\Stages\StageFactory;
+use Sculptor\Stages\StageResolver;
 use Sculptor\Stages\V1804\TestStage;
 use Tests\Stubs\Templates;
 use Tests\Stubs\Version;
@@ -32,7 +33,9 @@ class StageFactoryTest extends TestCase
 
         $configuration = new Configuration(Templates::make());
 
-        $factory = new StageFactory($configuration);
+        $resolver = new StageResolver();
+
+        $factory = new StageFactory($configuration, $resolver);
 
         $factory->version($version->version());
 
@@ -61,7 +64,10 @@ class StageFactoryTest extends TestCase
             "port" => "1234",
             "stages" => "credentials,teststage",
             "password" => "password",
-            "db_password" => "dbPassword"
+            "db_password" => "dbPassword",
+            'php_versions' => [ '8.0' ],
+            'php_modules' => [],
+            'node_version' => '14'
           ]
         , $factory->env()->toArray());
     }

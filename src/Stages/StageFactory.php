@@ -2,6 +2,7 @@
 
 namespace Sculptor\Stages;
 
+use Exception;
 use Sculptor\Contracts\Stage;
 use Sculptor\Services\Configuration;
 use Illuminate\Support\Str;
@@ -11,7 +12,6 @@ use Illuminate\Support\Str;
  *  For the full copyright and license information, please view the LICENSE
  *  file that was distributed with this source code.
  */
-
 class StageFactory
 {
     /**
@@ -20,21 +20,24 @@ class StageFactory
     private $env;
 
     /**
-     * @var string
-     */
-    private $version;
-    /**
      * @var Configuration
      */
     private $configuration;
+    /**
+     * @var StageResolver
+     */
+    private $resolver;
 
     /**
      * StageFactory constructor.
      * @param Configuration $configuration
+     * @param StageResolver $resolver
      */
-    public function __construct(Configuration $configuration)
+    public function __construct(Configuration $configuration, StageResolver $resolver)
     {
         $this->configuration = $configuration;
+
+        $this->resolver = $resolver;
     }
 
     /**
@@ -43,24 +46,19 @@ class StageFactory
      */
     public function version(?string $version): void
     {
-        if ($version) {
-            $this->version = 'V' . str_replace('.', '', $version);
-
-            return;
-        }
-
-        $this->version = 'UNKNOWN';
+        $this->resolver->version($version);
     }
 
     /**
      * @return array<string>
+     * @throws Exception
      */
     public function list(): array
     {
         $resolved = [];
 
         foreach ($this->all() as $stage) {
-            $resolved[] = $this->resolve($stage);
+            $resolved[] = $this->resolver->resolve($stage);
         }
 
         return $resolved;
@@ -75,21 +73,13 @@ class StageFactory
     }
 
     /**
-     * @param string $stage
-     * @return string
-     */
-    private function resolve(string $stage): string
-    {
-        return "Sculptor\Stages\\{$this->version}\\{$stage}";
-    }
-
-    /**
      * @param string $class
      * @return Stage
+     * @throws Exception
      */
     public function make(string $class): Stage
     {
-        $resolved = $this->resolve($class);
+        $resolved = $this->resolver->resolve($class);
 
         return resolve($resolved);
     }
@@ -97,6 +87,7 @@ class StageFactory
     /**
      * @param string $name
      * @return Stage|null
+     * @throws Exception
      */
     public function find(string $name): ?Stage
     {
@@ -130,6 +121,8 @@ class StageFactory
         $this->env->add('port', $this->configuration->port());
 
         $this->env->addArray('php_versions', $this->configuration->phpVersions());
+
+        $this->env->addArray('php_modules', $this->configuration->phpModules());
 
         $this->env->add('node_version', $this->configuration->nodeVersion());
 

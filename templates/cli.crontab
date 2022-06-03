@@ -1,0 +1,2 @@
+# Sculptor Client scheduler do not modify
+# * * * * *  /bin/sculptor schedule:run >> /dev/null 2>&1

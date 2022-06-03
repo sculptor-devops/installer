@@ -15,22 +15,39 @@ stages:
   - Deployer
   - Firewall
   - Crontab
-  - Agent
+  - Cli
   - CheckServices
 
-# PHP Versions
-php_versions:
-  # - 5.6
-  # - 7.0
-  # - 7.1
-  # - 7.2
-  # - 7.3
-  # - 7.4
-  # - 8.0
-  # - 8.1  
+# PHP Versions and modules
+php:
+  modules:
+    - fpm
+    - common
+    - mbstring
+    - mysql
+    - pgsql
+    - xml
+    - zip
+    - bcmath
+    - imagick
+    - redis
+    - sqlite3
+    - intl
+    - curl
+
+  versions:
+    # - '5.6' NOT RECOMMENDED, PIPELINE AND COMPOSER NOT COMPATIBLE
+    # - '7.0' NOT RECOMMENDED, PIPELINE AND COMPOSER NOT COMPATIBLE
+    # - '7.1' NOT RECOMMENDED, PIPELINE AND COMPOSER NOT COMPATIBLE
+    # - '7.2'
+    # - '7.3'
+    # - '7.4'
+    - '8.0'
+    - '8.1'
 
 # NodeJs Version
-node_version: 14
+node:
+  version: 14
 
 # Passwords
 # db_password: database_password

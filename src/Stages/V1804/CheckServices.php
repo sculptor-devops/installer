@@ -36,7 +36,7 @@ class CheckServices extends StageBase implements Stage
         try {
             $versions = $env->getArray('php_versions');
 
-            foreach($versions as $version) {
+            foreach ($versions as $version) {
                 $this->services["php{$version}-fpm"] = "PHP FPM {$version} is not running";
             }
 

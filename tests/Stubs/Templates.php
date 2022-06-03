@@ -23,7 +23,7 @@ class Templates
 
         $templates->shouldReceive('read')
             ->with(APP_CONFIG_FILENAME)
-            ->andReturn(file_get_contents('tests/Fixtures/' . APP_CONFIG_FILENAME));
+            ->andReturn(file_get_contents(base_path('tests/Fixtures/' . APP_CONFIG_FILENAME)));
 
         return $templates;
     }

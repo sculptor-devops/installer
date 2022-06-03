@@ -24,7 +24,7 @@ class SuUser extends StageBase implements Stage
     {
         try {
             $password = $env->get('password');
-            
+
             $dbPassword = $env->get('db_password');
 
             if (!sudo()) {

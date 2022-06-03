@@ -3,6 +3,7 @@
 namespace Sculptor\Stages\V1804;
 
 use Exception;
+use League\Flysystem\FileNotFoundException;
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
@@ -15,20 +16,6 @@ use Illuminate\Support\Facades\Log;
  */
 class Php extends StageBase implements Stage
 {
-    private $modules = [
-        'fpm',
-        'common',
-        'mbstring',
-        'mysql',
-        'xml',
-        'zip',
-        'bcmath',
-        'imagick',
-        'redis',
-        'sqlite3',
-        'intl'
-    ];
-
     /**
      * @param Environment $env
      * @return bool
@@ -38,7 +25,11 @@ class Php extends StageBase implements Stage
         $php = $env->get('php');
 
         try {
-            $this->version($env->getArray('php_versions'));
+            $versions = $env->getArray('php_versions');
+
+            $modules = $env->getArray('php_modules');
+
+            $this->version($versions, $modules);
 
             $this->agent($php);
 
@@ -56,6 +47,8 @@ class Php extends StageBase implements Stage
     /**
      * @param string $php
      * @return void
+     * @throws FileNotFoundException
+     * @throws Exception
      */
     private function agent(string $php): void
     {
@@ -69,7 +62,7 @@ class Php extends StageBase implements Stage
             throw new Exception("Cannot write php{$php} for sculptor agent");
         }
 
-        foreach ([ APP_PANEL_HTTP_USER, APP_PANEL_HTTP_PANEL ] as $user) {
+        foreach ([APP_PANEL_HTTP_USER, APP_PANEL_HTTP_PANEL] as $user) {
             Log::info("     Installing php fpm pool version {$php} for {$user}");
 
             if (!$this->pool($php, $user)) {
@@ -86,13 +79,14 @@ class Php extends StageBase implements Stage
      * @param string $php
      * @param string $user
      * @return bool
+     * @throws FileNotFoundException
      */
     private function pool(string $php, string $user): bool
     {
         $pool = $this->replaceTemplate('php-pool.conf')
-        ->replace("{USER}", $user)
-        ->replace("{PHP}", $php)        
-        ->value();
+            ->replace("{USER}", $user)
+            ->replace("{PHP}", $php)
+            ->value();
 
         if (!$this->write("/etc/php/{$php}/fpm/pool.d/{$user}.conf", $pool, "Cannot write pool configuration {$user}")) {
             return false;
@@ -101,21 +95,30 @@ class Php extends StageBase implements Stage
         return true;
     }
 
+    private function modules(array $modules, string $version): array
+    {
+        return collect($modules)
+            ->map(function ($item) use ($version) {
+                return "php{$version}-{$item}";
+            })
+            ->toArray();
+    }
+
     /**
      * @param array $versions
+     * @param array $modules
      * @return void
-     */    
-    private function version(array $versions): void
+     * @throws FileNotFoundException
+     * @throws Exception
+     */
+    private function version(array $versions, array $modules): void
     {
         foreach ($versions as $version) {
             Log::info("     Installing php fpm pool version {$version} user " . APP_PANEL_HTTP_USER);
 
-            $modules = collect($this->modules)
-                ->map(function ($item) use($version) {
-                    return "php{$version}-{$item}";
-                });
+            $apt = $this->modules($modules, $version);
 
-            $this->command(collect(['apt-get', '-y', 'install'])->concat($modules)->toArray());
+            $this->command(collect(['apt-get', '-y', 'install'])->concat($apt)->toArray());
 
             if (!$this->pool($version, APP_PANEL_HTTP_USER)) {
                 throw new Exception("Cannot restart php{$version} service");
@@ -123,15 +126,15 @@ class Php extends StageBase implements Stage
 
             if (!$this->restart("php{$version}-fpm")) {
                 throw new Exception("Cannot restart php{$version} service");
-            }            
+            }
         }
-    }    
+    }
 
     /**
      * @return string
      */
     public function name(): string
     {
-        return 'Php Cgi';
+        return 'Php';
     }
 }

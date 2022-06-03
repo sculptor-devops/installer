@@ -3,6 +3,17 @@
 use App\Commands\ListStagesCommand;
 use App\Commands\RunCommand;
 use App\Commands\StageCommand;
+use Illuminate\Database\Console\Migrations\FreshCommand;
+use Illuminate\Database\Console\Migrations\InstallCommand;
+use Illuminate\Database\Console\Migrations\MigrateCommand;
+use Illuminate\Database\Console\Migrations\MigrateMakeCommand;
+use Illuminate\Database\Console\Migrations\RefreshCommand;
+use Illuminate\Database\Console\Migrations\ResetCommand;
+use Illuminate\Database\Console\Migrations\RollbackCommand;
+use Illuminate\Database\Console\Migrations\StatusCommand;
+use Illuminate\Database\Console\Seeds\SeedCommand;
+use Illuminate\Database\Console\WipeCommand;
+use LaravelZero\Framework\Commands\StubPublishCommand;
 
 return [
 
@@ -80,7 +91,16 @@ return [
     */
 
     'remove' => [
-        // ..
+        SeedCommand::class,
+        MigrateCommand::class,
+        InstallCommand::class,
+        FreshCommand::class,
+        RefreshCommand::class,
+        StubPublishCommand::class,
+        WipeCommand::class,
+        MigrateMakeCommand::class,
+        ResetCommand::class,
+        RollbackCommand::class,
+        StatusCommand::class
     ],
-
 ];

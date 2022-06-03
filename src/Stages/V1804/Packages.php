@@ -75,7 +75,7 @@ class Packages extends StageBase implements Stage
             if (!$this->enable($this->service)) {
                 return false;
             }
-            
+
             if (!$this->restart($this->service)) {
                 return false;
             }

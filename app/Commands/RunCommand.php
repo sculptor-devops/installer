@@ -1,5 +1,6 @@
 <?php namespace App\Commands;
 
+use Sculptor\Services\Configuration;
 use Sculptor\Stages;
 
 use Illuminate\Console\Scheduling\Schedule;
@@ -27,7 +28,7 @@ class RunCommand extends Command
      * Execute the console command.
      *
      * @param Stages $stages
-     * @return mixed
+     * @return int
      */
     public function handle(Stages $stages): int
     {

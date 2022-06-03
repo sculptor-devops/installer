@@ -31,9 +31,13 @@ class Agent extends StageBase implements Stage
         try {
             $password = $this->password(16);
 
-            if (!$this->write("{$this->path}/deploy.php",
-                $this->template('agent-deploy.php'),
-                'Cannot write deploy script')) {
+            if (
+                !$this->write(
+                    "{$this->path}/deploy.php",
+                    $this->template('agent-deploy.php'),
+                    'Cannot write deploy script'
+                )
+            ) {
                 return false;
             }
 
@@ -106,17 +110,21 @@ class Agent extends StageBase implements Stage
      */
     private function bin(): void
     {
-        foreach ([
+        foreach (
+            [
                      'sculptor_agent' => '/bin/sculptor',
                      'sculptor_upgrade' => '/bin/sculptor-upgrade'
-                 ] as $source => $destination) {
-            if (!File::put(
-                $destination,
-                $this->replaceTemplate($source)
+                 ] as $source => $destination
+        ) {
+            if (
+                !File::put(
+                    $destination,
+                    $this->replaceTemplate($source)
                     ->replace('{USER}', APP_PANEL_HTTP_PANEL)
                     ->replace('{PATH}', $this->path)
                     ->value()
-            )) {
+                )
+            ) {
                 throw new Exception("Cannot write file {$destination}");
             }
 

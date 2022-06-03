@@ -6,6 +6,7 @@ use League\Flysystem\FileNotFoundException;
 use Sculptor\Services\Configuration;
 use Sculptor\Stages;
 use Sculptor\Stages\StageFactory;
+use Sculptor\Stages\StageResolver;
 use Tests\Stubs\Templates;
 use Tests\Stubs\Version;
 use Tests\TestCase;
@@ -25,7 +26,9 @@ class StagesTest extends TestCase
 
         $configuration = new Configuration(Templates::make());
 
-        $factory = new StageFactory($configuration);
+        $resolver = new StageResolver();
+
+        $factory = new StageFactory($configuration, $resolver);
 
         $this->stages = new Stages($factory, $version);
     }

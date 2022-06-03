@@ -2,6 +2,7 @@
 
 namespace Sculptor\Services;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 use League\Flysystem\FileNotFoundException;
@@ -84,7 +85,7 @@ class Configuration
         return $value;
     }
 
-     /**
+    /**
      * @param string $key
      * @return array
      */
@@ -103,7 +104,7 @@ class Configuration
         return $value;
     }
 
-     /**
+    /**
      * @param string $key
      * @return int
      */
@@ -120,7 +121,7 @@ class Configuration
         }
 
         return $value;
-    }       
+    }
 
     /**
      * @param string $key
@@ -197,15 +198,23 @@ class Configuration
      */
     public function phpVersions(): array
     {
-        return $this->getArray('php_versions');
-    }    
+        return Arr::get($this->configuration, 'php.versions') ?? [ APP_PANEL_PHP_VERSION ];
+    }
+
+    /**
+     * @return array
+     */
+    public function phpModules(): array
+    {
+        return Arr::get($this->configuration, 'php.modules') ?? [ ];
+    }
 
     /**
      * @return string
      */
     public function nodeVersion(): string
     {
-        return $this->getInt('node_version');
-    } 
-   
+        return Arr::get($this->configuration, 'node.version') ?? '14';
+    }
+
 }

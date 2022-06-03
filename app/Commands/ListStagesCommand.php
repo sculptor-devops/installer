@@ -27,7 +27,7 @@ class ListStagesCommand extends Command
      * Execute the console command.
      *
      * @param Stages $stages
-     * @return mixed
+     * @return int
      */
     public function handle(Stages $stages): int
     {

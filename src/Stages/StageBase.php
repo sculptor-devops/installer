@@ -261,7 +261,7 @@ class StageBase
         if ($error == null) {
             $error = "Error restarting service {$name}";
         }
-        
+
         if (!$this->daemons->restart($name)) {
             $this->internal = $error;
 

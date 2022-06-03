@@ -27,7 +27,7 @@ class StageCommand extends Command
      * Execute the console command.
      *
      * @param Stages $stages
-     * @return mixed
+     * @return int
      */
     public function handle(Stages $stages): int
     {
@@ -36,7 +36,6 @@ class StageCommand extends Command
         $step = $this->option('step');
 
         $done = $this->task("Running {$step}", function() use($stages, $step) {
-
             return $stages->stage($step);
         });
 
@@ -45,7 +44,7 @@ class StageCommand extends Command
         if (!$this->deprecated($stages->deprecated())) {
             $this->warn("Operation cancelled");
 
-            return 1;            
+            return 1;
         }
 
         if (!$done) {
@@ -62,7 +61,7 @@ class StageCommand extends Command
     /**
      * Define the command's schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule $schedule
+     * @param Schedule $schedule
      * @return void
      */
     public function schedule(Schedule $schedule): void

@@ -25,6 +25,7 @@ class Composer extends StageBase implements Stage
         try {
             $setup = '/tmp/composer-setup.php';
 
+            // https://getcomposer.org/download/latest-2.2.x/composer.phar
             $copy = copy('https://getcomposer.org/installer', $setup);
 
             if (!$copy) {

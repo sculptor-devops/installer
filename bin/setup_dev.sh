@@ -15,6 +15,7 @@ apt-get -y install php8.0-imagick
 apt-get -y install php8.0-sqlite3
 apt-get -y install php8.0-intl
 apt-get -y install php8.0-redis
+apt-get -y install php8.0-curl
 update-alternatives --set php /usr/bin/php8.0
 
 # install compose
