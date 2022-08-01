@@ -14,7 +14,7 @@ class StageCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'run-stage {--step=}';
+    protected $signature = 'stage {--step=}';
 
     /**
      * The description of the command.

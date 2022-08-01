@@ -40,6 +40,7 @@ class NodeJs extends StageBase implements Stage
     /**
      * @param string $version
      * @return void
+     * @throws Exception
      */
     private function install(string $version): void
     {

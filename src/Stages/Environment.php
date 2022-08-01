@@ -20,9 +20,9 @@ class Environment
 
     /**
      * Environment constructor.
-     * @param array<string,string>|null $env
+     * @param array<string,string> $env
      */
-    public function __construct(array $env = null)
+    public function __construct(array $env)
     {
         if ($env) {
             $this->env = $env;
@@ -69,7 +69,6 @@ class Environment
 
     /**
      * @param string $key
-     * @param string $default
      * @return array
      */
     public function getArray(string $key): array

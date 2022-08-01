@@ -19,7 +19,7 @@ class Firewall extends StageBase implements Stage
     /**
      * @var array<string>
      */
-    private $ports = [ 'ssh', 'http', 'https', 'Nginx Full' ];
+    private array $ports = [ 'ssh', 'http', 'https', 'Nginx Full' ];
 
     /**
      * @param Environment $env

@@ -19,7 +19,7 @@ class CheckServices extends StageBase implements Stage
     /**
      * @var array<string, string>
      */
-    private $services = [
+    private array $services = [
         'mysql' => 'MySqlManager is not running',
         'nginx' => 'Nginx is not running',
         'redis' => 'Redis is not running',

@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Log;
  */
 class Crontab extends StageBase implements Stage
 {
+    private array $crontabs = [
+        'cli.crontab' => ['path' => '/etc/cron.d/sculptor.cli', 'user' => 'root'] /* whoami()*/
+    ];
+
     /**
      * @param Environment $env
      * @return bool
@@ -24,13 +28,8 @@ class Crontab extends StageBase implements Stage
     public function run(Environment $env): bool
     {
         try {
-            foreach ([
-                         // panel.crontab' => ['path' => '/etc/cron.d/sculptor.admin', 'user' => APP_PANEL_USER],
-                         // 'www-data.crontab' => ['path' => '/etc/cron.d/sculptor.www', 'user' => APP_PANEL_HTTP_PANEL],
-                         'cli.crontab' => ['path' => '/etc/cron.d/sculptor.cli', 'user' => 'root'] /* whoami()*/
-                     ] as $name => $value) {
-
-                if (!$this->add($name, $value['path'], $value['user'])) {
+            foreach ($this->crontabs as $name => $crontab) {
+                if (!$this->add("$name", $crontab['path'], $crontab['user'])) {
                     return false;
                 }
             }

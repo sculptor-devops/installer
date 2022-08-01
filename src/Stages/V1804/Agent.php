@@ -20,7 +20,7 @@ class Agent extends StageBase implements Stage
     /**
      * @var string
      */
-    private $path = '/var/www/html';
+    private string $path = '/var/www/html';
 
     /**
      * @param Environment $env
@@ -91,6 +91,9 @@ class Agent extends StageBase implements Stage
         }
     }
 
+    /**
+     * @throws Exception
+     */
     private function database(Environment $env, string $password): void
     {
         $env->connection();

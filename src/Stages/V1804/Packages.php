@@ -19,12 +19,12 @@ class Packages extends StageBase implements Stage
     /**
      * @var string
      */
-    private $service = 'unattended-upgrades';
+    private string $service = 'unattended-upgrades';
 
     /**
      * @var string[]
      */
-    private $packages = [
+    private array $packages = [
         'apt-get',
         '-y',
         'install',

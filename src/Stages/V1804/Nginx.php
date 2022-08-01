@@ -5,6 +5,7 @@ namespace Sculptor\Stages\V1804;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
+use League\Flysystem\FileNotFoundException;
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
@@ -21,12 +22,12 @@ class Nginx extends StageBase implements Stage
      * @var string
      */
 
-    private $path = '/var/www/html/current/public';
+    private string $path = '/var/www/html/current/public';
 
     /**
      * @var string
      */
-    private $default = '/var/www/default';
+    private string $default = '/var/www/default';
 
     /**
      * @param Environment $env
@@ -107,7 +108,10 @@ class Nginx extends StageBase implements Stage
         ]);
     }
 
-    private function roots(): bool
+    /**
+     * @throws FileNotFoundException
+     */
+    private function roots(): void
     {
         $index = $this->template('index.html');
 
@@ -121,15 +125,13 @@ class Nginx extends StageBase implements Stage
             if (!$created) {
                 $this->internal = "Cannot create www root {$www}";
 
-                return false;
+                return;
             }
 
             if (!$this->write("{$www}/index.html", $index, "Cannot create index file in {$www}")) {
-                return false;
+                return;
             }
         }
-
-        return true;
     }
 
     /**

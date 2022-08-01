@@ -36,9 +36,7 @@ php:
     - curl
 
   versions:
-    # - '5.6' NOT RECOMMENDED, PIPELINE AND COMPOSER NOT COMPATIBLE
-    # - '7.0' NOT RECOMMENDED, PIPELINE AND COMPOSER NOT COMPATIBLE
-    # - '7.1' NOT RECOMMENDED, PIPELINE AND COMPOSER NOT COMPATIBLE
+    # - '5.6', '7.0', '7.1' NOT COMPATIBLE
     # - '7.2'
     # - '7.3'
     # - '7.4'
@@ -47,7 +45,7 @@ php:
 
 # NodeJs Version
 node:
-  version: 14
+  version: 16
 
 # Passwords
 # db_password: database_password

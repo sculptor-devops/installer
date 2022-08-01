@@ -4,7 +4,6 @@ namespace Sculptor\Stages\V2004;
 
 use Exception;
 use Illuminate\Support\Facades\Log;
-use Sculptor\Stages\Environment;
 use Sculptor\Stages\V1804\MySql as MySqlBase;
 
 /**

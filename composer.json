@@ -22,12 +22,13 @@
         }
     ],
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^8.0",
         "ext-posix": "*",
         "illuminate/database": "^8.40",
         "illuminate/log": "^8.0",
         "laminas/laminas-text": "^2.8",
         "laravel-zero/framework": "^8.8",
+        "nunomaduro/termwind": "^1.14",
         "sculptor-devops/foundation": "^0.3.1",
         "symfony/yaml": "^5.3"
     },

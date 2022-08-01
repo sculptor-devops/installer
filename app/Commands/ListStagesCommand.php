@@ -14,7 +14,7 @@ class ListStagesCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'list-stages';
+    protected $signature = 'stages';
 
     /**
      * The description of the command.

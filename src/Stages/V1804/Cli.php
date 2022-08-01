@@ -31,7 +31,7 @@ class Cli extends StageBase implements Stage
             return false;
         }
 
-        $this->command(['sculptor', 'sculptor:init']);
+        $this->command([$cli, 'sculptor:init']);
 
         return true;
     }
