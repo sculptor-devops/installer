@@ -6,7 +6,6 @@ use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageBase;
 use Sculptor\Contracts\Stage;
 use Exception;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 
 /**
@@ -53,8 +52,6 @@ class Firewall extends StageBase implements Stage
 
                 return false;
             }
-
-            // $this->firewall->allow(APP_PANEL_HTTP_PORT, true);
 
             foreach ($this->ports as $port) {
                 if (!$this->allow($port)) {

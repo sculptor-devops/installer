@@ -34,6 +34,12 @@ interface Stage
     public function run(Environment $env): bool;
 
     /**
+     * @param Environment $env
+     * @return Stage
+     */
+    public function env(Environment $env): Stage;
+
+    /**
      * @return string
      */
     public function name(): string;

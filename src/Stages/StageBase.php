@@ -3,6 +3,7 @@
 namespace Sculptor\Stages;
 
 use Illuminate\Support\Facades\Log;
+use Sculptor\Contracts\Stage;
 use Sculptor\Exceptions\CommandErrorException;
 use Sculptor\Foundation\Contracts\Response;
 use Sculptor\Foundation\Contracts\Runner;
@@ -27,41 +28,46 @@ class StageBase
     /**
      * @var bool
      */
-    private $noninteractive = false;
+    private bool $noninteractive = false;
     /**
      * @var string
      */
-    protected $internal = 'Unexpected error see logs for details';
+    protected string $internal = 'Unexpected error see logs for details';
 
     /**
      * @var int
      */
-    protected $timeout = 3600;
+    protected int $timeout = 3600;
 
     /**
      * @var Response
      */
-    protected $error;
+    protected Response $error;
     /**
      * @var Runner
      */
-    protected $runner;
+    protected Runner $runner;
     /**
      * @var Daemons
      */
-    protected $daemons;
+    protected Daemons $daemons;
     /**
      * @var Templates
      */
-    private $templates;
+    private Templates $templates;
     /**
      * @var Database
      */
-    protected $db;
+    protected Database $db;
     /**
      * @var Firewall
      */
-    protected $firewall;
+    protected Firewall $firewall;
+
+    /**
+     * @var Environment
+     */
+    private Environment $env;
 
     /**
      * StageBase constructor.
@@ -157,7 +163,7 @@ class StageBase
     /**
      * @param string $file
      * @param string $content
-     * @param string $error
+     * @param string|null $error
      * @return bool
      */
     protected function write(string $file, string $content, string $error = null): bool
@@ -179,12 +185,9 @@ class StageBase
 
     /**
      * @return string
-     * @throws ReflectionException
      */
     public function className(): string
     {
-        // return ((new ReflectionClass($this))->getName());
-
         return ((new ReflectionClass($this))->getShortName());
     }
 
@@ -233,7 +236,7 @@ class StageBase
 
     /**
      * @param string $name
-     * @param string $error
+     * @param string|null $error
      * @return bool
      */
     protected function enable(string $name, string $error = null): bool
@@ -253,7 +256,7 @@ class StageBase
 
     /**
      * @param string $name
-     * @param string $error
+     * @param string|null $error
      * @return bool
      */
     protected function restart(string $name, string $error = null): bool
@@ -269,5 +272,12 @@ class StageBase
         }
 
         return true;
+    }
+
+    public function env(Environment $env): Stage
+    {
+        $this->env = $env;
+
+        return $this;
     }
 }
