@@ -3,6 +3,7 @@
 namespace Sculptor\Stages\V1804;
 
 use Exception;
+use Illuminate\Support\Facades\File;
 use League\Flysystem\FileNotFoundException;
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
@@ -23,13 +24,15 @@ class Cli extends StageBase implements Stage
     {
         $cli = '/bin/sculptor';
 
-        $copy = copy('https://github.com/sculptor-devops/sculptor-cli/releases/latest/download/sculptor', $cli);
+        $copy = copy('https://github.com/sculptor-devops/sculptor-cli/releases/latest/download/sculptor-cli', $cli);
 
         if (!$copy) {
             $this->internal = "Unable to download sculptor client";
 
             return false;
         }
+
+        File::chmod($cli, 0755);
 
         $this->command([$cli, 'sculptor:init']);
 

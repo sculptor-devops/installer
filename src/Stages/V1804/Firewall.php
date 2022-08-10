@@ -30,8 +30,6 @@ class Firewall extends StageBase implements Stage
         try {
             $this->noninteractive();
 
-            $port = $env->get('port');
-
             $this->command(['apt-get', '-y', 'install', 'fail2ban']);
 
             if (
