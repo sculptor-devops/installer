@@ -30,7 +30,7 @@
         "laravel-zero/framework": "^8.8",
         "nunomaduro/termwind": "^1.14",
         "sculptor-devops/foundation": "^0.3.1",
-        "symfony/yaml": "^5.3"
+        "symfony/yaml": "^6.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
