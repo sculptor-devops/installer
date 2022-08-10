@@ -1,5 +1,6 @@
 <?php namespace App\Commands;
 
+use Exception;
 use Sculptor\Stages;
 
 use Illuminate\Console\Scheduling\Schedule;
@@ -28,6 +29,7 @@ class ListStagesCommand extends Command
      *
      * @param Stages $stages
      * @return int
+     * @throws Exception
      */
     public function handle(Stages $stages): int
     {

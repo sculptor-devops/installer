@@ -15,18 +15,18 @@ use Illuminate\Support\Str;
 class StageFactory
 {
     /**
-     * @var Environment
+     * @var ?Environment
      */
-    private $env;
+    private ?Environment $env = null;
 
     /**
      * @var Configuration
      */
-    private $configuration;
+    private Configuration $configuration;
     /**
      * @var StageResolver
      */
-    private $resolver;
+    private StageResolver $resolver;
 
     /**
      * StageFactory constructor.
@@ -41,10 +41,10 @@ class StageFactory
     }
 
     /**
-     * @param string|null $version
+     * @param string $version
      * @return void
      */
-    public function version(?string $version): void
+    public function version(string $version): void
     {
         $this->resolver->version($version);
     }

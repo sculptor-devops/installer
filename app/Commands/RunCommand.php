@@ -1,12 +1,11 @@
-<?php namespace App\Commands;
+<?php
 
-use Sculptor\Services\Configuration;
+namespace App\Commands;
+
+use Exception;
 use Sculptor\Stages;
-
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
-
-use function Termwind\{render};
 
 class RunCommand extends Command
 {
@@ -31,6 +30,7 @@ class RunCommand extends Command
      *
      * @param Stages $stages
      * @return int
+     * @throws Exception
      */
     public function handle(Stages $stages): int
     {
@@ -43,7 +43,6 @@ class RunCommand extends Command
         }
 
         if (!$stages->run($this)) {
-
             $this->error($stages->error());
 
             $this->dump();

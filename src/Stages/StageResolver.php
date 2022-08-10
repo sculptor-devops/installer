@@ -1,11 +1,10 @@
 <?php
 
-
 namespace Sculptor\Stages;
-
 
 use Exception;
 use ReflectionClass;
+use ReflectionException;
 
 /**
  * (c) Alessandro Cappellozza <alessandro.cappellozza@gmail.com>
@@ -17,7 +16,7 @@ class StageResolver
     /**
      * @var string
      */
-    private $version = '18.04';
+    private string $version = '18.04';
 
     public function versions(): array
     {
@@ -50,11 +49,11 @@ class StageResolver
         throw new Exception("Stage $stage not found");
     }
 
-    private function exists($name): bool
+    private function exists(object|string $name): bool
     {
         try {
             return (new ReflectionClass($name)) != null;
-        } catch (Exception $ex) {
+        } catch (ReflectionException $ex) {
             return false;
         }
     }

@@ -1,9 +1,10 @@
-<?php namespace App\Commands;
+<?php
+
+namespace App\Commands;
 
 use League\Flysystem\FileNotFoundException;
 use Sculptor\Services\Configuration;
 use Sculptor\Services\Templates;
-
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\File;
 use LaravelZero\Framework\Commands\Command;
@@ -75,10 +76,9 @@ class ConfigCommand extends Command
         }
 
         foreach ($templates->all() as $config) {
-
             $filename = "{$path}/" . $config['name'];
 
-            if(!File::exists($filename)) {
+            if (!File::exists($filename)) {
                 $this->info("Writing template {$filename}");
 
                 File::put($filename, $config['content']);

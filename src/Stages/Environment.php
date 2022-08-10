@@ -16,18 +16,7 @@ class Environment
     /**
      * @var array<string, string>
      */
-    private $env = [];
-
-    /**
-     * Environment constructor.
-     * @param array<string,string> $env
-     */
-    public function __construct(array $env)
-    {
-        if ($env) {
-            $this->env = $env;
-        }
-    }
+    private array $env = [];
 
     /**
      * @param string $key

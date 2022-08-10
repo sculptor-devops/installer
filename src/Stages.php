@@ -2,6 +2,7 @@
 
 namespace Sculptor;
 
+use Exception;
 use Sculptor\Contracts\Stage;
 use Sculptor\Stages\Environment;
 use Sculptor\Stages\StageFactory;
@@ -20,21 +21,21 @@ class Stages
     /**
      * @var Environment
      */
-    private $env;
+    private Environment $env;
 
     /**
      * @var Version
      */
-    private $version;
+    private Version $version;
 
     /**
      * @var string|null
      */
-    private $error;
+    private ?string $error;
     /**
      * @var StageFactory
      */
-    private $stages;
+    private StageFactory $stages;
 
     public function __construct(StageFactory $stages, Version $version)
     {
@@ -75,6 +76,7 @@ class Stages
     /**
      * @param Command|null $context
      * @return bool
+     * @throws Exception
      */
     public function run(?Command $context): bool
     {
@@ -127,6 +129,7 @@ class Stages
 
     /**
      * @return array<int, array<string, int|string>>
+     * @throws Exception
      */
     public function list(): array
     {
@@ -151,6 +154,7 @@ class Stages
     /**
      * @param string $name
      * @return bool|null
+     * @throws Exception
      */
     public function stage(string $name): ?bool
     {

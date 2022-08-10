@@ -1,12 +1,15 @@
-<?php namespace App\Commands;
+<?php
 
+namespace App\Commands;
+
+use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Sculptor\Services\Logs;
 use Illuminate\Support\Str;
 
 trait CommonCommand
 {
-    private $start;
+    private Carbon $start;
 
     private function preamble(): void
     {

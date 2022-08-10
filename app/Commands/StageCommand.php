@@ -1,7 +1,8 @@
-<?php namespace App\Commands;
+<?php
+
+namespace App\Commands;
 
 use Sculptor\Stages;
-
 use Illuminate\Console\Scheduling\Schedule;
 use LaravelZero\Framework\Commands\Command;
 
@@ -35,7 +36,7 @@ class StageCommand extends Command
 
         $step = $this->option('step');
 
-        $done = $this->task("Running {$step}", function() use($stages, $step) {
+        $done = $this->task("Running {$step}", function () use ($stages, $step) {
             return $stages->stage($step);
         });
 
